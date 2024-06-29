@@ -1,8 +1,7 @@
+const R = 8.314;
 document.addEventListener("DOMContentLoaded", function () {
-  // Inicializar as abas
   showTab("quimica");
 
-  // Inicializar a mudança de fórmula
   document.getElementById("formula").addEventListener("change", function () {
     updateVariables("quimica");
   });
@@ -10,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("formula_fisica")
     .addEventListener("change", function () {
       updateVariables("fisica");
+    });
+
+  document
+    .getElementById("calculate-button")
+    .addEventListener("click", function () {
+      calcular("quimica");
     });
 });
 
@@ -32,8 +37,7 @@ function updateVariables(tab) {
   const variablesContainer =
     tab === "quimica" ? "variables-container" : "variables-container_fisica";
   const container = document.getElementById(variablesContainer);
-  container.innerHTML = ""; // Clear previous inputs
-
+  container.innerHTML = "";
   let variablesHtml = "";
 
   switch (formula) {
@@ -75,9 +79,44 @@ function updateVariables(tab) {
     case "massa-buraco":
       variablesHtml = "Raio Schwarzschild (m)";
       break;
+    case "formula-gases":
+      variablesHtml =
+        "Pressão (Pa), Volume (L), Número de mols (mol), Temperatura (K)";
+      break;
+    case "lei-de-hooke":
+      variablesHtml = "Força (N), Deformação (m), Constante de Hooke (N/m)";
+      break;
+    case "energia-cinetica":
+      variablesHtml = "Massa (kg), Velocidade (m/s)";
+      break;
+    case "energia-potencial":
+      variablesHtml = "Massa (kg), Altura (m), Gravidade (m/s²)";
+      break;
   }
 
-  container.innerHTML = `<input type="text" id="variables_${tab}" placeholder="Insira as variáveis: ${variablesHtml}">`;
+  container.innerHTML = `
+      <select id="variable-to-solve">
+        ${getVariableOptions(formula)
+          .map((option) => `<option value="${option}">${option}</option>`)
+          .join("")}
+      </select>
+      <input type="text" id="variables_${tab}" placeholder="Insira as variáveis: ${variablesHtml}">
+    `;
+}
+
+function getVariableOptions(formula) {
+  switch (formula) {
+    case "formula-gases":
+      return ["P", "V", "n", "T"];
+    case "lei-de-hooke":
+      return ["F", "x", "k"];
+    case "energia-cinetica":
+      return ["E", "m", "v"];
+    case "energia-potencial":
+      return ["E", "m", "h", "g"];
+    default:
+      return [];
+  }
 }
 
 function calcular(tab) {
@@ -85,6 +124,7 @@ function calcular(tab) {
     tab === "quimica"
       ? document.getElementById("formula").value
       : document.getElementById("formula_fisica").value;
+  const variableToSolve = document.getElementById("variable-to-solve").value;
   const variables = document
     .getElementById(`variables_${tab}`)
     .value.split(",")
@@ -98,40 +138,52 @@ function calcular(tab) {
 
   switch (formula) {
     case "massa-molar":
-      resultado = calcularMassaMolar(variables);
+      resultado = calcularMassaMolar(variables, variableToSolve);
       break;
     case "numero-mols":
-      resultado = calcularNumeroMols(variables);
+      resultado = calcularNumeroMols(variables, variableToSolve);
       break;
     case "densidade":
-      resultado = calcularDensidade(variables);
+      resultado = calcularDensidade(variables, variableToSolve);
       break;
     case "concentracao-molar":
-      resultado = calcularConcentracaoMolar(variables);
+      resultado = calcularConcentracaoMolar(variables, variableToSolve);
       break;
     case "concentracao-comum":
-      resultado = calcularConcentracaoComum(variables);
+      resultado = calcularConcentracaoComum(variables, variableToSolve);
       break;
     case "mistura-solucoes":
-      resultado = calcularMisturaSolucoes(variables);
+      resultado = calcularMisturaSolucoes(variables, variableToSolve);
       break;
     case "diluicao":
-      resultado = calcularDiluicao(variables);
+      resultado = calcularDiluicao(variables, variableToSolve);
       break;
     case "ph":
-      resultado = calcularPh(variables);
+      resultado = calcularPh(variables, variableToSolve);
       break;
     case "poh":
-      resultado = calcularPoh(variables);
+      resultado = calcularPoh(variables, variableToSolve);
       break;
     case "velocidade":
-      resultado = calcularVelocidadeMedia(variables);
+      resultado = calcularVelocidadeMedia(variables, variableToSolve);
       break;
     case "trabalho":
-      resultado = calcularTrabalho(variables);
+      resultado = calcularTrabalho(variables, variableToSolve);
       break;
     case "massa-buraco":
-      resultado = calcularMassaBuracoNegro(variables);
+      resultado = calcularMassaBuracoNegro(variables, variableToSolve);
+      break;
+    case "formula-gases":
+      resultado = calcularFormulaGases(variables, variableToSolve);
+      break;
+    case "lei-de-hooke":
+      resultado = calcularLeiDeHooke(variables, variableToSolve);
+      break;
+    case "energia-cinetica":
+      resultado = calcularEnergiaCinetica(variables, variableToSolve);
+      break;
+    case "energia-potencial":
+      resultado = calcularEnergiaPotencial(variables, variableToSolve);
       break;
   }
 
@@ -148,64 +200,82 @@ function validateInputs(variables) {
 }
 
 // Funções de cálculo para cada fórmula
-function calcularMassaMolar(vars) {
+function calcularMassaMolar(vars, variableToSolve) {
   const [massa, mol] = vars.map(parseFloat);
-  return massa / mol;
+  if (variableToSolve === "M") {
+    return massa / mol;
+  } else if (variableToSolve === "m") {
+    return mol * massa;
+  } else {
+    return null;
+  }
 }
 
-function calcularNumeroMols(vars) {
+function calcularNumeroMols(vars, variableToSolve) {
   const [massa, massaMolar] = vars.map(parseFloat);
-  return massa / massaMolar;
+  if (variableToSolve === "n") {
+    return massa / massaMolar;
+  } else if (variableToSolve === "m") {
+    return massaMolar * massa;
+  } else {
+    return null;
+  }
 }
 
-function calcularDensidade(vars) {
-  const [massa, volume] = vars.map(parseFloat);
-  return massa / volume;
+// ... (rest of the functions)
+
+function calcularFormulaGases(vars, variableToSolve) {
+  const [P, V, n, T] = vars.map(parseFloat);
+  if (variableToSolve === "P") {
+    return (n * R * T) / V;
+  } else if (variableToSolve === "V") {
+    return (n * R * T) / P;
+  } else if (variableToSolve === "n") {
+    return (P * V) / (R * T);
+  } else if (variableToSolve === "T") {
+    return (P * V) / (n * R);
+  } else {
+    return null;
+  }
 }
 
-function calcularConcentracaoMolar(vars) {
-  const [mol, volume] = vars.map(parseFloat);
-  return mol / volume;
+function calcularLeiDeHooke(vars, variableToSolve) {
+  const [F, x, k] = vars.map(parseFloat);
+  if (variableToSolve === "F") {
+    return k * x;
+  } else if (variableToSolve === "x") {
+    return F / k;
+  } else if (variableToSolve === "k") {
+    return F / x;
+  } else {
+    return null;
+  }
 }
 
-function calcularConcentracaoComum(vars) {
-  const [massa, volume] = vars.map(parseFloat);
-  return massa / volume;
+function calcularEnergiaCinetica(vars, variableToSolve) {
+  const [E, m, v] = vars.map(parseFloat);
+  if (variableToSolve === "E") {
+    return 0.5 * m * v ** 2;
+  } else if (variableToSolve === "m") {
+    return (2 * E) / v ** 2;
+  } else if (variableToSolve === "v") {
+    return Math.sqrt((2 * E) / m);
+  } else {
+    return null;
+  }
 }
 
-function calcularMisturaSolucoes(vars) {
-  const [c1, v1, c2, v2] = vars.map(parseFloat);
-  return (c1 * v1 + c2 * v2) / (v1 + v2);
-}
-
-function calcularDiluicao(vars) {
-  const [c1, v1, vf] = vars.map(parseFloat);
-  return (c1 * v1) / vf;
-}
-
-function calcularPh(vars) {
-  const [h] = vars.map(parseFloat);
-  return -Math.log10(h);
-}
-
-function calcularPoh(vars) {
-  const [oh] = vars.map(parseFloat);
-  return -Math.log10(oh);
-}
-
-function calcularVelocidadeMedia(vars) {
-  const [distancia, tempo] = vars.map(parseFloat);
-  return distancia / tempo;
-}
-
-function calcularTrabalho(vars) {
-  const [forca, distancia] = vars.map(parseFloat);
-  return forca * distancia;
-}
-
-function calcularMassaBuracoNegro(vars) {
-  const [raio] = vars.map(parseFloat);
-  const G = 6.6743e-11;
-  const c = 299792458;
-  return (raio * c ** 2) / (2 * G);
+function calcularEnergiaPotencial(vars, variableToSolve) {
+  const [E, m, h, g] = vars.map(parseFloat);
+  if (variableToSolve === "E") {
+    return m * g * h;
+  } else if (variableToSolve === "m") {
+    return E / (g * h);
+  } else if (variableToSolve === "h") {
+    return E / (m * g);
+  } else if (variableToSolve === "g") {
+    return E / (m * h);
+  } else {
+    return null;
+  }
 }

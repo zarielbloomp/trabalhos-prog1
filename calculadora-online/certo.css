@@ -1,83 +1,45 @@
+/* styles.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f7f7f7;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .container {
   background-color: #fff;
   width: 500px;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
 }
 
-h1 {
+header {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.tab {
-  display: none;
-}
-
-.tab.active {
-  display: block;
-}
-
-.formula,
-.calculation-type,
-.variables {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-select,
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.resultado {
-  margin-top: 15px;
+h1 {
   font-weight: bold;
+  color: #333;
 }
 
-.tab-buttons {
+nav.tab-buttons {
   text-align: center;
   margin-top: 20px;
 }
 
 .tab-button {
-  background-color: #f0f0f0; /* Light gray */
+  background-color: #f7f7f7;
   border: none;
   color: black;
-  padding: 10px 20px;
+  padding: 12px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -85,8 +47,78 @@ button {
   cursor: pointer;
   border-radius: 5px;
   margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .tab-button.active {
-  background-color: #ccc; /* Gray */
+  background-color: #ccc;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.formula {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #666;
+}
+
+select,
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+select:focus,
+input[type="text"]:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#resultado {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #666;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
