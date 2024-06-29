@@ -12,10 +12,11 @@
       <h1>Calculadora de Fórmulas</h1>
     </header>
     <nav class="tab-buttons" role="navigation" aria-label="Formulas navigation">
-      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
-      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
+      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Química</button>
+      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Física</button>
     </nav>
     <main>
+      <!-- Química -->
       <section id="quimica-formulas" class="tab-content">
         <h2>Química</h2>
         <form>
@@ -35,13 +36,15 @@
             <p id="formula-texto"></p>
           </div>
           <div class="variables">
-            <label for="variables">Variáveis:</label>
+            <label for="variables">Variável a ser calculada</label>
             <div id="variables-container"></div>
           </div>
           <button type="button" onclick="calcular('quimica')" aria-label="Calculate">Calcular</button>
           <div id="resultado-quimica"></div>
         </form>
       </section>
+
+      <!-- Física -->
       <section id="fisica-formulas" class="tab-content" style="display:none;">
         <h2>Física</h2>
         <form>
@@ -51,6 +54,10 @@
               <option value="velocidade">Velocidade Média</option>
               <option value="trabalho">Trabalho</option>
               <option value="massa-buraco">Massa do Buraco Negro</option>
+              <option value="formula-gases">Fórmula dos Gases</option>
+              <option value="lei-de-hooke">Lei de Hooke</option>
+              <option value="energia-cinetica">Energia Cinética</option>
+              <option value="energia-potencial">Energia Potencial</option>
             </select>
             <p id="formula-texto_fisica"></p>
           </div>
