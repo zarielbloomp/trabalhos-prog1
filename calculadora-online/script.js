@@ -55,68 +55,97 @@ function showTab(tab) {
 function updateVariables(tab) {
   const formula =
     tab === "quimica"
-      ? document.getElementById("formula").value
+     ? document.getElementById("formula").value
       : document.getElementById("formula_fisica").value;
+  const formulaTexto =
+    tab === "quimica"? document.getElementById("formula-texto") : document.getElementById("formula-texto_fisica");
   const variablesContainer =
-    tab === "quimica" ? "variables-container" : "variables-container_fisica";
+    tab === "quimica"? "variables-container" : "variables-container_fisica";
   const container = document.getElementById(variablesContainer);
   container.innerHTML = "";
   let variablesHtml = "";
+  let formulaHtml = "";
 
   switch (formula) {
     case "numero-mols":
       variablesHtml = "Massa (g), Massa Molar (g/mol)";
+      formulaHtml = "n = m / M";
       break;
     case "massa-molar":
       variablesHtml = "Massa (g), Número de mols (mol)";
+      formulaHtml = "M = m / n";
       break;
     case "densidade":
       variablesHtml = "Massa (g), Volume (L)";
+      formulaHtml = "d = m / V";
       break;
     case "concentracao-molar":
       variablesHtml = "Número de mols (mol), Volume (L)";
+      formulaHtml = "C = n / V";
       break;
     case "concentracao-comum":
       variablesHtml = "Massa (g), Volume (L)";
+      formulaHtml = "C = m / V";
       break;
     case "mistura-solucoes":
       variablesHtml =
         "Concentração inicial (M), Volume inicial (L), Concentração final (M), Volume final (L)";
+      formulaHtml = "C1 * V1 = C2 * V2";
       break;
     case "diluicao":
       variablesHtml =
         "Concentração inicial (M), Volume inicial (L), Concentração final (M)";
+      formulaHtml = "C1 * V1 = C2 * V2";
       break;
     case "ph":
       variablesHtml = "Concentração de H+ (M)";
+      formulaHtml = "pH = -log[H+]";
       break;
     case "poh":
       variablesHtml = "Concentração de OH- (M)";
+      formulaHtml = "pOH = -log[OH-]";
       break;
     case "formula-gases":
       variablesHtml =
         "Pressão (Pa), Volume (L), Número de mols (mol), Temperatura (K)";
+      formulaHtml = "PV = nRT";
       break;
     case "lei-de-hooke":
       variablesHtml = "Força (N), Deformação (m), Constante de Hooke (N/m)";
+      formulaHtml = "F = k * x";
       break;
     case "energia-cinetica":
       variablesHtml = "Massa (kg), Velocidade (m/s)";
+      formulaHtml = "Ek = (1/2) * m * v^2";
       break;
     case "energia-potencial":
       variablesHtml = "Massa (kg), Altura (m), Gravidade (m/s²)";
+      formulaHtml = "Ep = m * g * h";
+      break;
+    case "massa-buraco-negro":
+      variablesHtml = "Massa (kg), Constante de Gravitação (m³ kg⁻¹ s⁻²), Velocidade da Luz (m/s)";
+      formulaHtml = "M = (c^2) / (2 * G)";
+      break;
+    case "velocidade-media":
+      variablesHtml = "Distância (m), Tempo (s)";
+      formulaHtml = "v = Δx / Δt";
+      break;
+    case "trabalho":
+      variablesHtml = "Força (N), Distância (m)";
+      formulaHtml = "W = F * d";
       break;
     default:
       variablesHtml = "";
+      formulaHtml = "";
   }
-
   console.log(`Updating variables for ${formula}`);
 
+  formulaTexto.innerHTML = formulaHtml;
   container.innerHTML = `
       <select id="variable-to-solve">
         ${getVariableOptions(formula)
-          .map((option) => `<option value="${option}">${option}</option>`)
-          .join("")}
+         .map((option) => `<option value="${option}">${option}</option>`)
+         .join("")}
       </select>
       <input type="text" id="variables_${tab}" placeholder="Insira as variáveis: ${variablesHtml}">
     `;
@@ -150,21 +179,21 @@ function getVariableOptions(formula) {
       return ["E", "m", "v"];
     case "energia-potencial":
       return ["E", "m", "h", "g"];
+    case "massa-buraco-negro":
+      return ["M", "G", "c"];
+    case "velocidade-media":
+      return ["v", "d", "t"];
+    case "trabalho":
+      return ["W", "F", "d"];
     default:
       return [];
   }
 }
 
 function calcular(tab) {
-  const formula =
-    tab === "quimica"
-      ? document.getElementById("formula").value
-      : document.getElementById("formula_fisica").value;
+  const formula = tab === "quimica"? document.getElementById("formula").value : document.getElementById("formula_fisica").value;
   const variableToSolve = document.getElementById("variable-to-solve").value;
-  const variables = document
-    .getElementById(`variables_${tab}`)
-    .value.split(",")
-    .map((v) => v.trim());
+  const variables = document.getElementById(`variables_${tab}`).value.split(",").map((v) => v.trim());
   let resultado;
 
   console.log(`Calculating for ${formula} and ${variableToSolve}`);
@@ -226,19 +255,19 @@ function calcular(tab) {
           break;
         default:
           resultado = null;
-    }
+        }
 
-    if (resultado === null) {
-      alert("Fórmula inválida! Verifique sua fórmula.");
-      return;
+        if (resultado === null) {
+          alert("Fórmula inválida! Verifique sua fórmula.");
+          return;
+        }
+    
+        document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+      } catch (error) {
+        console.error(error);
+        alert("Ocorreu um erro durante o cálculo. Tente novamente.");
+      }
     }
-
-    document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
-  } catch (error) {
-    console.error(error);
-    alert("Ocorreu um erro durante o cálculo. Tente novamente.");
-  }
-}
 
 function validateInputs(variables) {
   for (const variable of variables) {
@@ -264,7 +293,13 @@ function calcularNumeroMols(vars, variableToSolve) {
 }
 
 function calcularMassaMolar(vars, variableToSolve) {
-  const [M, m, n] = vars.map(parseFloat);
+  const inputValues = vars.split(",");
+  const M = parseFloat(inputValues[0].trim());
+  const m = parseFloat(inputValues[1].trim());
+  const n = parseFloat(inputValues[2].trim());
+  if (isNaN(M) || isNaN(m) || isNaN(n)) {
+    return null; 
+  }
   if (variableToSolve === "M") {
     return m / n;
   } else if (variableToSolve === "m") {
@@ -277,7 +312,13 @@ function calcularMassaMolar(vars, variableToSolve) {
 }
 
 function calcularDensidade(vars, variableToSolve) {
-  const [d, m, V] = vars.map(parseFloat);
+  const inputValues = vars.split(",");
+  const m = parseFloat(inputValues[0].trim());
+  const V = parseFloat(inputValues[1].trim());
+  const d = parseFloat(inputValues[2].trim());
+  if (isNaN(m) || isNaN(V) || isNaN(d)) {
+    return null; 
+  }
   if (variableToSolve === "d") {
     return m / V;
   } else if (variableToSolve === "m") {
@@ -288,6 +329,7 @@ function calcularDensidade(vars, variableToSolve) {
     return null;
   }
 }
+
 
 function calcularConcentracaoMolar(vars, variableToSolve) {
   const [C, n, V] = vars.map(parseFloat);
