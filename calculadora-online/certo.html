@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Fórmulas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Fórmulas</h1>
+    
+    <div class="tab-buttons">
+      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
+      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
+    </div>
+
+    <div id="quimica-formulas" class="tab-content">
+      <h2>Química</h2>
+      <div class="formula">
+        <label for="formula">Fórmula:</label>
+        <select id="formula" onchange="updateVariables('quimica')">
+          <option value="numero-mols">Número de mols</option>
+          <option value="massa-molar">Massa Molar</option>
+          <option value="densidade">Densidade</option>
+          <option value="concentracao-molar">Concentração Molar</option>
+          <option value="concentracao-comum">Concentração Comum</option>
+          <option value="mistura-solucoes">Mistura de Soluções</option>
+          <option value="diluicao">Diluição</option>
+          <option value="ph">pH</option>
+          <option value="poh">pOH</option>
+        </select>
+        <p id="formula-texto"></p>
+      </div>
+      <div class="variables">
+        <label for="variables">Variáveis:</label>
+        <div id="variables-container"></div>
+      </div>
+      <button onclick="calcular('quimica')">Calcular</button>
+      <div id="resultado"></div>
+    </div>
+    
+    <div id="fisica-formulas" class="tab-content" style="display:none;">
+      <h2>Física</h2>
+      <div class="formula">
+        <label for="formula_fisica">Fórmula:</label>
+        <select id="formula_fisica" onchange="updateVariables('fisica')">
+          <option value="velocidade">Velocidade Média</option>
+          <option value="trabalho">Trabalho</option>
+          <option value="massa-buraco">Massa do Buraco Negro</option>
+        </select>
+        <p id="formula-texto_fisica"></p>
+      </div>
+      <div class="variables">
+        <label for="variables_fisica">Variáveis:</label>
+        <div id="variables-container_fisica"></div>
+      </div>
+      <button onclick="calcular('fisica')">Calcular</button>
+      <div id="resultado"></div>
+    </div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>
