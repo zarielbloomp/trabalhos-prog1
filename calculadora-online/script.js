@@ -1,21 +1,34 @@
 const R = 8.314;
+
 document.addEventListener("DOMContentLoaded", function () {
   showTab("quimica");
 
   document.getElementById("formula").addEventListener("change", function () {
     updateVariables("quimica");
   });
-  document
-    .getElementById("formula_fisica")
-    .addEventListener("change", function () {
-      updateVariables("fisica");
-    });
+  document.getElementById("formula_fisica").addEventListener("change", function () {
+    updateVariables("fisica");
+  });
 
-  document
-    .getElementById("calculate-button")
-    .addEventListener("click", function () {
+  document.getElementById("variables_quimica").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
       calcular("quimica");
-    });
+    }
+  });
+
+  document.getElementById("variables_fisica").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      calcular("fisica");
+    }
+  });
+
+  document.getElementById("variables_quimica").addEventListener("click", function () {
+    calcular("quimica");
+  });
+
+  document.getElementById("variables_fisica").addEventListener("click", function () {
+    calcular("fisica");
+  });
 });
 
 function showTab(tab) {
@@ -41,44 +54,6 @@ function updateVariables(tab) {
   let variablesHtml = "";
 
   switch (formula) {
-    case "massa-molar":
-      variablesHtml = "Massa (g), Mol (mol)";
-      break;
-    case "numero-mols":
-      variablesHtml = "Massa (g), Massa Molar (g/mol)";
-      break;
-    case "densidade":
-      variablesHtml = "Massa (g), Volume (L)";
-      break;
-    case "concentracao-molar":
-      variablesHtml = "Mol (mol), Volume (L)";
-      break;
-    case "concentracao-comum":
-      variablesHtml = "Massa (g), Volume (L)";
-      break;
-    case "mistura-solucoes":
-      variablesHtml =
-        "Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
-      break;
-    case "diluicao":
-      variablesHtml =
-        "Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
-      break;
-    case "ph":
-      variablesHtml = "Concentração H+ (mol/L)";
-      break;
-    case "poh":
-      variablesHtml = "Concentração OH- (mol/L)";
-      break;
-    case "velocidade":
-      variablesHtml = "Distância (m), Tempo (s)";
-      break;
-    case "trabalho":
-      variablesHtml = "Força (N), Distância (m)";
-      break;
-    case "massa-buraco":
-      variablesHtml = "Raio Schwarzschild (m)";
-      break;
     case "formula-gases":
       variablesHtml =
         "Pressão (Pa), Volume (L), Número de mols (mol), Temperatura (K)";
@@ -92,6 +67,8 @@ function updateVariables(tab) {
     case "energia-potencial":
       variablesHtml = "Massa (kg), Altura (m), Gravidade (m/s²)";
       break;
+    default:
+      variablesHtml = "";
   }
 
   container.innerHTML = `
@@ -137,42 +114,6 @@ function calcular(tab) {
   }
 
   switch (formula) {
-    case "massa-molar":
-      resultado = calcularMassaMolar(variables, variableToSolve);
-      break;
-    case "numero-mols":
-      resultado = calcularNumeroMols(variables, variableToSolve);
-      break;
-    case "densidade":
-      resultado = calcularDensidade(variables, variableToSolve);
-      break;
-    case "concentracao-molar":
-      resultado = calcularConcentracaoMolar(variables, variableToSolve);
-      break;
-    case "concentracao-comum":
-      resultado = calcularConcentracaoComum(variables, variableToSolve);
-      break;
-    case "mistura-solucoes":
-      resultado = calcularMisturaSolucoes(variables, variableToSolve);
-      break;
-    case "diluicao":
-      resultado = calcularDiluicao(variables, variableToSolve);
-      break;
-    case "ph":
-      resultado = calcularPh(variables, variableToSolve);
-      break;
-    case "poh":
-      resultado = calcularPoh(variables, variableToSolve);
-      break;
-    case "velocidade":
-      resultado = calcularVelocidadeMedia(variables, variableToSolve);
-      break;
-    case "trabalho":
-      resultado = calcularTrabalho(variables, variableToSolve);
-      break;
-    case "massa-buraco":
-      resultado = calcularMassaBuracoNegro(variables, variableToSolve);
-      break;
     case "formula-gases":
       resultado = calcularFormulaGases(variables, variableToSolve);
       break;
@@ -200,30 +141,6 @@ function validateInputs(variables) {
 }
 
 // Funções de cálculo para cada fórmula
-function calcularMassaMolar(vars, variableToSolve) {
-  const [massa, mol] = vars.map(parseFloat);
-  if (variableToSolve === "M") {
-    return massa / mol;
-  } else if (variableToSolve === "m") {
-    return mol * massa;
-  } else {
-    return null;
-  }
-}
-
-function calcularNumeroMols(vars, variableToSolve) {
-  const [massa, massaMolar] = vars.map(parseFloat);
-  if (variableToSolve === "n") {
-    return massa / massaMolar;
-  } else if (variableToSolve === "m") {
-    return massaMolar * massa;
-  } else {
-    return null;
-  }
-}
-
-// ... (rest of the functions)
-
 function calcularFormulaGases(vars, variableToSolve) {
   const [P, V, n, T] = vars.map(parseFloat);
   if (variableToSolve === "P") {

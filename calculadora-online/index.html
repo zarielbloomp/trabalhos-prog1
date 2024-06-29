@@ -1,18 +1,17 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de Fórmulas</title>
-  <link rel="stylesheet" href="certo.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
       <h1>Calculadora de Fórmulas</h1>
     </header>
-    <nav class="tab-buttons">
+    <nav class="tab-buttons" role="navigation" aria-label="Formulas navigation">
       <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
       <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
     </nav>
@@ -22,7 +21,7 @@
         <form>
           <div class="formula">
             <label for="formula">Fórmula:</label>
-            <select id="formula" onchange="updateVariables('quimica')">
+            <select id="formula" onchange="updateVariables('quimica')" aria-label="Select formula">
               <option value="numero-mols">Número de mols</option>
               <option value="massa-molar">Massa Molar</option>
               <option value="densidade">Densidade</option>
@@ -39,8 +38,8 @@
             <label for="variables">Variáveis:</label>
             <div id="variables-container"></div>
           </div>
-          <button type="button" onclick="calcular('quimica')">Calcular</button>
-          <div id="resultado"></div>
+          <button type="button" onclick="calcular('quimica')" aria-label="Calculate">Calcular</button>
+          <div id="resultado-quimica"></div>
         </form>
       </section>
       <section id="fisica-formulas" class="tab-content" style="display:none;">
@@ -48,7 +47,7 @@
         <form>
           <div class="formula">
             <label for="formula_fisica">Fórmula:</label>
-            <select id="formula_fisica" onchange="updateVariables('fisica')">
+            <select id="formula_fisica" onchange="updateVariables('fisica')" aria-label="Select formula">
               <option value="velocidade">Velocidade Média</option>
               <option value="trabalho">Trabalho</option>
               <option value="massa-buraco">Massa do Buraco Negro</option>
@@ -59,13 +58,13 @@
             <label for="variables_fisica">Variáveis:</label>
             <div id="variables-container_fisica"></div>
           </div>
-          <button type="button" onclick="calcular('fisica')">Calcular</button>
-          <div id="resultado"></div>
+          <button type="button" onclick="calcular('fisica')" aria-label="Calculate">Calcular</button>
+          <div id="resultado-fisica"></div>
         </form>
       </section>
     </main>
   </div>
 
-  <script src="certo.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
