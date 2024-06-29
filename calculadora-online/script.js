@@ -459,3 +459,17 @@ function calcularTrabalho(vars, variableToSolve) {
     return null;
   }
 }
+
+function calcularMassaBuracoNegro(vars, variableToSolve) {
+  const [M, G, c] = vars.map(parseFloat);
+  if (variableToSolve === "M") {
+    return c ** 2 / (2 * G);
+  } else if (variableToSolve === "G") {
+    return c ** 2 / (2 * M);
+  } else if (variableToSolve === "c") {
+    return Math.sqrt(2 * G * M);
+  } else {
+    return null;
+  }
+}
+
