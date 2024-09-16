@@ -21,7 +21,7 @@ loginBtn.addEventListener('click', (e) => {
     const password = document.getElementById('senha').value;
 
     if (email === fixedUser && password === fixedPassword) {
-      window.location.href = "../calculadora/certo.html";
+        window.location.href = "../calculadora/certo.html";
     } else {
         alert("Usuário ou senha incorretos!");
     }
