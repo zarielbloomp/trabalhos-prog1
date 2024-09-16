@@ -6,8 +6,9 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-image: linear-gradient(to bottom, #e0e0e0, #b3b3b3);
+  font-family: 'Montserrat', sans-serif;
+  background-color: #c9d6ff;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -67,14 +68,14 @@ h1 {
 }
 
 .tab-button.active {
-  background-color: #4CAF50;
+  background-color: #512da8;
   color: white;
-  border-color: #4CAF50;
+  border-color: #512da8;
   transform: scale(1.05);
 }
 
 .tab-button:hover {
-  background-color: #ddd;
+  background-color: #a98ee9b0;
   transform: scale(1.05);
 }
 
@@ -115,12 +116,12 @@ select, input[type="text"] {
 }
 
 select:hover, input[type="text"]:hover {
-  border-color: #999;
+  border-color: #a98cee;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #512da8;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -132,7 +133,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #6a34e9;
   transform: scale(1.05);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
