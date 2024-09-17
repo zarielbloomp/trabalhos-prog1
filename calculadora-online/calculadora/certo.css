@@ -152,7 +152,7 @@ button:hover {
   50% { transform: scale(1.1); }
 }
 
-.variables-container, .variables-container_fisica {
+.variables-container, .variables-container_fisica, .variables-container_matematica {
   display: flex;
   flex-direction: column;
   gap: 10px;
