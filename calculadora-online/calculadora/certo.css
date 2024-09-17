@@ -53,6 +53,7 @@ h1 {
   display: flex;
   justify-content: center;
   width: 100%;
+  flex-wrap: wrap; 
 }
 
 .tab-button {
@@ -63,7 +64,7 @@ h1 {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  margin: 0 5px;
+  margin: 5px; 
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -106,7 +107,7 @@ label {
   color: #333;
 }
 
-select, input[type="text"] {
+select, input[type="text"], input[type="number"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -115,7 +116,7 @@ select, input[type="text"] {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-select:hover, input[type="text"]:hover {
+select:hover, input[type="text"]:hover, input[type="number"]:hover {
   border-color: #a98cee;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -152,8 +153,69 @@ button:hover {
   50% { transform: scale(1.1); }
 }
 
-.variables-container, .variables-container_fisica, .variables-container_matematica {
+.variables-container, .variables-container_fisica, .variables-container_matematica, .variables-container_matriz {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#matrix-container {
+  display: grid;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+#matrix-container input {
+  width: 50px;
+  text-align: center;
+}
+
+#matrix-container button {
+  margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .tab-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  button, select, input[type="text"], input[type="number"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .resultado {
+    font-size: 16px;
+  }
+
+  #matrix-container input {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  button, select, input[type="text"], input[type="number"] {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .resultado {
+    font-size: 14px;
+  }
+
+  #matrix-container input {
+    width: 30px;
+  }
 }

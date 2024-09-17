@@ -14,6 +14,7 @@
       <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
       <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
       <button class="tab-button" id="tab-matematica" onclick="showTab('matematica')">Fórmulas Matemáticas</button>
+      <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')">Operações de Matrizes</button>
     </nav>
 
     <!-- Seção de Química -->
@@ -106,13 +107,29 @@
       <div id="resultado-matematica">Resultado aqui: </div>
     </section>
 
-  </div>
+    <!-- Seção de Matrizes -->
+    <section id="matrizes-formulas" class="tab-content" style="display:none;">
+      <h2>Operações de Matrizes</h2>
+      <div class="formula">
+        <label for="formula_matriz">Operação:</label>
+        <select id="formula_matriz" onchange="updateVariablesMatriz()">
+            <option value="determinante">Determinante</option>
+            <option value="inversa">Inversa</option>
+            <option value="transposta">Transposta</option>
+        </select>
+      </div>
+      <div class="variables">
+        <label for="variables_matriz">Variáveis:</label>
+        <div id="variables-container_matriz"></div>
+      </div>
+      <div id="resultado-matriz">Resultado aqui: </div>
+    </section>
 
-  <!-- Scripts de cada categoria -->
+  </div>
   <script src="matematica.js"></script>
   <script src="quimica.js"></script>
   <script src="fisica.js"></script>
-  <script src="showTab.js"></script>
   <script src="matrizes.js"></script>
+  <script src="showTab.js"></script>
 </body>
 </html>

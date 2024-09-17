@@ -46,7 +46,6 @@ function updateVariablesMatematica() {
     container.innerHTML = `<input type="text" id="variables_matematica" placeholder="Insira as variáveis: ${variablesHtml}">`;
 }
 
-// Função de cálculo para Matemática
 function calcularMatematica() {
     const formula = document.getElementById("formula_matematica").value;
     const variables = document.getElementById("variables_matematica").value.split(",").map(v => v.trim());

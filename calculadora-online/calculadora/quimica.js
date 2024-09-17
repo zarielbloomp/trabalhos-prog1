@@ -64,7 +64,7 @@ function updateVariablesQuimica() {
     container.innerHTML = `<input type="text" id="variables_quimica" placeholder="Insira as variáveis: ${variablesHtml}">`;
 }
 
-// Função de cálculo para Química
+
 function calcularQuimica() {
     const formula = document.getElementById("formula").value;
     const variables = document.getElementById("variables_quimica").value.split(",").map(v => v.trim());
