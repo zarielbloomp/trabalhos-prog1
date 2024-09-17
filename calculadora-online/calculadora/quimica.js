@@ -12,59 +12,59 @@ function updateVariablesQuimica() {
 
     switch (formula) {
         case "numero-mols":
-            variablesHtml = "Massa (g), Massa Molar (g/mol)";
+            variablesHtml = "n = m / M -> Massa (g), Massa Molar (g/mol)";
             break;
         case "massa-molar":
-            variablesHtml = "Massa (g), Mol (mol)";
+            variablesHtml = "M = m / n -> Massa (g), Mol (mol)";
             break;
         case "densidade":
-            variablesHtml = "Massa (g), Volume (L)";
+            variablesHtml = "d = m / V -> Massa (g), Volume (L)";
             break;
         case "concentracao-molar":
-            variablesHtml = "Mol (mol), Volume (L)";
+            variablesHtml = "M = n / V -> Mol (mol), Volume (L)";
             break;
         case "concentracao-comum":
-            variablesHtml = "Massa (g), Volume (L)";
+            variablesHtml = "C = m / V -> Massa (g), Volume (L)";
             break;
         case "mistura-solucoes":
-            variablesHtml = "Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
+            variablesHtml = "Cfinal = (C1 * V1 + C2 * V2) / (V1 + V2) -> Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
             break;
         case "diluicao":
-            variablesHtml = "Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
+            variablesHtml = "C1 * V1 = C2 * V2 -> Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
             break;
         case "ph":
-            variablesHtml = "Concentração H+ (mol/L)";
+            variablesHtml = "pH = -log[H+] -> Concentração H+ (mol/L)";
             break;
         case "poh":
-            variablesHtml = "Concentração OH- (mol/L)";
+            variablesHtml = "pOH = -log[OH-] -> Concentração OH- (mol/L)";
             break;
         case "constante-equilibrio":
-            variablesHtml = "Concentração A, Coeficiente A, Concentração B, Coeficiente B, Concentração C, Coeficiente C, Concentração D, Coeficiente D";
+            variablesHtml = "Kc = ([C]^c * [D]^d) / ([A]^a * [B]^b) -> Concentração A, Coeficiente A, Concentração B, Coeficiente B, Concentração C, Coeficiente C, Concentração D, Coeficiente D";
             break;
         case "calor-sensivel":
-            variablesHtml = "Massa (kg), Calor específico (J/kg°C), Variação de temperatura (°C)";
+            variablesHtml = "Q = m * c * ΔT -> Massa (kg), Calor específico (J/kg°C), Variação de temperatura (°C)";
             break;
         case "calor-latente":
-            variablesHtml = "Massa (kg), Calor latente (J/kg)";
+            variablesHtml = "Q = m * L -> Massa (kg), Calor latente (J/kg)";
             break;
-        case "energia-ligacao":
-            variablesHtml = "Energia dos Produtos (J), Energia dos Reagentes (J)";
+        case "lei-lavoisier":
+            variablesHtml = "mReagentes = mProdutos -> Massa dos Reagentes (g), Massa dos Produtos (g)";
             break;
         case "lei-raoult":
-            variablesHtml = "Pressão Pura (Pa), Fração Molar";
+            variablesHtml = "Psolução = Ppura * X -> Pressão Pura (Pa), Fração Molar";
             break;
         case "lei-ideal-gases":
-            variablesHtml = "Volume (L), Mols (n), Temperatura (K)";
+            variablesHtml = "PV = nRT -> Pressão (Pa), Volume (L), Mols (n), Temperatura (K)";
             break;
         case "velocidade-reacao":
-            variablesHtml = "Concentração inicial (mol/L), Concentração final (mol/L), Tempo (s)";
+            variablesHtml = "V = Δ[C] / Δt -> Concentração inicial (mol/L), Concentração final (mol/L), Tempo (s)";
             break;
     }
 
     container.innerHTML = `<input type="text" id="variables_quimica" placeholder="Insira as variáveis: ${variablesHtml}">`;
 }
 
-
+// Função de cálculo para Química
 function calcularQuimica() {
     const formula = document.getElementById("formula").value;
     const variables = document.getElementById("variables_quimica").value.split(",").map(v => v.trim());
@@ -112,8 +112,8 @@ function calcularQuimica() {
         case "calor-latente":
             resultado = calcularCalorLatente(variables);
             break;
-        case "energia-ligacao":
-            resultado = calcularEnergiaLigacao(variables);
+        case "lei-lavoisier":
+            resultado = calcularLeiLavoisier(variables);
             break;
         case "lei-raoult":
             resultado = calcularLeiRaoult(variables);
@@ -192,9 +192,9 @@ function calcularCalorLatente(vars) {
     return massa * calorLatente;
 }
 
-function calcularEnergiaLigacao(vars) {
-    const [energiaProdutos, energiaReagentes] = vars.map(parseFloat);
-    return energiaProdutos - energiaReagentes;
+function calcularLeiLavoisier(vars) {
+    const [mReagentes, mProdutos] = vars.map(parseFloat);
+    return mReagentes === mProdutos ? "Conservação de Massa Confirmada" : "Erro na Lei de Lavoisier";
 }
 
 function calcularLeiRaoult(vars) {
@@ -203,9 +203,9 @@ function calcularLeiRaoult(vars) {
 }
 
 function calcularLeiGasesIdeais(vars) {
-    const [volume, mols, temp] = vars.map(parseFloat);
+    const [pressao, volume, mols, temp] = vars.map(parseFloat);
     const R = 8.314;
-    return (mols * R * temp) / volume;
+    return (pressao * volume) / (mols * R * temp);
 }
 
 function calcularVelocidadeReacao(vars) {

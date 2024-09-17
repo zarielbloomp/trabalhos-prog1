@@ -12,40 +12,56 @@ function updateVariablesMatematica() {
 
     switch (formula) {
         case "baskara":
-            variablesHtml = "x = (-b ± √Δ) / 2a";
+            variablesHtml = "x = (-b ± √Δ) / 2a -> Coeficiente a, Coeficiente b, Coeficiente c";
             break;
         case "espiral-arquimedes":
-            variablesHtml = "Constante a, Constante b, Ângulo θ (rad)";
+            variablesHtml = "r = a + bθ -> Constante a, Constante b, Ângulo θ (rad)";
             break;
         case "area-circulo":
-            variablesHtml = "Raio (r)";
+            variablesHtml = "A = πr² -> Raio (r)";
             break;
         case "area-retangulo":
-            variablesHtml = "Base (b), Altura (h)";
+            variablesHtml = "A = b * h -> Base (b), Altura (h)";
             break;
         case "area-triangulo":
-            variablesHtml = "Base (b), Altura (h)";
+            variablesHtml = "A = (b * h) / 2 -> Base (b), Altura (h)";
             break;
         case "volume-prisma":
-            variablesHtml = "Área da base, Altura (h)";
+            variablesHtml = "V = Ab * h -> Área da base (Ab), Altura (h)";
             break;
         case "volume-piramide":
-            variablesHtml = "Área da base, Altura (h)";
+            variablesHtml = "V = (Ab * h) / 3 -> Área da base (Ab), Altura (h)";
             break;
         case "volume-tronco-piramide":
-            variablesHtml = "Área da base maior, Área da base menor, Altura (h)";
+            variablesHtml = "V = (h / 3) * (AbMaior + AbMenor + √(AbMaior * AbMenor)) -> Área da base maior, Área da base menor, Altura (h)";
             break;
         case "volume-cilindro":
-            variablesHtml = "Raio da base (r), Altura (h)";
+            variablesHtml = "V = πr²h -> Raio da base (r), Altura (h)";
             break;
         case "volume-esfera":
-            variablesHtml = "Raio (r)";
+            variablesHtml = "V = (4/3)πr³ -> Raio (r)";
+            break;
+        case "teorema-pitagoras":
+            variablesHtml = "c² = a² + b² -> Cateto a, Cateto b";
+            break;
+        case "progressao-aritmetica":
+            variablesHtml = "An = A1 + (n - 1) * r -> Termo inicial (A1), Razão (r), Termo desejado (n)";
+            break;
+        case "progressao-geometrica":
+            variablesHtml = "An = A1 * q^(n - 1) -> Termo inicial (A1), Razão (q), Termo desejado (n)";
+            break;
+        case "permutacao":
+            variablesHtml = "P = n! -> Total de elementos (n)";
+            break;
+        case "combinacao":
+            variablesHtml = "C = n! / [r!(n - r)!] -> Total de elementos (n), Elementos a escolher (r)";
             break;
     }
 
     container.innerHTML = `<input type="text" id="variables_matematica" placeholder="Insira as variáveis: ${variablesHtml}">`;
 }
 
+// Função de cálculo para Matemática
 function calcularMatematica() {
     const formula = document.getElementById("formula_matematica").value;
     const variables = document.getElementById("variables_matematica").value.split(",").map(v => v.trim());
@@ -87,6 +103,21 @@ function calcularMatematica() {
         case "volume-esfera":
             resultado = calcularVolumeEsfera(variables);
             break;
+        case "teorema-pitagoras":
+            resultado = calcularPitagoras(variables);
+            break;
+        case "progressao-aritmetica":
+            resultado = calcularProgressaoAritmetica(variables);
+            break;
+        case "progressao-geometrica":
+            resultado = calcularProgressaoGeometrica(variables);
+            break;
+        case "permutacao":
+            resultado = calcularPermutacao(variables);
+            break;
+        case "combinacao":
+            resultado = calcularCombinacao(variables);
+            break;
     }
 
     document.getElementById("resultado-matematica").innerHTML = "Resultado: " + resultado;
@@ -98,7 +129,7 @@ function calcularBaskara(vars) {
     const delta = b ** 2 - 4 * a * c;
 
     let resultado;
-    
+
     if (delta < 0) {
         resultado = "Não existem raízes reais";
     } else if (delta === 0) {
@@ -147,6 +178,51 @@ function calcularVolumePiramide(vars) {
 function calcularVolumeTroncoPiramide(vars) {
     const [areaBaseMaior, areaBaseMenor, altura] = vars.map(parseFloat);
     return (altura / 3) * (areaBaseMaior + areaBaseMenor + Math.sqrt(areaBaseMaior * areaBaseMenor));
+}
+
+function calcularVolumeCilindro(vars) {
+    const [raio, altura] = vars.map(parseFloat);
+    return Math.PI * raio ** 2 * altura;
+}
+
+function calcularVolumeEsfera(vars) {
+    const [raio] = vars.map(parseFloat);
+    return (4 / 3) * Math.PI * raio ** 3;
+}
+
+function calcularPitagoras(vars) {
+    const [catetoA, catetoB] = vars.map(parseFloat);
+    return Math.sqrt(catetoA ** 2 + catetoB ** 2);
+}
+
+function calcularProgressaoAritmetica(vars) {
+    const [a1, razao, n] = vars.map(parseFloat);
+    return a1 + (n - 1) * razao;
+}
+
+function calcularProgressaoGeometrica(vars) {
+    const [a1, razao, n] = vars.map(parseFloat);
+    return a1 * razao ** (n - 1);
+}
+
+function calcularPermutacao(vars) {
+    const [n] = vars.map(parseFloat);
+    return fatorial(n);
+}
+
+function calcularCombinacao(vars) {
+    const [n, r] = vars.map(parseFloat);
+    return fatorial(n) / (fatorial(r) * fatorial(n - r));
+}
+
+// Função auxiliar para calcular fatorial
+function fatorial(num) {
+    if (num === 0 || num === 1) return 1;
+    let resultado = 1;
+    for (let i = 2; i <= num; i++) {
+        resultado *= i;
+    }
+    return resultado;
 }
 
 // Validação de entradas
