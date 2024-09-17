@@ -12,52 +12,52 @@ function updateVariablesQuimica() {
 
     switch (formula) {
         case "numero-mols":
-            variablesHtml = "n = m / M -> Massa (g), Massa Molar (g/mol)";
+            variablesHtml = "Massa (g), Massa Molar (g/mol)";
             break;
         case "massa-molar":
-            variablesHtml = "M = m / n -> Massa (g), Mol (mol)";
+            variablesHtml = "Massa (g), Mol (mol)";
             break;
         case "densidade":
-            variablesHtml = "d = m / V -> Massa (g), Volume (L)";
+            variablesHtml = "Massa (g), Volume (L)";
             break;
         case "concentracao-molar":
-            variablesHtml = "M = n / V -> Mol (mol), Volume (L)";
+            variablesHtml = "Mol (mol), Volume (L)";
             break;
         case "concentracao-comum":
-            variablesHtml = "C = m / V -> Massa (g), Volume (L)";
+            variablesHtml = "Massa (g), Volume (L)";
             break;
         case "mistura-solucoes":
-            variablesHtml = "Cfinal = (C1 * V1 + C2 * V2) / (V1 + V2) -> Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
+            variablesHtml = "Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
             break;
         case "diluicao":
-            variablesHtml = "C1 * V1 = C2 * V2 -> Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
+            variablesHtml = "Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
             break;
         case "ph":
-            variablesHtml = "pH = -log[H+] -> Concentração H+ (mol/L)";
+            variablesHtml = "Concentração H+ (mol/L)";
             break;
         case "poh":
-            variablesHtml = "pOH = -log[OH-] -> Concentração OH- (mol/L)";
+            variablesHtml = "Concentração OH- (mol/L)";
             break;
         case "constante-equilibrio":
-            variablesHtml = "Kc = ([C]^c * [D]^d) / ([A]^a * [B]^b) -> Concentração A, Coeficiente A, Concentração B, Coeficiente B, Concentração C, Coeficiente C, Concentração D, Coeficiente D";
+            variablesHtml = "Concentração A, Coeficiente A, Concentração B, Coeficiente B, Concentração C, Coeficiente C, Concentração D, Coeficiente D";
             break;
         case "calor-sensivel":
-            variablesHtml = "Q = m * c * ΔT -> Massa (kg), Calor específico (J/kg°C), Variação de temperatura (°C)";
+            variablesHtml = "Massa (kg), Calor específico (J/kg°C), Variação de temperatura (°C)";
             break;
         case "calor-latente":
-            variablesHtml = "Q = m * L -> Massa (kg), Calor latente (J/kg)";
+            variablesHtml = "Massa (kg), Calor latente (J/kg)";
             break;
         case "lei-lavoisier":
-            variablesHtml = "mReagentes = mProdutos -> Massa dos Reagentes (g), Massa dos Produtos (g)";
+            variablesHtml = "Massa dos Reagentes (g), Massa dos Produtos (g)";
             break;
         case "lei-raoult":
-            variablesHtml = "Psolução = Ppura * X -> Pressão Pura (Pa), Fração Molar";
+            variablesHtml = "Pressão Pura (Pa), Fração Molar";
             break;
         case "lei-ideal-gases":
-            variablesHtml = "PV = nRT -> Pressão (Pa), Volume (L), Mols (n), Temperatura (K)";
+            variablesHtml = "Pressão (Pa), Volume (L), Mols (n), Temperatura (K)";
             break;
         case "velocidade-reacao":
-            variablesHtml = "V = Δ[C] / Δt -> Concentração inicial (mol/L), Concentração final (mol/L), Tempo (s)";
+            variablesHtml = "Concentração inicial (mol/L), Concentração final (mol/L), Tempo (s)";
             break;
     }
 
@@ -216,7 +216,7 @@ function calcularVelocidadeReacao(vars) {
 // Função para validar entradas
 function validateInputs(variables) {
     for (const variable of variables) {
-        if (isNaN(variable) && variable.indexOf(".") === -1) {
+        if (isNaN(variable) || variable === "") {
             return false;
         }
     }

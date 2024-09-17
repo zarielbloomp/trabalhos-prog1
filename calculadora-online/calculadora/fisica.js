@@ -7,63 +7,84 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateVariablesFisica() {
   const formula = document.getElementById("formula_fisica").value;
   const container = document.getElementById("variables-container_fisica");
+  const formulaDisplay = document.getElementById("fisica-formula-display");
   container.innerHTML = "";
   let variablesHtml = "";
+  let formulaHtml = "";
 
   switch (formula) {
       case "velocidade":
-          variablesHtml = "v = d / t -> Distância (m), Tempo (s)";
+          formulaHtml = "v = d / t";
+          variablesHtml = "Distância (m), Tempo (s)";
           break;
       case "trabalho":
-          variablesHtml = "T = F * d -> Força (N), Distância (m)";
+          formulaHtml = "T = F * d";
+          variablesHtml = "Força (N), Distância (m)";
           break;
       case "movimento-linear":
-          variablesHtml = "p = m * v -> Massa (kg), Velocidade (m/s)";
+          formulaHtml = "p = m * v";
+          variablesHtml = "Massa (kg), Velocidade (m/s)";
           break;
       case "forca":
-          variablesHtml = "F = m * a -> Massa (kg), Aceleração (m/s²)";
+          formulaHtml = "F = m * a";
+          variablesHtml = "Massa (kg), Aceleração (m/s²)";
           break;
       case "energia-cinetica":
-          variablesHtml = "Ec = 1/2 * m * v² -> Massa (kg), Velocidade (m/s)";
+          formulaHtml = "Ec = 1/2 * m * v²";
+          variablesHtml = "Massa (kg), Velocidade (m/s)";
           break;
       case "impulso":
-          variablesHtml = "I = F * t -> Força (N), Tempo (s)";
+          formulaHtml = "I = F * t";
+          variablesHtml = "Força (N), Tempo (s)";
           break;
       case "potencia":
-          variablesHtml = "P = T / t -> Trabalho (J), Tempo (s)";
+          formulaHtml = "P = T / t";
+          variablesHtml = "Trabalho (J), Tempo (s)";
           break;
       case "aceleracao":
-          variablesHtml = "a = (vf - vi) / t -> Velocidade final (m/s), Velocidade inicial (m/s), Tempo (s)";
+          formulaHtml = "a = (vf - vi) / t";
+          variablesHtml = "Velocidade final (m/s), Velocidade inicial (m/s), Tempo (s)";
           break;
       case "momento-linear":
-          variablesHtml = "p = m * v -> Massa (kg), Velocidade (m/s)";
+          formulaHtml = "p = m * v";
+          variablesHtml = "Massa (kg), Velocidade (m/s)";
           break;
       case "pressao":
-          variablesHtml = "P = F / A -> Força (N), Área (m²)";
+          formulaHtml = "P = F / A";
+          variablesHtml = "Força (N), Área (m²)";
           break;
       case "frequencia-ondas":
-          variablesHtml = "f = v / λ -> Velocidade (m/s), Comprimento de onda (m)";
+          formulaHtml = "f = v / λ";
+          variablesHtml = "Velocidade (m/s), Comprimento de onda (m)";
           break;
       case "lei-hooke":
-          variablesHtml = "F = k * x -> Constante Elástica (k), Deformação (x)";
+          formulaHtml = "F = k * x";
+          variablesHtml = "Constante Elástica (k), Deformação (x)";
           break;
       case "lei-coulomb":
-          variablesHtml = "F = k * (q1 * q2) / d² -> Carga 1 (C), Carga 2 (C), Distância (m)";
+          formulaHtml = "F = k * (q1 * q2) / d²";
+          variablesHtml = "Carga 1 (C), Carga 2 (C), Distância (m)";
           break;
       case "resistencia-eletrica":
-          variablesHtml = "R = V / I -> Tensão (V), Corrente (A)";
+          formulaHtml = "R = V / I";
+          variablesHtml = "Tensão (V), Corrente (A)";
           break;
       case "movimento-uniforme":
-          variablesHtml = "S = S0 + v * t -> Posição inicial (S0), Velocidade (v), Tempo (t)";
+          formulaHtml = "S = S0 + v * t";
+          variablesHtml = "Posição inicial (S0), Velocidade (v), Tempo (t)";
           break;
       case "movimento-uniformemente-variado":
-          variablesHtml = "S = S0 + v0 * t + (1/2) * a * t² -> Posição inicial (S0), Velocidade inicial (v0), Aceleração (a), Tempo (t)";
+          formulaHtml = "S = S0 + v0 * t + (1/2) * a * t²";
+          variablesHtml = "Posição inicial (S0), Velocidade inicial (v0), Aceleração (a), Tempo (t)";
           break;
       case "torque":
-          variablesHtml = "τ = F * r * sin(θ) -> Força (N), Raio (m), Ângulo (θ)";
+          formulaHtml = "τ = F * r * sin(θ)";
+          variablesHtml = "Força (N), Raio (m), Ângulo (θ)";
           break;
   }
 
+  // Atualiza a exibição da fórmula selecionada
+  formulaDisplay.innerHTML = `<strong>Fórmula:</strong> ${formulaHtml}`;
   container.innerHTML = `<input type="text" id="variables_fisica" placeholder="Insira as variáveis: ${variablesHtml}">`;
 }
 
