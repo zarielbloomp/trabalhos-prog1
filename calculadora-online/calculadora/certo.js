@@ -27,18 +27,21 @@ function updateVariables(tab) {
     tab === "quimica"
       ? document.getElementById("formula").value
       : document.getElementById("formula_fisica").value;
+
   const variablesContainer =
     tab === "quimica" ? "variables-container" : "variables-container_fisica";
   const container = document.getElementById(variablesContainer);
-  container.innerHTML = "";
-  let variablesHtml = "";
+  container.innerHTML = ""; // Limpar o container
+
+  let variablesHtml = ""; // Texto para descrever as variáveis
 
   switch (formula) {
-    case "massa-molar":
-      variablesHtml = "Massa (g), Mol (mol)";
-      break;
+    // Fórmulas de Química
     case "numero-mols":
       variablesHtml = "Massa (g), Massa Molar (g/mol)";
+      break;
+    case "massa-molar":
+      variablesHtml = "Massa (g), Mol (mol)";
       break;
     case "densidade":
       variablesHtml = "Massa (g), Volume (L)";
@@ -50,12 +53,10 @@ function updateVariables(tab) {
       variablesHtml = "Massa (g), Volume (L)";
       break;
     case "mistura-solucoes":
-      variablesHtml =
-        "Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
+      variablesHtml = "Concentração1 (mol/L), Volume1 (L), Concentração2 (mol/L), Volume2 (L)";
       break;
     case "diluicao":
-      variablesHtml =
-        "Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
+      variablesHtml = "Concentração inicial (mol/L), Volume inicial (L), Volume final (L)";
       break;
     case "ph":
       variablesHtml = "Concentração H+ (mol/L)";
@@ -63,6 +64,29 @@ function updateVariables(tab) {
     case "poh":
       variablesHtml = "Concentração OH- (mol/L)";
       break;
+    case "constante-equilibrio":
+      variablesHtml = "Concentração A, Coeficiente A, Concentração B, Coeficiente B, Concentração C, Coeficiente C, Concentração D, Coeficiente D";
+      break;
+    case "calor-sensivel":
+      variablesHtml = "Massa (kg), Calor específico (J/kg°C), Variação de temperatura (°C)";
+      break;
+    case "calor-latente":
+      variablesHtml = "Massa (kg), Calor latente (J/kg)";
+      break;
+    case "energia-ligacao":
+      variablesHtml = "Energia dos Produtos (J), Energia dos Reagentes (J)";
+      break;
+    case "lei-raoult":
+      variablesHtml = "Pressão Pura (Pa), Fração Molar";
+      break;
+    case "lei-ideal-gases":
+      variablesHtml = "Volume (L), Mols (n), Temperatura (K)";
+      break;
+    case "velocidade-reacao":
+      variablesHtml = "Concentração inicial (mol/L), Concentração final (mol/L), Tempo (s)";
+      break;
+
+    // Fórmulas de Física
     case "velocidade":
       variablesHtml = "Distância (m), Tempo (s)";
       break;
@@ -85,16 +109,34 @@ function updateVariables(tab) {
       variablesHtml = "Trabalho (J), Tempo (s)";
       break;
     case "aceleracao":
-      variablesHtml =
-        "Velocidade final (m/s), Velocidade inicial (m/s), Tempo (s)";
+      variablesHtml = "Velocidade final (m/s), Velocidade inicial (m/s), Tempo (s)";
       break;
     case "momento-linear":
       variablesHtml = "Massa (kg), Velocidade (m/s)";
       break;
+    case "pressao":
+      variablesHtml = "Força (N), Área (m²)";
+      break;
+    case "frequencia-ondas":
+      variablesHtml = "Velocidade (m/s), Comprimento de onda (m)";
+      break;
+    case "lei-hooke":
+      variablesHtml = "Constante Elástica (k), Deformação (x)";
+      break;
+    case "lei-coulomb":
+      variablesHtml = "Carga 1 (C), Carga 2 (C), Distância (m)";
+      break;
+    case "resistencia-eletrica":
+      variablesHtml = "Tensão (V), Corrente (A)";
+      break;
   }
 
-  container.innerHTML = `<input type="text" id="variables_${tab}" placeholder="Insira as variáveis: ${variablesHtml}">`;
+  // Adiciona o campo de input com o placeholder das variáveis
+  container.innerHTML = `
+    <input type="text" id="variables_${tab}" placeholder="Insira as variáveis: ${variablesHtml}" />
+  `;
 }
+
 
 function calcular(tab) {
   const formula =
@@ -113,11 +155,11 @@ function calcular(tab) {
   }
 
   switch (formula) {
-    case "massa-molar":
-      resultado = calcularMassaMolar(variables);
-      break;
     case "numero-mols":
       resultado = calcularNumeroMols(variables);
+      break;
+    case "massa-molar":
+      resultado = calcularMassaMolar(variables);
       break;
     case "densidade":
       resultado = calcularDensidade(variables);
@@ -139,6 +181,27 @@ function calcular(tab) {
       break;
     case "poh":
       resultado = calcularPoh(variables);
+      break;
+    case "constante-equilibrio":
+      resultado = calcularConstanteEquilibrio(variables);
+      break;
+    case "calor-sensivel":
+      resultado = calcularCalorSensivel(variables);
+      break;
+    case "calor-latente":
+      resultado = calcularCalorLatente(variables);
+      break;
+    case "energia-ligacao":
+      resultado = calcularEnergiaLigacao(variables);
+      break;
+    case "lei-raoult":
+      resultado = calcularLeiRaoult(variables);
+      break;
+    case "lei-ideal-gases":
+      resultado = calcularLeiGasesIdeais(variables);
+      break;
+    case "velocidade-reacao":
+      resultado = calcularVelocidadeReacao(variables);
       break;
     case "velocidade":
       resultado = calcularVelocidadeMedia(variables);
@@ -167,6 +230,24 @@ function calcular(tab) {
     case "momento-linear":
       resultado = calcularMomentoLinear(variables);
       break;
+    case "calor-especifico":
+      resultado = calcularCalorEspecifico(variables);
+      break;
+    case "pressao":
+      resultado = calcularPressao(variables);
+      break;
+    case "frequencia-ondas":
+      resultado = calcularFrequenciaOndas(variables);
+      break;
+    case "lei-hooke":
+      resultado = calcularLeiHooke(variables);
+      break;
+    case "lei-coulomb":
+      resultado = calcularLeiCoulomb(variables);
+      break;
+    case "resistencia-eletrica":
+      resultado = calcularResistenciaEletrica(variables);
+      break;
   }
 
   if (tab === "quimica") {
@@ -177,9 +258,10 @@ function calcular(tab) {
   }
 }
 
+
 function validateInputs(variables) {
   for (const variable of variables) {
-    if (isNaN(variable) && variable.indexOf(".") === -1) {
+    if (isNaN(variable) || variable === '') {
       return false;
     }
   }
@@ -187,14 +269,16 @@ function validateInputs(variables) {
 }
 
 // Funções de cálculo para cada fórmula
-function calcularMassaMolar(vars) {
-  const [massa, mol] = vars.map(parseFloat);
-  return massa / mol;
-}
 
+// Fórmulas de Química
 function calcularNumeroMols(vars) {
   const [massa, massaMolar] = vars.map(parseFloat);
   return massa / massaMolar;
+}
+
+function calcularMassaMolar(vars) {
+  const [massa, mol] = vars.map(parseFloat);
+  return massa / mol;
 }
 
 function calcularDensidade(vars) {
@@ -232,6 +316,45 @@ function calcularPoh(vars) {
   return -Math.log10(oh);
 }
 
+function calcularConstanteEquilibrio(vars) {
+  const [concentracaoA, coeficienteA, concentracaoB, coeficienteB, concentracaoC, coeficienteC, concentracaoD, coeficienteD] = vars.map(parseFloat);
+  const produtos = Math.pow(concentracaoC, coeficienteC) * Math.pow(concentracaoD, coeficienteD);
+  const reagentes = Math.pow(concentracaoA, coeficienteA) * Math.pow(concentracaoB, coeficienteB);
+  return produtos / reagentes;
+}
+
+function calcularCalorSensivel(vars) {
+  const [massa, calorEspecifico, deltaTemp] = vars.map(parseFloat);
+  return massa * calorEspecifico * deltaTemp;
+}
+
+function calcularCalorLatente(vars) {
+  const [massa, calorLatente] = vars.map(parseFloat);
+  return massa * calorLatente;
+}
+
+function calcularEnergiaLigacao(vars) {
+  const [energiaProdutos, energiaReagentes] = vars.map(parseFloat);
+  return energiaProdutos - energiaReagentes;
+}
+
+function calcularLeiRaoult(vars) {
+  const [pressaoPura, fracaoMolar] = vars.map(parseFloat);
+  return pressaoPura * fracaoMolar;
+}
+
+function calcularLeiGasesIdeais(vars) {
+  const [volume, mols, temp] = vars.map(parseFloat); 
+  const R = 8.314;
+  return (mols * R * temp) / volume;
+}
+
+function calcularVelocidadeReacao(vars) {
+  const [concentracaoInicial, concentracaoFinal, tempo] = vars.map(parseFloat);
+  return (concentracaoFinal - concentracaoInicial) / tempo;
+}
+
+// Fórmulas de Física
 function calcularVelocidadeMedia(vars) {
   const [distancia, tempo] = vars.map(parseFloat);
   return distancia / tempo;
@@ -277,4 +400,52 @@ function calcularAceleracao(vars) {
 function calcularMomentoLinear(vars) {
   const [massa, velocidade] = vars.map(parseFloat);
   return massa * velocidade;
+}
+
+function calcularPressao(vars) {
+  const [forca, area] = vars.map(parseFloat);
+  return forca / area; // P = F / A
+}
+
+function calcularFrequenciaOndas(vars) {
+  const [velocidade, comprimento] = vars.map(parseFloat);
+  return velocidade / comprimento; // f = v / λ
+}
+
+function calcularLeiHooke(vars) {
+  const [constanteElastica, deformacao] = vars.map(parseFloat);
+  return constanteElastica * deformacao;
+}
+
+function calcularLeiCoulomb(vars) {
+  const [q1, q2, r] = vars.map(parseFloat);
+  const ke = 8.99e9; // Constante de Coulomb
+  return (ke * q1 * q2) / (r ** 2);
+}
+
+function calcularResistenciaEletrica(vars) {
+  const [tensao, corrente] = vars.map(parseFloat);
+  return tensao / corrente; // V = IR → R = V/I
+}
+
+function calcularBernoulli(vars) {
+  const [pressao, densidade, velocidade, altura] = vars.map(parseFloat);
+  const g = 9.8; // Aceleração da gravidade
+  return pressao + 0.5 * densidade * velocidade ** 2 + densidade * g * altura;
+}
+
+function calcularCampoEletrico(vars) {
+  const [forca, carga] = vars.map(parseFloat);
+  return forca / carga;
+}
+
+function calcularGravidadeUniversal(vars) {
+  const [massa1, massa2, distancia] = vars.map(parseFloat);
+  const G = 6.6743e-11; // Constante gravitacional
+  return (G * massa1 * massa2) / (distancia ** 2);
+}
+
+function calcularCalorEspecifico(vars) {
+  const [quantidadeCalor, massa, deltaTemp] = vars.map(parseFloat);
+  return quantidadeCalor / (massa * deltaTemp); // c = Q / (m * ΔT)
 }
