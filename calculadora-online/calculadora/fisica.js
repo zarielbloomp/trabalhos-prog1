@@ -1,6 +1,7 @@
 // Inicialização após o carregamento do DOM para Física
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("formula_fisica").addEventListener("change", updateVariablesFisica);
+  document.getElementById("formula_fisica").addEventListener("change", updateVariablesFisica);
 });
 
 // Função para atualizar as variáveis com base na fórmula de Física selecionada
@@ -61,10 +62,6 @@ function updateVariablesFisica() {
           formulaHtml = "F = k * x";
           variablesHtml = "Constante Elástica (k), Deformação (x)";
           break;
-      case "lei-coulomb":
-          formulaHtml = "F = k * (q1 * q2) / d²";
-          variablesHtml = "Carga 1 (C), Carga 2 (C), Distância (m)";
-          break;
       case "resistencia-eletrica":
           formulaHtml = "R = V / I";
           variablesHtml = "Tensão (V), Corrente (A)";
@@ -80,6 +77,34 @@ function updateVariablesFisica() {
       case "torque":
           formulaHtml = "τ = F * r * sin(θ)";
           variablesHtml = "Força (N), Raio (m), Ângulo (θ)";
+          break;
+      case "energia-mecanica":
+          formulaHtml = "Em = Ep + Ec";
+          variablesHtml = "Energia Potencial (Ep), Energia Cinética (Ec)";
+          break;
+      case "lei-gravitacao":
+          formulaHtml = "F = G * (m1 * m2) / r²";
+          variablesHtml = "Massa 1 (kg), Massa 2 (kg), Distância (m)";
+          break;
+      case "energia-potencial-gravitacional":
+          formulaHtml = "Ep = m * g * h";
+          variablesHtml = "Massa (kg), Gravidade (m/s²), Altura (m)";
+          break;
+      case "energia-potencial-elastica":
+          formulaHtml = "Epe = 1/2 * k * x²";
+          variablesHtml = "Constante Elástica (k), Deformação (m)";
+          break;
+      case "capacitancia":
+          formulaHtml = "C = Q / V";
+          variablesHtml = "Carga (C), Tensão (V)";
+          break;
+      case "einstein-energia":
+          formulaHtml = "E = m * c²";
+          variablesHtml = "Massa (kg), Velocidade da luz (m/s)";
+          break;
+      case "velocidade-onda":
+          formulaHtml = "v = T / ρ";
+          variablesHtml = "Tensão (N), Densidade linear (kg/m)";
           break;
   }
 
@@ -133,9 +158,6 @@ function calcularFisica() {
       case "lei-hooke":
           resultado = calcularLeiHooke(variables);
           break;
-      case "lei-coulomb":
-          resultado = calcularLeiCoulomb(variables);
-          break;
       case "resistencia-eletrica":
           resultado = calcularResistenciaEletrica(variables);
           break;
@@ -144,6 +166,27 @@ function calcularFisica() {
           break;
       case "movimento-uniformemente-variado":
           resultado = calcularMovimentoUniformementeVariado(variables);
+          break;
+      case "energia-mecanica":
+          resultado = calcularEnergiaMecanica(variables);
+          break;
+      case "lei-gravitacao":
+          resultado = calcularLeiGravitacao(variables);
+          break;
+      case "energia-potencial-gravitacional":
+          resultado = calcularEnergiaPotencialGravitacional(variables);
+          break;
+      case "energia-potencial-elastica":
+          resultado = calcularEnergiaPotencialElastica(variables);
+          break;
+      case "capacitancia":
+          resultado = calcularCapacitancia(variables);
+          break;
+      case "einstein-energia":
+          resultado = calcularEinsteinEnergia(variables);
+          break;
+      case "velocidade-onda":
+          resultado = calcularVelocidadeOnda(variables);
           break;
   }
 
@@ -206,12 +249,6 @@ function calcularLeiHooke(vars) {
   return constanteElastica * deformacao;
 }
 
-function calcularLeiCoulomb(vars) {
-  const [q1, q2, r] = vars.map(parseFloat);
-  const ke = 8.99e9;
-  return (ke * q1 * q2) / (r ** 2);
-}
-
 function calcularResistenciaEletrica(vars) {
   const [tensao, corrente] = vars.map(parseFloat);
   return tensao / corrente;
@@ -225,6 +262,44 @@ function calcularMovimentoUniforme(vars) {
 function calcularMovimentoUniformementeVariado(vars) {
   const [posInicial, velInicial, aceleracao, tempo] = vars.map(parseFloat);
   return posInicial + velInicial * tempo + 0.5 * aceleracao * (tempo ** 2);
+}
+
+function calcularEnergiaMecanica(vars) {
+  const [energiaPotencial, energiaCinetica] = vars.map(parseFloat);
+  return energiaPotencial + energiaCinetica;
+}
+
+function calcularLeiGravitacao(vars) {
+  const [massa1, massa2, distancia] = vars.map(parseFloat);
+  const G = 6.67430e-11; // Constante da gravitação universal em m³/kg/s²
+  return G * (massa1 * massa2) / (distancia ** 2);
+}
+
+function calcularEnergiaPotencialGravitacional(vars) {
+  const [massa, gravidade, altura] = vars.map(parseFloat);
+  return massa * gravidade * altura;
+}
+
+function calcularEnergiaPotencialElastica(vars) {
+  const [constanteElastica, deformacao] = vars.map(parseFloat);
+  return 0.5 * constanteElastica * (deformacao ** 2);
+}
+
+function calcularCapacitancia(vars) {
+  const [carga, tensao] = vars.map(parseFloat);
+  return carga / tensao;
+}
+
+const velocidadeLuz = 299792458; // m/s
+
+function calcularEinsteinEnergia(vars) {
+  const [massa] = vars.map(parseFloat);
+  return massa * (velocidadeLuz ** 2);
+}
+
+function calcularVelocidadeOnda(vars) {
+  const [tensao, densidadeLinear] = vars.map(parseFloat);
+  return Math.sqrt(tensao / densidadeLinear);
 }
 
 // Função para validar entradas

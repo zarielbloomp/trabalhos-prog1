@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ScienceLab</title>
-  <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="certo.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -168,3 +168,173 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScienceLab</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="certo.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Fórmulas</h1>
+    
+    <!-- Navegação entre as diferentes áreas -->
+    <nav class="tab-buttons">
+      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
+      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
+      <button class="tab-button" id="tab-matematica" onclick="showTab('matematica')">Fórmulas Matemáticas</button>
+      <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')">Operações de Matrizes</button>
+    </nav>
+
+    <!-- Seção de Química -->
+    <section id="quimica-formulas" class="tab-content active">
+      <h2>Química</h2>
+      <div class="formula">
+        <label for="formula">Selecione a fórmula:</label>
+        <select id="formula" onchange="updateVariablesQuimica()">
+            <option value="numero-mols">Número de mols</option>
+            <option value="massa-molar">Massa Molar</option>
+            <option value="densidade">Densidade</option>
+            <option value="concentracao-molar">Concentração Molar</option>
+            <option value="concentracao-comum">Concentração Comum</option>
+            <option value="mistura-solucoes">Mistura de Soluções</option>
+            <option value="diluicao">Diluição</option>
+            <option value="massa-soluto">Massa do Soluto</option>
+            <option value="percentagem-massa">Porcentagem em Massa</option>
+            <option value="constante-equilibrio">Constante de Equilíbrio (Kc)</option>
+            <option value="calor-sensivel">Calor Sensível</option>
+            <option value="calor-latente">Calor Latente</option>
+            <option value="lei-raoult">Lei de Raoult</option>
+            <option value="lei-ideal-gases">Equação de Clapeyron (Lei dos Gases Ideais)</option>
+            <option value="velocidade-reacao">Velocidade de Reação</option>
+            <option value="equacao-gases-ideais">Equação dos Gases Ideais (Temperatura)</option>
+            <option value="lei-dalton">Lei de Dalton das Pressões Parciais</option>
+            <option value="lei-henry">Lei de Henry</option>
+            <option value="clausius-clapeyron">Equação de Clausius-Clapeyron</option>
+            <option value="concentracao-massa">Concentração em Massa</option>
+        </select>
+      </div>
+      <div class="variables">
+        <div class="formula-display" id="quimica-formula-display"></div>
+        <label for="variables">Preencha as variáveis:</label>
+        <div id="variables-container"></div>
+      </div>
+      <button onclick="calcularQuimica()">Calcular</button>
+      <div id="resultado">Resultado: <span id="resultado-valor">--</span></div>
+    </section>
+    
+    <!-- Seção de Física -->
+    <section id="fisica-formulas" class="tab-content" style="display:none;">
+      <h2>Física</h2>
+      <div class="formula">
+        <label for="formula_fisica">Selecione a fórmula:</label>
+        <select id="formula_fisica" onchange="updateVariablesFisica()">
+          <option value="velocidade">Velocidade Média</option>
+          <option value="trabalho">Trabalho</option>
+          <option value="forca">Força</option>
+          <option value="energia-cinetica">Energia Cinética</option>
+          <option value="impulso">Impulso</option>
+          <option value="potencia">Potência</option>
+          <option value="aceleracao">Aceleração</option>
+          <option value="momento-linear">Momento Linear</option>
+          <option value="pressao">Pressão</option>
+          <option value="frequencia-ondas">Frequência de Ondas</option>
+          <option value="lei-hooke">Lei de Hooke</option>
+          <option value="resistencia-eletrica">Resistência Elétrica</option>
+          <option value="energia-mecanica">Energia Mecânica</option>
+          <option value="lei-gravitacao">Lei da Gravitação Universal</option>
+          <option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
+          <option value="energia-potencial-elastica">Energia Potencial Elástica</option>
+          <option value="capacitancia">Capacitância</option>
+          <option value="einstein-energia">Energia de Einstein</option>
+          <option value="velocidade-onda">Velocidade de Onda</option>
+        </select>
+      </div>
+      <div class="variables">
+        <div class="formula-display" id="fisica-formula-display"></div>
+        <label for="variables_fisica">Preencha as variáveis:</label>
+        <div id="variables-container_fisica"></div>
+      </div>
+      <button onclick="calcularFisica()">Calcular</button>
+      <div id="resultado-fisica">Resultado: <span id="resultado-valor-fisica">--</span></div>
+    </section>
+    <!-- Seção de Matemática -->
+    <section id="matematica-formulas" class="tab-content" style="display:none;">
+      <h2>Matemática</h2>
+      <div class="formula">
+        <label for="formula_matematica">Selecione a fórmula:</label>
+        <select id="formula_matematica" onchange="updateVariablesMatematica()">
+          <option value="baskara">Fórmula de Bhaskara</option>
+          <option value="espiral-arquimedes">Espiral de Arquimedes</option>
+          <option value="area-circulo">Área do Círculo</option>
+          <option value="area-retangulo">Área do Retângulo</option>
+          <option value="area-triangulo">Área do Triângulo</option>
+          <option value="volume-prisma">Volume do Prisma</option>
+          <option value="volume-piramide">Volume da Pirâmide</option>
+          <option value="volume-tronco-piramide">Volume do Tronco de Pirâmide</option>
+          <option value="volume-cilindro">Volume do Cilindro</option>
+          <option value="volume-esfera">Volume da Esfera</option>
+          <option value="teorema-pitagoras">Teorema de Pitágoras</option>
+          <option value="progressao-aritmetica">Progressão Aritmética</option>
+          <option value="progressao-geometrica">Progressão Geométrica</option>
+          <option value="permutacao">Permutação</option>
+          <option value="combinacao">Combinação</option>
+          <option value="lei-dos-senos">Lei dos Senos</option>
+          <option value="lei-dos-cosseos">Lei dos Cossenos</option>
+          <option value="area-trapezio">Área do Trapézio</option>
+          <option value="area-paralelogramo">Área do Paralelogramo</option>
+          <option value="formula-euler">Fórmula de Euler</option>
+        </select>
+      </div>
+      <div class="variables">
+        <div class="formula-display" id="matematica-formula-display"></div>
+        <label for="variables_matematica">Preencha as variáveis:</label>
+        <div id="variables-container_matematica"></div>
+      </div>
+      <button onclick="calcularMatematica()">Calcular</button>
+      <div id="resultado-matematica">Resultado: <span id="resultado-valor-matematica">--</span></div>
+    </section>    
+    <!-- Seção de Matrizes -->
+    <section id="matrizes-formulas" class="tab-content" style="display:none;">
+      <h2>Operações de Matrizes</h2>
+      <div class="formula">
+        <label for="formula_matriz">Selecione a operação:</label>
+        <select id="formula_matriz" onchange="updateVariablesMatriz()">
+          <option value="determinante">Determinante</option>
+          <option value="inversa">Inversa</option>
+          <option value="transposta">Transposta</option>
+        </select>
+      </div>
+      <div class="variables">
+        <div id="variables-container_matriz"></div>
+      </div>
+      <button onclick="calcularMatriz()">Calcular</button>
+      <div id="resultado-matriz">Resultado: <span id="resultado-valor-matriz">--</span></div>
+    </section>
+  </div>
+
+  <script src="showTab.js"></script>
+  <script src="quimica.js"></script>
+  <script src="fisica.js"></script>
+  <script src="matematica.js"></script>
+  <script src="matrizes.js"></script>
+  <script src="instrucoes.js"></script>
+</body>
+</html>

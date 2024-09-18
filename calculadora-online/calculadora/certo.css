@@ -138,6 +138,11 @@ button:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+button:disabled {
+  background-color: #a1a1a1;
+  cursor: not-allowed;
+}
+
 .resultado {
   margin-top: 20px;
   font-weight: bold;
@@ -152,10 +157,15 @@ button:hover {
   50% { transform: scale(1.1); }
 }
 
-.variables-container, .variables-container_fisica, .variables-container_matematica, .variables-container_matriz {
+.variables-container, 
+.variables-container_fisica, 
+.variables-container_matematica, 
+.variables-container_matriz {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
+  margin-top: 10px;
 }
 
 #matrix-container {
@@ -262,15 +272,4 @@ button:hover {
   .variables input[type="number"] {
     width: 48%; 
   }
-}
-
-.variables-container, 
-.variables-container_fisica, 
-.variables-container_matematica, 
-.variables-container_matriz {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-  margin-top: 10px;
 }

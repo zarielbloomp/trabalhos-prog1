@@ -1,4 +1,3 @@
-// Inicialização após o carregamento do DOM para Matriz
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("formula_matriz")
@@ -22,9 +21,9 @@ function updateVariablesMatriz() {
   }
 
   container.innerHTML = `
-    <input type="number" id="matrix-size" placeholder="Tamanho da matriz (Ex: 2 para 2x2)">
+    <input type="number" id="matrix-size" placeholder="Tamanho da matriz (Ex: 2 para 2x2)" style="margin-bottom: 10px;">
     <div id="matrix-container"></div>
-    <button onclick="gerarCamposMatriz()">Gerar Matriz</button>
+    <button onclick="gerarCamposMatriz()" style="margin-top: 10px;">Gerar Matriz</button>
   `;
 }
 
@@ -40,14 +39,23 @@ function gerarCamposMatriz() {
 
   matrixContainer.innerHTML = ""; // Limpa o container de matriz
 
+  const table = document.createElement("table");
+  table.style.borderCollapse = "collapse";
+  table.style.marginBottom = "10px";
+
   for (let i = 0; i < size; i++) {
-    const rowDiv = document.createElement("div");
+    const row = document.createElement("tr");
     for (let j = 0; j < size; j++) {
-      rowDiv.innerHTML += `<input type="number" id="cell-${i}-${j}" placeholder="(${i},${j})" style="width: 50px; margin: 5px;">`;
+      const cell = document.createElement("td");
+      cell.style.border = "1px solid black";
+      cell.style.padding = "5px";
+      cell.innerHTML = `<input type="number" id="cell-${i}-${j}" placeholder="(${i},${j})" style="width: 50px; text-align: center;">`;
+      row.appendChild(cell);
     }
-    matrixContainer.appendChild(rowDiv);
+    table.appendChild(row);
   }
 
+  matrixContainer.appendChild(table);
   matrixContainer.innerHTML += `<button onclick="calcularMatriz()">Calcular</button>`;
 }
 
@@ -56,11 +64,6 @@ function calcularMatriz() {
   const formula = document.getElementById("formula_matriz").value;
   const size = parseInt(document.getElementById("matrix-size").value);
   const matriz = criarMatriz(size, size);
-
-  if (!validateInputs(matriz)) {
-    alert("Por favor, insira valores numéricos válidos.");
-    return;
-  }
 
   let resultado;
 
@@ -76,7 +79,7 @@ function calcularMatriz() {
       break;
   }
 
-  document.getElementById("resultado-matriz").innerHTML = "Resultado: " + resultado;
+  document.getElementById("resultado-matriz").innerHTML = "Resultado: <pre>" + formatResultado(resultado) + "</pre>";
 }
 
 // Função para criar a matriz com base nas entradas do usuário
@@ -88,7 +91,7 @@ function criarMatriz(linhas, colunas) {
       const valor = parseFloat(document.getElementById(`cell-${i}-${j}`).value);
       if (isNaN(valor)) {
         alert("Por favor, insira valores numéricos válidos.");
-        return [];
+        return;
       }
       linha.push(valor);
     }
@@ -99,28 +102,33 @@ function criarMatriz(linhas, colunas) {
 
 // Função para calcular o determinante (para matrizes 2x2 ou 3x3)
 function calcularDeterminante(matriz) {
-  const size = matriz.length;
-
-  if (size === 2) {
-    // Determinante para matriz 2x2
+  if (matriz.length === 2 && matriz[0].length === 2) {
     return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
-  } else if (size === 3) {
-    // Determinante para matriz 3x3
+  } else if (matriz.length === 3 && matriz[0].length === 3) {
     return (
       matriz[0][0] * (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1]) -
       matriz[0][1] * (matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0]) +
       matriz[0][2] * (matriz[1][0] * matriz[2][1] - matriz[1][1] * matriz[2][0])
     );
   } else {
-    return "Determinante suportado apenas para matrizes 2x2 ou 3x3.";
+    return "Determinante só suportado para matrizes 2x2 ou 3x3.";
   }
 }
 
 // Função para calcular a inversa de uma matriz
 function calcularInversa(matriz) {
   const n = matriz.length;
-  const identidade = criarIdentidade(n);
+  const identidade = [];
 
+  // Inicializa a matriz identidade
+  for (let i = 0; i < n; i++) {
+    identidade[i] = [];
+    for (let j = 0; j < n; j++) {
+      identidade[i][j] = i === j ? 1 : 0;
+    }
+  }
+
+  // Cria a matriz aumentada
   for (let i = 0; i < n; i++) {
     matriz[i] = matriz[i].concat(identidade[i]);
   }
@@ -142,7 +150,6 @@ function calcularInversa(matriz) {
     if (pivot === 0) {
       return "Matriz singular (sem inversa).";
     }
-
     for (let j = 0; j < 2 * n; j++) {
       matriz[i][j] /= pivot;
     }
@@ -163,7 +170,7 @@ function calcularInversa(matriz) {
     inversa[i] = matriz[i].slice(n, 2 * n);
   }
 
-  return "Inversa: " + formatarMatriz(inversa);
+  return inversa;
 }
 
 // Função para calcular a transposta de uma matriz
@@ -171,34 +178,20 @@ function calcularTransposta(matriz) {
   const transposta = matriz[0].map((_, colIndex) =>
     matriz.map((row) => row[colIndex])
   );
-  return "Transposta: " + formatarMatriz(transposta);
+  return transposta;
 }
-
-// Função para criar uma matriz identidade
-function criarIdentidade(n) {
-  const identidade = [];
-  for (let i = 0; i < n; i++) {
-    identidade[i] = [];
-    for (let j = 0; j < n; j++) {
-      identidade[i][j] = i === j ? 1 : 0;
-    }
+// Função para formatar o resultado para exibição
+function formatResultado(resultado) {
+  if (typeof resultado === "string") {
+    return resultado;
   }
-  return identidade;
+  
+  return resultado.map(row => row.map(value => value.toFixed(2)).join(" | ")).join("\n");
 }
 
-// Função para validar os inputs
-function validateInputs(matriz) {
-  for (const linha of matriz) {
-    for (const valor of linha) {
-      if (isNaN(valor)) {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-
-// Função auxiliar para formatar a matriz para exibição
-function formatarMatriz(matriz) {
-  return matriz.map((row) => row.join(" | ")).join(", ");
-}
+// Adiciona evento de mudança ao elemento de seleção de fórmula
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("formula_matriz")
+    .addEventListener("change", updateVariablesMatriz);
+});
