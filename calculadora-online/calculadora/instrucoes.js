@@ -87,6 +87,7 @@ function updateInstructions(category, formula, instructionsDiv) {
   }
 }
 
+
 // Função para exibir as variáveis na interface
 function displayVariables(variables) {
   const variablesContainer = document.getElementById('variables-container');

@@ -1,14 +1,15 @@
 // Inicialização após o carregamento do DOM para Química
 document.addEventListener("DOMContentLoaded", function () {
+    // Apenas o ID 'formula' é necessário, removendo o desnecessário 'formula_quimica'
     document.getElementById("formula").addEventListener("change", updateVariablesQuimica);
-    document.getElementById("formula_quimica").addEventListener("change", updateVariablesQuimica);
 });
 
 // Função para atualizar as variáveis e fórmulas com base na fórmula de Química selecionada
 function updateVariablesQuimica() {
     const formula = document.getElementById("formula").value;
-    const container = document.getElementById("variables-container");
     const formulaDisplay = document.getElementById("quimica-formula-display");
+    const container = document.getElementById("variables-container");
+    const instructionsDiv = document.getElementById("instructions-quimica");  
     container.innerHTML = "";
     let variablesHtml = "";
     let formulaHtml = "";
@@ -103,18 +104,20 @@ function updateVariablesQuimica() {
     // Atualiza a exibição da fórmula selecionada
     formulaDisplay.innerHTML = `<strong>Fórmula:</strong> ${formulaHtml}`;
     container.innerHTML = `<input type="text" id="variables_quimica" placeholder="Insira as variáveis: ${variablesHtml}">`;
+
+    updateInstructions('quimica', formula, instructionsDiv);
 }
 
 // Função de cálculo para Química
 function calcularQuimica() {
-  const formula = document.getElementById("formula_quimica").value;
-  const variables = document.getElementById("variables_quimica").value.split(",").map(v => v.trim());
-  let resultado;
+    const formula = document.getElementById("formula").value; // Corrigido para 'formula'
+    const variables = document.getElementById("variables_quimica").value.split(",").map(v => v.trim());
+    let resultado;
 
-  if (!validateInputs(variables)) {
-      alert("Entradas inválidas! Verifique suas variáveis.");
-      return;
-  }
+    if (!validateInputs(variables)) {
+        alert("Entradas inválidas! Verifique suas variáveis.");
+        return;
+    }
 
     switch (formula) {
         case "numero-mols":
