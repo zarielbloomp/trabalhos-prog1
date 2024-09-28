@@ -9,103 +9,110 @@ function updateVariablesMatematica() {
     const container = document.getElementById("variables-container_matematica");
     const formulaDisplay = document.getElementById("matematica-formula-display");
     container.innerHTML = "";
-    let variablesHtml = "";
+    let variables = [];
     let formulaHtml = "";
-
-    
 
     switch (formula) {
         case "baskara":
-            formulaHtml = "x = (-b ± √(b² - 4ac)) / (2a)";
-            variablesHtml = "Coeficiente a, Coeficiente b, Coeficiente c";
+            formulaHtml = "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$";
+            variables = ["Coeficiente a", "Coeficiente b", "Coeficiente c"];
             break;
         case "espiral-arquimedes":
-            formulaHtml = "r(θ) = a + bθ";
-            variablesHtml = "Constante a, Constante b, Ângulo θ (rad)";
+            formulaHtml = "$r(\\theta) = a + b\\theta$";
+            variables = ["Constante a", "Constante b", "Ângulo θ (rad)"];
             break;
         case "area-circulo":
-            formulaHtml = "A = πr²";
-            variablesHtml = "Raio (r)";
+            formulaHtml = "$A = \\pi r^2$";
+            variables = ["Raio (r)"];
             break;
         case "area-retangulo":
-            formulaHtml = "A = b * h";
-            variablesHtml = "Base (b), Altura (h)";
+            formulaHtml = "$A = b \\cdot h$";
+            variables = ["Base (b)", "Altura (h)"];
             break;
         case "area-triangulo":
-            formulaHtml = "A = (b * h) / 2";
-            variablesHtml = "Base (b), Altura (h)";
+            formulaHtml = "$A = \\frac{b \\cdot h}{2}$";
+            variables = ["Base (b)", "Altura (h)"];
             break;
         case "volume-prisma":
-            formulaHtml = "V = Ab * h";
-            variablesHtml = "Área da base (Ab), Altura (h)";
+            formulaHtml = "$V = A_b \\cdot h$";
+            variables = ["Área da base (A_b)", "Altura (h)"];
             break;
         case "volume-piramide":
-            formulaHtml = "V = (Ab * h) / 3";
-            variablesHtml = "Área da base (Ab), Altura (h)";
+            formulaHtml = "$V = \\frac{A_b \\cdot h}{3}$";
+            variables = ["Área da base (A_b)", "Altura (h)"];
             break;
         case "volume-tronco-piramide":
-            formulaHtml = "V = (h / 3) * (Ab_maior + Ab_menor + √(Ab_maior * Ab_menor))";
-            variablesHtml = "Área da base maior, Área da base menor, Altura (h)";
+            formulaHtml = "$V = \\frac{h}{3} (A_{b\\_maior} + A_{b\\_menor} + \\sqrt{A_{b\\_maior} \\cdot A_{b\\_menor}})$";
+            variables = ["Área da base maior", "Área da base menor", "Altura (h)"];
             break;
         case "volume-cilindro":
-            formulaHtml = "V = πr²h";
-            variablesHtml = "Raio da base (r), Altura (h)";
+            formulaHtml = "$V = \\pi r^2 h$";
+            variables = ["Raio da base (r)", "Altura (h)"];
             break;
         case "volume-esfera":
-            formulaHtml = "V = (4 / 3) * πr³";
-            variablesHtml = "Raio (r)";
+            formulaHtml = "$V = \\frac{4}{3} \\pi r^3$";
+            variables = ["Raio (r)"];
             break;
         case "teorema-pitagoras":
-            formulaHtml = "c = √(a² + b²)";
-            variablesHtml = "Cateto a, Cateto b";
+            formulaHtml = "$c = \\sqrt{a^2 + b^2}$";
+            variables = ["Cateto a", "Cateto b"];
             break;
         case "progressao-aritmetica":
-            formulaHtml = "An = A1 + (n - 1) * r";
-            variablesHtml = "Termo inicial (A1), Razão (r), Termo desejado (n)";
+            formulaHtml = "$A_n = A_1 + (n - 1) \\cdot r$";
+            variables = ["Termo inicial (A1)", "Razão (r)", "Termo desejado (n)"];
             break;
         case "progressao-geometrica":
-            formulaHtml = "An = A1 * q^(n - 1)";
-            variablesHtml = "Termo inicial (A1), Razão (q), Termo desejado (n)";
+            formulaHtml = "$A_n = A_1 \\cdot q^{(n - 1)}$";
+            variables = ["Termo inicial (A1)", "Razão (q)", "Termo desejado (n)"];
             break;
         case "permutacao":
-            formulaHtml = "P(n) = n!";
-            variablesHtml = "Total de elementos (n)";
+            formulaHtml = "$P(n) = n!$";
+            variables = ["Total de elementos (n)"];
             break;
         case "combinacao":
-            formulaHtml = "C(n, r) = n! / (r! * (n - r)!)";
-            variablesHtml = "Total de elementos (n), Elementos a escolher (r)";
+            formulaHtml = "$C(n, r) = \\frac{n!}{r! (n - r)!}$";
+            variables = ["Total de elementos (n)", "Elementos a escolher (r)"];
             break;
         case "lei-dos-senos":
-            formulaHtml = "a / sin(A) = b / sin(B) = c / sin(C)";
-            variablesHtml = "Lados a, b, c e ângulos A, B, C";
+            formulaHtml = "$\\frac{a}{\\sin(A)} = \\frac{b}{\\sin(B)} = \\frac{c}{\\sin(C)}$";
+            variables = ["Lados a, b, c e ângulos A, B, C"];
             break;
         case "lei-dos-cosseos":
-            formulaHtml = "c² = a² + b² - 2ab * cos(C)";
-            variablesHtml = "Lados a, b, c e ângulo C";
+            formulaHtml = "$c^2 = a^2 + b^2 - 2ab \\cdot \\cos(C)$";
+            variables = ["Lados a, b, c e ângulo C"];
             break;
         case "area-trapezio":
-            formulaHtml = "A = ((B + b) * h) / 2";
-            variablesHtml = "Base maior (B), Base menor (b), Altura (h)";
+            formulaHtml = "$A = \\frac{(B + b) \\cdot h}{2}$";
+            variables = ["Base maior (B)", "Base menor (b)", "Altura (h)"];
             break;
         case "area-paralelogramo":
-            formulaHtml = "A = b * h";
-            variablesHtml = "Base (b), Altura (h)";
+            formulaHtml = "$A = b \\cdot h$";
+            variables = ["Base (b)", "Altura (h)"];
             break;
         case "formula-euler":
-            formulaHtml = "V - E + F = 2";
-            variablesHtml = "Vértices (V), Arestas (E), Faces (F)";
+            formulaHtml = "$V - E + F = 2$";
+            variables = ["Vértices (V)", "Arestas (E)", "Faces (F)"];
             break;
     }
 
     // Atualiza a exibição da fórmula selecionada
     formulaDisplay.innerHTML = `<strong>Fórmula:</strong> ${formulaHtml}`;
-    container.innerHTML = `<input type="text" id="variables_matematica" placeholder="Insira as variáveis: ${variablesHtml}">`;
+    
+    // Gerar campos de entrada de variáveis de acordo com a fórmula selecionada
+    container.innerHTML = variables.map((variable, index) => 
+        `<input type="text" id="var${index}" placeholder="${variable}">`
+    ).join('');
+
+    // Re-renderizar fórmulas matemáticas com MathJax
+    MathJax.typesetPromise();
 }
 
 // Função de cálculo para Matemática
 function calcularMatematica() {
     const formula = document.getElementById("formula_matematica").value;
-    const variables = document.getElementById("variables_matematica").value.split(",").map(v => v.trim());
+    const container = document.getElementById("variables-container_matematica");
+    const inputs = container.querySelectorAll("input");
+    const variables = Array.from(inputs).map(input => parseFloat(input.value.trim()));
     let resultado;
 
     if (!validateInputs(variables)) {
@@ -295,8 +302,6 @@ function calcularLeiDosSenos(vars) {
     }
 }
 
-
-
 function calcularLeiDosCossenos(vars) {
     const [a, b, c, C] = vars.map(parseFloat);
     
@@ -308,7 +313,6 @@ function calcularLeiDosCossenos(vars) {
         return 'Você precisa fornecer dois lados e o ângulo entre eles para encontrar o terceiro lado.';
     }
 }
-
 
 function calcularAreaTrapezio(vars) {
     const [baseMaior, baseMenor, altura] = vars.map(parseFloat);
