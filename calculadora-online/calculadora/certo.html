@@ -150,25 +150,27 @@
     </section>
 
     <!-- Seção de Matrizes -->
-    <section id="matrizes-formulas" class="tab-content" style="display:none;">
-      <h2>Operações de Matrizes</h2>
-      <div class="formula">
-        <label for="formula_matriz">Selecione a operação:</label>
-        <select id="formula_matriz" onchange="updateVariablesMatriz()">
-            <option value="determinante">Determinante</option>
-            <option value="inversa">Inversa</option>
-            <option value="transposta">Transposta</option>
-        </select>
-      </div>
-      <div class="variables">
-        <div id="variables-container_matriz"></div>
-        <div id="instructions-matriz"></div>
-      </div>
-      <button onclick="calcularMatriz()">Calcular</button>
-      <div id="resultado-matriz">Resultado: <span id="resultado-valor-matriz">--</span></div>
-    </section>
+<section id="matrizes-formulas" class="tab-content" style="display:none;">
+  <h2>Operações de Matrizes</h2>
+  <div class="formula">
+    <label for="formula_matriz">Selecione a operação:</label>
+    <select id="formula_matriz" onchange="updateVariablesMatriz()">
+        <option value="determinante">Determinante</option>
+        <option value="inversa">Inversa</option>
+        <option value="transposta">Transposta</option>
+        <option value="adicao">Adição</option>
+        <option value="subtracao">Subtração</option>
+        <option value="multiplicacao">Multiplicação</option>
+    </select>
   </div>
-  
+  <div class="variables">
+    <div id="variables-container_matriz"></div>
+    <div id="instructions-matriz"></div>
+  </div>
+  <div id="calcular-container"></div>
+  <div id="resultado-matriz">Resultado: <span id="resultado-valor-matriz">--</span></div>
+</section>
+
   <footer>
     <div class="footer-content">
       <p>&copy; 2024 ScienceLab - Todos os direitos reservados</p>
@@ -183,7 +185,7 @@
   <script src="instrucoes.js"></script>
 
   <script>
-  
+    // Após qualquer atualização de fórmula, reprocessa o MathJax
     function reprocessMathJax() {
       if (window.MathJax) {
         MathJax.typesetPromise();

@@ -64,13 +64,13 @@ const formulas = {
       'volume-cone': { vars: ['raio (m)', 'altura (m)'], text: 'Informe o raio e a altura do cone.' }
   },
   matriz: {
-      'determinante-2x2': { vars: ['a', 'b', 'c', 'd'], text: 'Informe os valores a, b, c e d da matriz 2x2.' },
-      'determinante-3x3': { vars: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'], text: 'Informe os valores a, b, c, d, e, f, g, h e i da matriz 3x3.' },
-      'inversa-2x2': { vars: ['a', 'b', 'c', 'd'], text: 'Informe os valores a, b, c e d da matriz 2x2.' },
-      'inversa-3x3': { vars: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'], text: 'Informe os valores a, b, c, d, e, f, g, h e i da matriz 3x3.' },
-      'produto-matricial': { vars: ['A', 'B'], text: 'Informe as duas matrizes para o produto.' },
-      'soma-matricial': { vars: ['A', 'B'], text: 'Informe as duas matrizes para a soma.' },
-      'transposta': { vars: ['A'], text: 'Informe a matriz para obter a transposta.' }
+    'determinante-2x2': { vars: ['a', 'b', 'c', 'd'], text: 'Informe os valores a, b, c e d da matriz 2x2.' },
+    'determinante-3x3': { vars: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'], text: 'Informe os valores a, b, c, d, e, f, g, h e i da matriz 3x3.' },
+    'inversa-2x2': { vars: ['a', 'b', 'c', 'd'], text: 'Informe os valores a, b, c e d da matriz 2x2.' },
+    'inversa-3x3': { vars: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'], text: 'Informe os valores a, b, c, d, e, f, g, h e i da matriz 3x3.' },
+    'produto-matricial': { vars: ['A', 'B'], text: 'Informe as duas matrizes para o produto.' },
+    'soma-matricial': { vars: ['A', 'B'], text: 'Informe as duas matrizes para a soma.' },
+    'transposta': { vars: ['A'], text: 'Informe a matriz para obter a transposta.' }
   }
 };
 
