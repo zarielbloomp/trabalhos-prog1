@@ -32,8 +32,7 @@
     <!-- Navegação entre simuladores e "Quem Somos" -->
     <nav class="extra-navigation">
       <a href="../extras/quem-somos.html" class="extra-link">Quem Somos</a>
-      <a href="../simuladores/simulador-fisica.html" class="extra-link">Simulador de Química</a>
-      <a href="../simuladores/simulador-quimica.html" class="extra-link">Simulador de Física</a>
+      <a href="../CapimCognition/templates/index.html" class="extra-link">CapimCognition</a> <!-- Corrigido aqui -->
     </nav>
 
     <!-- Navegação por abas das áreas científicas -->
@@ -50,11 +49,9 @@
       <div class="formula">
         <label for="formula_matematica">Selecione a fórmula:</label>
         <select id="formula_matematica" onchange="updateVariablesMatematica()">
-          <!-- Lista de fórmulas matemáticas -->
           <option value="baskara">Fórmula de Bhaskara</option>
           <option value="espiral-arquimedes">Espiral de Arquimedes</option>
           <option value="area-circulo">Área do Círculo</option>
-          <!-- Adicione as demais fórmulas aqui -->
         </select>
       </div>
       <div class="variables">
@@ -73,10 +70,8 @@
       <div class="formula">
         <label for="formula">Selecione a fórmula:</label>
         <select id="formula" onchange="updateVariablesQuimica()">
-          <!-- Lista de fórmulas químicas -->
           <option value="numero-mols">Número de mols</option>
           <option value="massa-molar">Massa Molar</option>
-          <!-- Adicione as demais fórmulas aqui -->
         </select>
       </div>
       <div class="variables">
@@ -95,10 +90,8 @@
       <div class="formula">
         <label for="formula_fisica">Selecione a fórmula:</label>
         <select id="formula_fisica" onchange="updateVariablesFisica()">
-          <!-- Lista de fórmulas físicas -->
           <option value="velocidade">Velocidade Média</option>
           <option value="trabalho">Trabalho</option>
-          <!-- Adicione as demais fórmulas aqui -->
         </select>
       </div>
       <div class="variables">
@@ -117,10 +110,8 @@
       <div class="formula">
         <label for="formula_matriz">Selecione a operação:</label>
         <select id="formula_matriz" onchange="updateVariablesMatriz()">
-          <!-- Lista de operações de matrizes -->
           <option value="determinante">Determinante</option>
           <option value="inversa">Inversa</option>
-          <!-- Adicione as demais operações aqui -->
         </select>
       </div>
       <div class="variables">
