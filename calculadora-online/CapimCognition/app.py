@@ -1,15 +1,14 @@
 import os
+from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, jsonify
 
-# Carrega as variáveis de ambiente do arquivo .env
+# Carrega variáveis de ambiente
 load_dotenv()
 
-# Configura o Flask
 app = Flask(__name__)
 
-# Configura a chave da API usando o valor carregado do .env
+# Configura o Google Gemini com a chave de API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 generation_config = {
@@ -27,33 +26,22 @@ model = genai.GenerativeModel(
 
 history = []
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/send_message", methods=["POST"])
+@app.route('/send_message', methods=['POST'])
 def send_message():
     global history
-    user_message = request.json.get("message")
+    user_message = request.json.get('message')
 
-    if not user_message:
-        return jsonify({"response": "Mensagem vazia."}), 400  # Retorne um erro se a mensagem estiver vazia
-
+    # Inicia a sessão de chat
     chat_session = model.start_chat(history=history)
 
-    try:
-        response = chat_session.send_message(user_message)
-        model_response = response.text
+    response = chat_session.send_message(user_message)
+    model_response = response.text
 
-        # Verifica se a resposta do modelo está vazia
-        if not model_response:
-            raise ValueError("Resposta do modelo está vazia.")
-
-    except Exception as e:
-        print(f"Erro ao gerar resposta: {e}")  # Log de erro
-        return jsonify({"response": f"Erro ao gerar resposta: {str(e)}"}), 500  # Retorna erro se ocorrer
-
-    # Armazena no histórico
+    # Adiciona ao histórico
     history.append({"role": "user", "parts": [user_message]})
     history.append({"role": "model", "parts": [model_response]})
 

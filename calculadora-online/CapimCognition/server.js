@@ -50,6 +50,8 @@ const sendToGemini = async (message, history) => {
                 },
             }
         );
+
+        // Verifica se há candidatos na resposta e retorna o conteúdo da primeira
         return response.data.candidates[0]?.content || 'Erro: Resposta vazia da API';
     } catch (error) {
         console.error('Erro ao fazer requisição à API Gemini:', error);

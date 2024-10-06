@@ -1,9 +1,10 @@
-document.getElementById("send_button").onclick = async function () {
-    const user_input = document.getElementById("user_input").value;
-    if (user_input.trim() === "") return;
+// Função para lidar com o envio de mensagens
+async function sendMessage() {
+    const userInput = document.getElementById("user_input").value;
+    if (userInput.trim() === "") return; // Evita enviar mensagens vazias
 
     const messagesDiv = document.getElementById("messages");
-    messagesDiv.innerHTML += `<div class="message user">Eu: ${user_input}</div>`;
+    messagesDiv.innerHTML += `<div class="message user">Eu: ${userInput}</div>`;
     document.getElementById("user_input").value = ""; // Limpa o campo de entrada
 
     try {
@@ -12,7 +13,7 @@ document.getElementById("send_button").onclick = async function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: user_input }) // Envia a mensagem do usuário para o servidor
+            body: JSON.stringify({ message: userInput }) // Envia a mensagem do usuário para o servidor
         });
 
         // Verifica se a resposta é bem-sucedida
@@ -28,10 +29,14 @@ document.getElementById("send_button").onclick = async function () {
     }
 
     messagesDiv.scrollTop = messagesDiv.scrollHeight; // Rolagem automática para a última mensagem
-};
+}
 
+// Event listener para o botão de envio
+document.getElementById("send_button").onclick = sendMessage;
+
+// Event listener para a tecla Enter
 document.getElementById("user_input").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        document.getElementById("send_button").click();
+        sendMessage(); // Chama a função sendMessage ao pressionar Enter
     }
 });
