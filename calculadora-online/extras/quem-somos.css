@@ -1,0 +1,201 @@
+/* Reseta o estilo de todos os elementos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f2f5;
+    background: linear-gradient(to right, #e3f2fd, #cfd8dc);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Estilização do container principal */
+  .container {
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.5s ease-in-out;
+    transition: transform 0.3s ease;
+  }
+  
+  .container:hover {
+    transform: scale(1.02);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Título principal */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #212121;
+    animation: bounce 0.6s ease-in-out;
+  }
+  
+  @keyframes bounce {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Texto descritivo */
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  
+.button {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;  
+    background-color: #512da8;
+    color: #fff;
+    font-size: 0.9rem; 
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none; 
+  }
+  
+  .button:hover {
+    background-color: #673ab7;
+    transform: translateY(-3px);
+  }
+
+  
+  /* Seção da equipe */
+  .team-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  /* Estilização dos membros da equipe */
+  .team-member {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 750px;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Imagens circulares */
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .team-member:hover .profile-pic {
+    transform: scale(1.1);
+  }
+  
+  /* Informações do membro */
+  .team-member h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #333;
+  }
+  
+  .team-member p {
+    margin: 5px 0 0;
+    font-size: 1.1rem;
+    color: #757575;
+  }
+  
+  /* Diferenciar as direções dos membros da equipe */
+  .team-member.left {
+    justify-content: flex-start;
+  }
+  
+  .team-member.right {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #555;
+  }
+  
+  footer .footer-content {
+    font-size: 0.9rem;
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 768px) {
+    .team-member {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .team-member.left,
+    .team-member.right {
+      justify-content: center;
+      flex-direction: column;
+    }
+  
+    .profile-pic {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  
+    .container {
+      padding: 25px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .button {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  }
+  

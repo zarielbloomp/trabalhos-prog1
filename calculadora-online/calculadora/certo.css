@@ -216,3 +216,55 @@ button:disabled {
     font-size: 14px;
   }
 }
+
+
+/* Estilos da barra de navegação */
+nav.extra-navigation {
+  display: flex;
+  justify-content: center;
+  background-color: #512da8;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.extra-navigation .extra-link {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.extra-navigation .extra-link:hover {
+  background-color: #6a34e9;
+  transform: scale(1.05);
+}
+
+.extra-navigation .extra-link.active {
+  background-color: #a98cee;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  nav.extra-navigation {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .extra-navigation .extra-link {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .extra-navigation .extra-link {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
