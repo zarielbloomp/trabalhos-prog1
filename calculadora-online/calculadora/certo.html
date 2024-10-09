@@ -6,11 +6,8 @@
   <title>ScienceLab</title>
   <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="certo.css">
-
-  <!-- Polyfill para suporte a ES6 em navegadores antigos -->
+  
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-
-  <!-- MathJax para renderizar fórmulas matemáticas -->
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.MathJax = {
@@ -25,50 +22,46 @@
   </script>
 </head>
 <body>
-  <!-- Conteúdo principal -->
   <div class="container">
     <h1>Calculadora de Fórmulas</h1>
 
-    <!-- Navegação entre simuladores e "Quem Somos" -->
     <nav class="extra-navigation">
       <a href="../extras/quem-somos.html" class="extra-link">Quem Somos</a>
-      <a href="../CapimCognition/templates/index.html" class="extra-link">CapimCognition</a> <!-- Corrigido aqui -->
+      <a href="../CapimCognition/templates/index.html" class="extra-link">CapimCognition</a>
     </nav>
 
-    <!-- Navegação por abas das áreas científicas -->
-    <nav class="tab-buttons">
-      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
-      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
-      <button class="tab-button" id="tab-matematica" onclick="showTab('matematica')">Fórmulas Matemáticas</button>
-      <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')">Operações de Matrizes</button>
+    <nav class="tab-buttons" aria-label="Navegação de Fórmulas">
+      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')" aria-selected="true">Fórmulas Químicas</button>
+      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')" aria-selected="false">Fórmulas Físicas</button>
+      <button class="tab-button" id="tab-matematica" onclick="showTab('matematica')" aria-selected="false">Fórmulas Matemáticas</button>
+      <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')" aria-selected="false">Operações de Matrizes</button>
     </nav>
 
-    <!-- Seção de Química -->
-    <section id="quimica-formulas" class="tab-content active">
+    <section id="quimica-formulas" class="tab-content active" aria-labelledby="tab-quimica">
       <h2>Química</h2>
       <div class="formula">
         <label for="formula">Selecione a fórmula:</label>
         <select id="formula" onchange="updateVariablesQuimica()">
-            <option value="numero-mols">Número de mols</option>
-            <option value="massa-molar">Massa Molar</option>
-            <option value="densidade">Densidade</option>
-            <option value="concentracao-molar">Concentração Molar</option>
-            <option value="concentracao-comum">Concentração Comum</option>
-            <option value="mistura-solucoes">Mistura de Soluções</option>
-            <option value="diluicao">Diluição</option>
-            <option value="massa-soluto">Massa do Soluto</option>
-            <option value="percentagem-massa">Porcentagem em Massa</option>
-            <option value="constante-equilibrio">Constante de Equilíbrio (Kc)</option>
-            <option value="calor-sensivel">Calor Sensível</option>
-            <option value="calor-latente">Calor Latente</option>
-            <option value="lei-raoult">Lei de Raoult</option>
-            <option value="lei-ideal-gases">Equação de Clapeyron (Lei dos Gases Ideais)</option>
-            <option value="velocidade-reacao">Velocidade de Reação</option>
-            <option value="equacao-gases-ideais">Equação dos Gases Ideais (Temperatura)</option>
-            <option value="lei-dalton">Lei de Dalton das Pressões Parciais</option>
-            <option value="lei-henry">Lei de Henry</option>
-            <option value="clausius-clapeyron">Equação de Clausius-Clapeyron</option>
-            <option value="concentracao-massa">Concentração em Massa</option>
+          <option value="numero-mols">Número de mols</option>
+          <option value="massa-molar">Massa Molar</option>
+          <option value="densidade">Densidade</option>
+          <option value="concentracao-molar">Concentração Molar</option>
+          <option value="concentracao-comum">Concentração Comum</option>
+          <option value="mistura-solucoes">Mistura de Soluções</option>
+          <option value="diluicao">Diluição</option>
+          <option value="massa-soluto">Massa do Soluto</option>
+          <option value="percentagem-massa">Porcentagem em Massa</option>
+          <option value="constante-equilibrio">Constante de Equilíbrio (Kc)</option>
+          <option value="calor-sensivel">Calor Sensível</option>
+          <option value="calor-latente">Calor Latente</option>
+          <option value="lei-raoult">Lei de Raoult</option>
+          <option value="lei-ideal-gases">Equação de Clapeyron (Lei dos Gases Ideais)</option>
+          <option value="velocidade-reacao">Velocidade de Reação</option>
+          <option value="equacao-gases-ideais">Equação dos Gases Ideais (Temperatura)</option>
+          <option value="lei-dalton">Lei de Dalton das Pressões Parciais</option>
+          <option value="lei-henry">Lei de Henry</option>
+          <option value="clausius-clapeyron">Equação de Clausius-Clapeyron</option>
+          <option value="concentracao-massa">Concentração em Massa</option>
         </select>
       </div>
       <div class="variables">
@@ -78,34 +71,33 @@
         <div id="instructions-quimica"></div>
       </div>
       <button onclick="calcularQuimica()">Calcular</button>
-      <div id="resultado">Resultado: <span id="resultado-valor">--</span></div>
+      <div id="resultado-quimica">Resultado: <span id="resultado-valor-quimica">--</span></div>
     </section>
 
-    <!-- Seção de Física -->
-    <section id="fisica-formulas" class="tab-content" style="display:none;">
+    <section id="fisica-formulas" class="tab-content" aria-labelledby="tab-fisica" style="display:none;">
       <h2>Física</h2>
       <div class="formula">
         <label for="formula_fisica">Selecione a fórmula:</label>
         <select id="formula_fisica" onchange="updateVariablesFisica()">
-            <option value="velocidade">Velocidade Média</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="forca">Força</option>
-            <option value="energia-cinetica">Energia Cinética</option>
-            <option value="impulso">Impulso</option>
-            <option value="potencia">Potência</option>
-            <option value="aceleracao">Aceleração</option>
-            <option value="momento-linear">Momento Linear</option>
-            <option value="pressao">Pressão</option>
-            <option value="frequencia-ondas">Frequência de Ondas</option>
-            <option value="lei-hooke">Lei de Hooke</option>
-            <option value="resistencia-eletrica">Resistência Elétrica</option>
-            <option value="energia-mecanica">Energia Mecânica</option>
-            <option value="lei-gravitacao">Lei da Gravitação Universal</option>
-            <option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
-            <option value="energia-potencial-elastica">Energia Potencial Elástica</option>
-            <option value="capacitancia">Capacitância</option>
-            <option value="einstein-energia">Energia de Einstein</option>
-            <option value="velocidade-onda">Velocidade de Onda</option>
+          <option value="velocidade">Velocidade Média</option>
+          <option value="trabalho">Trabalho</option>
+          <option value="forca">Força</option>
+          <option value="energia-cinetica">Energia Cinética</option>
+          <option value="impulso">Impulso</option>
+          <option value="potencia">Potência</option>
+          <option value="aceleracao">Aceleração</option>
+          <option value="momento-linear">Momento Linear</option>
+          <option value="pressao">Pressão</option>
+          <option value="frequencia-ondas">Frequência de Ondas</option>
+          <option value="lei-hooke">Lei de Hooke</option>
+          <option value="resistencia-eletrica">Resistência Elétrica</option>
+          <option value="energia-mecanica">Energia Mecânica</option>
+          <option value="lei-gravitacao">Lei da Gravitação Universal</option>
+          <option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
+          <option value="energia-potencial-elastica">Energia Potencial Elástica</option>
+          <option value="capacitancia">Capacitância</option>
+          <option value="einstein-energia">Energia de Einstein</option>
+          <option value="velocidade-onda">Velocidade de Onda</option>
         </select>
       </div>
       <div class="variables">
@@ -118,32 +110,31 @@
       <div id="resultado-fisica">Resultado: <span id="resultado-valor-fisica">--</span></div>
     </section>
 
-    <!-- Seção de Matemática -->
-    <section id="matematica-formulas" class="tab-content" style="display:none;">
+    <section id="matematica-formulas" class="tab-content" aria-labelledby="tab-matematica" style="display:none;">
       <h2>Matemática</h2>
       <div class="formula">
         <label for="formula_matematica">Selecione a fórmula:</label>
         <select id="formula_matematica" onchange="updateVariablesMatematica()">
-            <option value="baskara">Fórmula de Bhaskara</option>
-            <option value="espiral-arquimedes">Espiral de Arquimedes</option>
-            <option value="area-circulo">Área do Círculo</option>
-            <option value="area-retangulo">Área do Retângulo</option>
-            <option value="area-triangulo">Área do Triângulo</option>
-            <option value="volume-prisma">Volume do Prisma</option>
-            <option value="volume-piramide">Volume da Pirâmide</option>
-            <option value="volume-tronco-piramide">Volume do Tronco de Pirâmide</option>
-            <option value="volume-cilindro">Volume do Cilindro</option>
-            <option value="volume-esfera">Volume da Esfera</option>
-            <option value="teorema-pitagoras">Teorema de Pitágoras</option>
-            <option value="progressao-aritmetica">Progressão Aritmética</option>
-            <option value="progressao-geometrica">Progressão Geométrica</option>
-            <option value="permutacao">Permutação</option>
-            <option value="combinacao">Combinação</option>
-            <option value="lei-dos-senos">Lei dos Senos</option>
-            <option value="lei-dos-cosseos">Lei dos Cossenos</option>
-            <option value="area-trapezio">Área do Trapézio</option>
-            <option value="area-paralelogramo">Área do Paralelogramo</option>
-            <option value="formula-euler">Fórmula de Euler</option>
+          <option value="baskara">Fórmula de Bhaskara</option>
+          <option value="espiral-arquimedes">Espiral de Arquimedes</option>
+          <option value="area-circulo">Área do Círculo</option>
+          <option value="area-retangulo">Área do Retângulo</option>
+          <option value="area-triangulo">Área do Triângulo</option>
+          <option value="volume-prisma">Volume do Prisma</option>
+          <option value="volume-piramide">Volume da Pirâmide</option>
+          <option value="volume-tronco-piramide">Volume do Tronco de Pirâmide</option>
+          <option value="volume-cilindro">Volume do Cilindro</option>
+          <option value="volume-esfera">Volume da Esfera</option>
+          <option value="teorema-pitagoras">Teorema de Pitágoras</option>
+          <option value="progressao-aritmetica">Progressão Aritmética</option>
+          <option value="progressao-geometrica">Progressão Geométrica</option>
+          <option value="permutacao">Permutação</option>
+          <option value="combinacao">Combinação</option>
+          <option value="media-ponderada">Média Ponderada</option>
+          <option value="desvio-padrao">Desvio Padrão</option>
+          <option value="area-trapezio">Área do Trapézio</option>
+          <option value="area-paralelogramo">Área do Paralelogramo</option>
+          <option value="formula-euler">Fórmula de Euler</option>
         </select>
       </div>
       <div class="variables">
@@ -156,8 +147,7 @@
       <div id="resultado-matematica">Resultado: <span id="resultado-valor-matematica">--</span></div>
     </section>
 
-    <!-- Seção de Matrizes -->
-    <section id="matrizes-formulas" class="tab-content" style="display:none;">
+    <section id="matrizes-formulas" class="tab-content" aria-labelledby="tab-matrizes" style="display:none;">
       <h2>Operações de Matrizes</h2>
       <div class="formula">
         <label for="formula_matriz">Selecione a operação:</label>
@@ -171,11 +161,10 @@
         <div id="variables-container_matriz"></div>
         <div id="instructions-matriz"></div>
       </div>
-      <div id="calcular-container"></div>
+      <button onclick="calcularMatriz()">Calcular</button>
       <div id="resultado-matriz">Resultado: <span id="resultado-valor-matriz">--</span></div>
     </section>
 
-    <!-- Rodapé -->
     <footer>
       <div class="footer-content">
         <p>&copy; 2024 ScienceLab - Todos os direitos reservados</p>
@@ -183,7 +172,6 @@
     </footer>
   </div>
 
-  <!-- Scripts para as diferentes áreas -->
   <script src="showTab.js"></script>
   <script src="quimica.js"></script>
   <script src="fisica.js"></script>

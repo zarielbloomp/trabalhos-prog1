@@ -12,6 +12,7 @@ function updateVariablesMatematica() {
     let variables = [];
     let formulaHtml = "";
 
+    // Switch para definir a fórmula e suas variáveis
     switch (formula) {
         case "baskara":
             formulaHtml = "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$";
@@ -73,13 +74,13 @@ function updateVariablesMatematica() {
             formulaHtml = "$C(n, r) = \\frac{n!}{r! (n - r)!}$";
             variables = ["Total de elementos (n)", "Elementos a escolher (r)"];
             break;
-        case "lei-dos-senos":
-            formulaHtml = "$\\frac{a}{\\sin(A)} = \\frac{b}{\\sin(B)} = \\frac{c}{\\sin(C)}$";
-            variables = ["Lados a, b, c e ângulos A, B, C"];
+        case "media-ponderada":
+            formulaHtml = "$M = \\frac{\\sum_{i=1}^{n} p_i x_i}{\\sum_{i=1}^{n} p_i}$";
+            variables = ["Peso 1", "Valor 1", "Peso 2", "Valor 2", "Peso 3", "Valor 3"];
             break;
-        case "lei-dos-cosseos":
-            formulaHtml = "$c^2 = a^2 + b^2 - 2ab \\cdot \\cos(C)$";
-            variables = ["Lados a, b, c e ângulo C"];
+        case "desvio-padrao":
+            formulaHtml = "$\\sigma = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n}}$";
+            variables = ["Valor 1", "Valor 2", "Valor 3", "Valor 4", "Valor 5"];
             break;
         case "area-trapezio":
             formulaHtml = "$A = \\frac{(B + b) \\cdot h}{2}$";
@@ -93,249 +94,195 @@ function updateVariablesMatematica() {
             formulaHtml = "$V - E + F = 2$";
             variables = ["Vértices (V)", "Arestas (E)", "Faces (F)"];
             break;
+        default:
+            formulaHtml = "Fórmula desconhecida.";
+            variables = [];
+            break;
     }
 
     // Atualiza a exibição da fórmula selecionada
     formulaDisplay.innerHTML = `<strong>Fórmula:</strong> ${formulaHtml}`;
     
-    // Gerar campos de entrada de variáveis de acordo com a fórmula selecionada
+    // Gerar campos de entrada de variáveis
     container.innerHTML = variables.map((variable, index) => 
-        `<input type="text" id="var${index}" placeholder="${variable}">`
+        `<input type="text" id="var${index}" placeholder="${variable}" style="padding: 15px; margin-bottom: 15px;">`
     ).join('');
 
     // Re-renderizar fórmulas matemáticas com MathJax
     MathJax.typesetPromise();
 }
 
-// Função de cálculo para Matemática
 function calcularMatematica() {
     const formula = document.getElementById("formula_matematica").value;
-    const container = document.getElementById("variables-container_matematica");
-    const inputs = container.querySelectorAll("input");
-    const variables = Array.from(inputs).map(input => parseFloat(input.value.trim()));
-    let resultado;
+    const inputs = document.querySelectorAll("#variables-container_matematica input");
+    const variables = Array.from(inputs).map(input => parseFloat(input.value.replace(",", ".").replace(".", ",")));
+    let resultado = "";
 
+    // Validação das entradas
     if (!validateInputs(variables)) {
         alert("Entradas inválidas! Verifique suas variáveis.");
         return;
     }
 
+    try {
+        // Chamada da função de cálculo de acordo com a fórmula selecionada
+        resultado = executeCalculation(formula, variables);
+    } catch (error) {
+        alert("Erro durante o cálculo: " + error.message);
+        return;
+    }
+  
+    document.getElementById("resultado-valor").innerHTML = resultado;
+}
+
+// Função para executar cálculos de acordo com a fórmula
+function executeCalculation(formula, variables) {
     switch (formula) {
         case "baskara":
-            resultado = calcularBaskara(variables);
-            break;
+            return calcularBhaskara(variables);
         case "espiral-arquimedes":
-            resultado = calcularEspiralArquimedes(variables);
-            break;
+            return calcularEspiralArquimedes(variables);
         case "area-circulo":
-            resultado = calcularAreaCirculo(variables);
-            break;
+            return calcularAreaCirculo(variables);
         case "area-retangulo":
-            resultado = calcularAreaRetangulo(variables);
-            break;
+            return calcularAreaRetangulo(variables);
         case "area-triangulo":
-            resultado = calcularAreaTriangulo(variables);
-            break;
+            return calcularAreaTriangulo(variables);
         case "volume-prisma":
-            resultado = calcularVolumePrisma(variables);
-            break;
+            return calcularVolumePrisma(variables);
         case "volume-piramide":
-            resultado = calcularVolumePiramide(variables);
-            break;
+            return calcularVolumePiramide(variables);
         case "volume-tronco-piramide":
-            resultado = calcularVolumeTroncoPiramide(variables);
-            break;
+            return calcularVolumeTroncoPiramide(variables);
         case "volume-cilindro":
-            resultado = calcularVolumeCilindro(variables);
-            break;
+            return calcularVolumeCilindro(variables);
         case "volume-esfera":
-            resultado = calcularVolumeEsfera(variables);
-            break;
+            return calcularVolumeEsfera(variables);
         case "teorema-pitagoras":
-            resultado = calcularPitagoras(variables);
-            break;
+            return calcularTeoremaPitagoras(variables);
         case "progressao-aritmetica":
-            resultado = calcularProgressaoAritmetica(variables);
-            break;
+            return calcularProgressaoAritmetica(variables);
         case "progressao-geometrica":
-            resultado = calcularProgressaoGeometrica(variables);
-            break;
+            return calcularProgressaoGeometrica(variables);
         case "permutacao":
-            resultado = calcularPermutacao(variables);
-            break;
+            return calcularPermutacao(variables);
         case "combinacao":
-            resultado = calcularCombinacao(variables);
-            break;
-        case "lei-dos-senos":
-            resultado = calcularLeiDosSenos(variables);
-            break;
-        case "lei-dos-cosseos":
-            resultado = calcularLeiDosCossenos(variables);
-            break;
+            return calcularCombinacao(variables);
+        case "media-ponderada":
+            return calcularMediaPonderada(variables);
+        case "desvio-padrao":
+            return calcularDesvioPadrao(variables);
         case "area-trapezio":
-            resultado = calcularAreaTrapezio(variables);
-            break;
+            return calcularAreaTrapezio(variables);
         case "area-paralelogramo":
-            resultado = calcularAreaParalelogramo(variables);
-            break;
+            return calcularAreaParalelogramo(variables);
         case "formula-euler":
-            resultado = calcularFormulaEuler(variables);
-            break;
+            return calcularFormulaEuler(variables);
+        default:
+            throw new Error("Fórmula não encontrada.");
     }
-
-    document.getElementById("resultado-matematica").innerHTML = "Resultado: " + resultado;
 }
 
-// Funções de cálculo para Matemática
-const PI = Math.PI; // Constante pi
-const E = Math.E; // Constante e
-
-function calcularBaskara(vars) {
-    const [a, b, c] = vars.map(parseFloat);
+// Funções de cálculo para cada fórmula
+function calcularBhaskara([a, b, c]) {
     const delta = b ** 2 - 4 * a * c;
+    if (delta < 0) throw new Error("Delta é negativo, não há raízes reais.");
+    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+    return `x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
+}
 
-    if (delta < 0) {
-        return "Não existem raízes reais";
-    } else if (delta === 0) {
-        const x = -b / (2 * a);
-        return `Raiz única: x = ${x}`;
-    } else {
-        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
-        return `x1 = ${x1}, x2 = ${x2}`;
+function calcularEspiralArquimedes([a, b, theta]) {
+    return `r(θ) = ${a + b * theta}`;
+}
+
+function calcularAreaCirculo([r]) {
+    return `Área = ${Math.PI * r ** 2}`;
+}
+
+function calcularAreaRetangulo([b, h]) {
+    return `Área = ${b * h}`;
+}
+
+function calcularAreaTriangulo([b, h]) {
+    return `Área = ${(b * h) / 2}`;
+}
+
+function calcularVolumePrisma([A_b, h]) {
+    return `Volume = ${A_b * h}`;
+}
+
+function calcularVolumePiramide([A_b, h]) {
+    return `Volume = ${(A_b * h) / 3}`;
+}
+
+function calcularVolumeTroncoPiramide([A_b_maior, A_b_menor, h]) {
+    return `Volume = ${(h / 3) * (A_b_maior + A_b_menor + Math.sqrt(A_b_maior * A_b_menor))}`;
+}
+
+function calcularVolumeCilindro([r, h]) {
+    return `Volume = ${Math.PI * r ** 2 * h}`;
+}
+
+function calcularVolumeEsfera([r]) {
+    return `Volume = ${(4 / 3) * Math.PI * r ** 3}`;
+}
+
+function calcularTeoremaPitagoras([a, b]) {
+    const c = Math.sqrt(a ** 2 + b ** 2);
+    return `c = ${c}`;
+}
+
+function calcularProgressaoAritmetica([A1, r, n]) {
+    return `A${n} = ${A1 + (n - 1) * r}`;
+}
+
+function calcularProgressaoGeometrica([A1, q, n]) {
+    return `A${n} = ${A1 * (q ** (n - 1))}`;
+}
+
+function calcularPermutacao([n]) {
+    return `P(${n}) = ${fatorial(n)}`;
+}
+
+function calcularCombinacao([n, r]) {
+    return `C(${n}, ${r}) = ${fatorial(n) / (fatorial(r) * fatorial(n - r))}`;
+}
+
+function calcularMediaPonderada(variaveis) {
+    const pesos = [];
+    const valores = [];
+    for (let i = 0; i < variaveis.length; i += 2) {
+        pesos.push(variaveis[i]);
+        valores.push(variaveis[i + 1]);
     }
+    const somaPesos = pesos.reduce((a, b) => a + b, 0);
+    const somaProduto = pesos.reduce((sum, peso, i) => sum + (peso * valores[i]), 0);
+    return `Média Ponderada = ${somaProduto / somaPesos}`;
 }
 
-function calcularEspiralArquimedes(vars) {
-    const [a, b, theta] = vars.map(parseFloat);
-    return a + b * theta;
+function calcularDesvioPadrao(variaveis) {
+    const media = variaveis.reduce((sum, valor) => sum + valor, 0) / variaveis.length;
+    const variancia = variaveis.reduce((sum, valor) => sum + Math.pow(valor - media, 2), 0) / variaveis.length;
+    return `Desvio Padrão = ${Math.sqrt(variancia)}`;
 }
 
-function calcularAreaCirculo(vars) {
-    const [raio] = vars.map(parseFloat);
-    return Math.PI * raio ** 2;
+function calcularAreaTrapezio([B, b, h]) {
+    return `Área = ${((B + b) * h) / 2}`;
 }
 
-function calcularAreaRetangulo(vars) {
-    const [base, altura] = vars.map(parseFloat);
-    return base * altura;
+function calcularAreaParalelogramo([b, h]) {
+    return `Área = ${b * h}`;
 }
 
-function calcularAreaTriangulo(vars) {
-    const [base, altura] = vars.map(parseFloat);
-    return (base * altura) / 2;
+function calcularFormulaEuler([V, E, F]) {
+    return `V - E + F = ${V - E + F}`;
 }
 
-function calcularVolumePrisma(vars) {
-    const [areaBase, altura] = vars.map(parseFloat);
-    return areaBase * altura;
+function validateInputs(inputs) {
+    return inputs.every(input => !isNaN(input) && input !== null);
 }
 
-function calcularVolumePiramide(vars) {
-    const [areaBase, altura] = vars.map(parseFloat);
-    return (areaBase * altura) / 3;
-}
-
-function calcularVolumeTroncoPiramide(vars) {
-    const [areaBaseMaior, areaBaseMenor, altura] = vars.map(parseFloat);
-    return (altura / 3) * (areaBaseMaior + areaBaseMenor + Math.sqrt(areaBaseMaior * areaBaseMenor));
-}
-
-function calcularVolumeCilindro(vars) {
-    const [raio, altura] = vars.map(parseFloat);
-    return Math.PI * raio ** 2 * altura;
-}
-
-function calcularVolumeEsfera(vars) {
-    const [raio] = vars.map(parseFloat);
-    return (4 / 3) * Math.PI * raio ** 3;
-}
-
-function calcularPitagoras(vars) {
-    const [catetoA, catetoB] = vars.map(parseFloat);
-    return Math.sqrt(catetoA ** 2 + catetoB ** 2);
-}
-
-function calcularProgressaoAritmetica(vars) {
-    const [a1, razao, n] = vars.map(parseFloat);
-    return a1 + (n - 1) * razao;
-}
-
-function calcularProgressaoGeometrica(vars) {
-    const [a1, razao, n] = vars.map(parseFloat);
-    return a1 * razao ** (n - 1);
-}
-
-function calcularPermutacao(vars) {
-    const [n] = vars.map(parseFloat);
-    return fatorial(n);
-}
-
-function calcularCombinacao(vars) {
-    const [n, r] = vars.map(parseFloat);
-    return fatorial(n) / (fatorial(r) * fatorial(n - r));
-}
-
-function calcularLeiDosSenos(vars) {
-    const [a, b, c, A, B, C] = vars.map(parseFloat);
-    
-    if (A && B && !C) {
-        C = Math.asin((c * Math.sin(A * Math.PI / 180)) / a) * (180 / Math.PI);
-        return `O ângulo C é ${C.toFixed(2)} graus.`;
-    } else if (B && C && !A) {
-        A = Math.asin((a * Math.sin(B * Math.PI / 180)) / b) * (180 / Math.PI);
-        return `O ângulo A é ${A.toFixed(2)} graus.`;
-    } else if (A && C && !B) {
-        B = Math.asin((b * Math.sin(A * Math.PI / 180)) / a) * (180 / Math.PI);
-        return `O ângulo B é ${B.toFixed(2)} graus.`;
-    } else if (a && b && C) {
-        const A = Math.asin((a * Math.sin(C * Math.PI / 180)) / b) * (180 / Math.PI);
-        return `O ângulo A é ${A.toFixed(2)} graus.`;
-    } else if (b && c && A) {
-        const B = Math.asin((b * Math.sin(A * Math.PI / 180)) / c) * (180 / Math.PI);
-        return `O ângulo B é ${B.toFixed(2)} graus.`;
-    } else if (a && c && B) {
-        const C = Math.asin((c * Math.sin(B * Math.PI / 180)) / a) * (180 / Math.PI);
-        return `O ângulo C é ${C.toFixed(2)} graus.`;
-    } else {
-        return 'Você precisa fornecer duas variáveis conhecidas para encontrar a terceira.';
-    }
-}
-
-function calcularLeiDosCossenos(vars) {
-    const [a, b, c, C] = vars.map(parseFloat);
-    
-    if (C) {
-        // Cálculo para encontrar o lado c
-        c = Math.sqrt(a ** 2 + b ** 2 - 2 * a * b * Math.cos(C * (Math.PI / 180)));
-        return `O comprimento do lado c é ${c.toFixed(2)}.`;
-    } else {
-        return 'Você precisa fornecer dois lados e o ângulo entre eles para encontrar o terceiro lado.';
-    }
-}
-
-function calcularAreaTrapezio(vars) {
-    const [baseMaior, baseMenor, altura] = vars.map(parseFloat);
-    return ((baseMaior + baseMenor) * altura) / 2;
-}
-
-function calcularAreaParalelogramo(vars) {
-    const [base, altura] = vars.map(parseFloat);
-    return base * altura;
-}
-
-function calcularFormulaEuler(vars) {
-    const [v, e, f] = vars.map(parseFloat);
-    return v - e + f === 2 ? "Fórmula de Euler confirmada" : "A fórmula de Euler não é satisfeita";
-}
-
-// Função auxiliar para calcular fatorial
-function fatorial(num) {
-    if (num === 0 || num === 1) return 1;
-    return Array.from({ length: num }, (_, i) => i + 1).reduce((acc, val) => acc * val, 1);
-}
-
-// Validação de entradas
-function validateInputs(variables) {
-    return variables.every(variable => !isNaN(variable) && variable !== "");
+function fatorial(n) {
+    return n <= 1 ? 1 : n * fatorial(n - 1);
 }

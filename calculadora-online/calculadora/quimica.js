@@ -1,14 +1,9 @@
-// Inicialização após o carregamento do DOM para Química
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("formula").addEventListener("change", updateVariablesQuimica);
-});
-
 // Função para atualizar as variáveis e fórmulas com base na fórmula de Química selecionada
 function updateVariablesQuimica() {
     const formula = document.getElementById("formula").value;
     const formulaDisplay = document.getElementById("quimica-formula-display");
     const container = document.getElementById("variables-container");
-    const instructionsDiv = document.getElementById("instructions-quimica");  
+    const instructionsDiv = document.getElementById("instructions-quimica");
     container.innerHTML = "";
     let variablesHtml = "";
     let formulaHtml = "";
@@ -62,10 +57,6 @@ function updateVariablesQuimica() {
             formulaHtml = "$Q = m \\cdot L$";
             variablesHtml = "Massa (kg), Calor latente (J/kg)";
             break;
-        case "lei-lavoisier":
-            formulaHtml = "$\\text{Massa dos Reagentes} = \\text{Massa dos Produtos}$";
-            variablesHtml = "Massa dos Reagentes (g), Massa dos Produtos (g)";
-            break;
         case "lei-raoult":
             formulaHtml = "$P = P_{pura} \\cdot X$";
             variablesHtml = "Pressão Pura (Pa), Fração Molar";
@@ -84,8 +75,8 @@ function updateVariablesQuimica() {
             break;
         case "lei-dalton":
             formulaHtml = "$P_{total} = P_1 + P_2 + ... + P_n$";
-            variablesHtml = "Pressões Parciais (P1, P2, ..., Pn)";
-            break;
+            variablesHtml = "Pressões Parciais (P1, P 2, ..., Pn)";
+ break;
         case "lei-henry":
             formulaHtml = "$C = k_H \\cdot P$";
             variablesHtml = "Concentração (C), Constante de Henry (k_H), Pressão (P)";
@@ -104,9 +95,9 @@ function updateVariablesQuimica() {
     formulaDisplay.innerHTML = `<strong>Fórmula:</strong> ${formulaHtml}`;
     MathJax.typesetPromise();  // Reprocessa o MathJax para exibir corretamente o LaTeX
 
-    // Gera os campos de entrada para as variáveis
+    // Gera os campos de entrada para as variáveis com padding de 15px
     container.innerHTML = variablesHtml.split(", ").map((variable, index) =>
-        `<input type="text" id="var${index}" placeholder="${variable}">`
+        `<div style="padding: 15px; margin-bottom: 15px;"><input type="text" id="var${index}" placeholder="${variable}"></div>`
     ).join('');
 
     // Atualiza instruções ou informações adicionais
@@ -117,7 +108,7 @@ function updateVariablesQuimica() {
 function calcularQuimica() {
     const formula = document.getElementById("formula").value;
     const inputs = document.querySelectorAll("#variables-container input");
-    const variables = Array.from(inputs).map(input => parseFloat(input.value.trim()));
+    const variables = Array.from(inputs).map(input => parseFloat(input.value.replace(",", ".")));
     let resultado;
 
     if (!validateInputs(variables)) {
@@ -162,9 +153,6 @@ function calcularQuimica() {
         case "calor-latente":
             resultado = calcularCalorLatente(variables);
             break;
-        case "lei-lavoisier":
-            resultado = calcularLeiLavoisier(variables);
-            break;
         case "lei-raoult":
             resultado = calcularLeiRaoult(variables);
             break;
@@ -189,122 +177,99 @@ function calcularQuimica() {
         case "concentracao-massa":
             resultado = calcularConcentracaoMassa(variables);
             break;
+        default:
+            alert("Fórmula não encontrada.");
+            return;
     }
 
-    // Exibe o resultado no local correto
-    document.getElementById("resultado").innerHTML = `Resultado: ${resultado}`;
+    // Exibe o resultado
+    document.getElementById("resultado").textContent = `Resultado: ${resultado.toFixed( 2)}`;
 }
 
-// Função para validar entradas
-function validateInputs(inputs) {
-    return inputs.every(input => !isNaN(parseFloat(input)) && isFinite(input));
+// Função de validação das entradas
+function validateInputs(variables) {
+    return variables.every(value => !isNaN(value) && value !== null && value !== "");
 }
 
-// Funções de cálculo para Química
-function calcularNumeroMols(vars) {
-    const [massa, massaMolar] = vars;
-    return massa / massaMolar;
+// Funções de cálculo para cada fórmula
+
+function calcularNumeroMols([massa, massaMolar]) {
+    return parseFloat(massa) / parseFloat(massaMolar);
 }
 
-function calcularMassaMolar(vars) {
-    const [massa, mol] = vars;
-    return massa / mol;
+function calcularMassaMolar([massa, mols]) {
+    return parseFloat(massa) / parseFloat(mols);
 }
 
-function calcularDensidade(vars) {
-    const [massa, volume] = vars;
-    return massa / volume;
+function calcularDensidade([massa, volume]) {
+    return parseFloat(massa) / parseFloat(volume);
 }
 
-function calcularConcentracaoMolar(vars) {
-    const [mol, volume] = vars;
-    return mol / volume;
+function calcularConcentracaoMolar([mols, volume]) {
+    return parseFloat(mols) / parseFloat(volume);
 }
 
-function calcularConcentracaoComum(vars) {
-    const [massa, volume] = vars;
-    return massa / volume;
+function calcularConcentracaoComum([massa, volume]) {
+    return parseFloat(massa) / parseFloat(volume);
 }
 
-function calcularMisturaSolucoes(vars) {
-    const [c1, v1, c2, v2] = vars;
-    return (c1 * v1 + c2 * v2) / (v1 + v2);
+function calcularMisturaSolucoes([C1, V1, C2, V2]) {
+    return (parseFloat(C1) * parseFloat(V1) + parseFloat(C2) * parseFloat(V2)) / (parseFloat(V1) + parseFloat(V2));
 }
 
-function calcularDiluicao(vars) {
-    const [c1, v1, vf] = vars;
-    return (c1 * v1) / vf;
+function calcularDiluicao([Ci, Vi, Vf]) {
+    return (parseFloat(Ci) * parseFloat(Vi)) / parseFloat(Vf);
 }
 
-function calcularMassaSoluto(vars) {
-    const [concentracao, volume] = vars;
-    return concentracao * volume;
+function calcularMassaSoluto([concentracao, volume]) {
+    return parseFloat(concentracao) * parseFloat(volume);
 }
 
-function calcularPercentagemMassa(vars) {
-    const [massaSoluto, massaTotal] = vars;
-    return (massaSoluto / massaTotal) * 100;
+function calcularPercentagemMassa([massaSoluto, massaTotal]) {
+    return (parseFloat(massaSoluto) / parseFloat(massaTotal)) * 100;
 }
 
-function calcularConstanteEquilibrio(vars) {
-    const [concentracaoA, coeficienteA, concentracaoB, coeficienteB, concentracaoC, coeficienteC, concentracaoD, coeficienteD] = vars;
-    const produtos = Math.pow(concentracaoC, coeficienteC) * Math.pow(concentracaoD, coeficienteD);
-    const reagentes = Math.pow(concentracaoA, coeficienteA) * Math.pow(concentracaoB, coeficienteB);
-    return produtos / reagentes;
+function calcularConstanteEquilibrio([Ca, a, Cb, b, Cc, c, Cd, d]) {
+    return (Math.pow(parseFloat(Cc), parseFloat(c)) * Math.pow(parseFloat(Cd), parseFloat(d))) / (Math.pow(parseFloat(Ca), parseFloat(a)) * Math.pow(parseFloat(Cb), parseFloat(b)));
 }
 
-function calcularCalorSensivel(vars) {
-    const [massa, calorEspecifico, deltaTemp] = vars;
-    return massa * calorEspecifico * deltaTemp;
+function calcularCalorSensivel([massa, calorEspecifico, deltaT]) {
+    return parseFloat(massa) * parseFloat(calorEspecifico) * parseFloat(deltaT);
 }
 
-function calcularCalorLatente(vars) {
-    const [massa, calorLatente] = vars;
-    return massa * calorLatente;
+function calcularCalorLatente([massa, calorLatente]) {
+    return parseFloat(massa) * parseFloat(calorLatente);
 }
 
-function calcularLeiLavoisier(vars) {
-    const [mReagentes, mProdutos] = vars;
-    return mReagentes === mProdutos ? "Conservação de Massa Confirmada" : "Erro na Lei de Lavoisier";
+function calcularLeiRaoult([pressaoPura, fracaoMolar]) {
+    return parseFloat(pressaoPura) * parseFloat(fracaoMolar);
 }
 
-function calcularLeiRaoult(vars) {
-    const [pressaoPura, fracaoMolar] = vars;
-    return pressaoPura * fracaoMolar;
+function calcularLeiGasesIdeais([pressao, volume, mols, temperatura]) {
+    const R = 8.314; // Constante dos gases
+    return (parseFloat(pressao) * parseFloat(volume)) / (parseFloat(mols) * R * parseFloat(temperatura));
 }
 
-function calcularLeiGasesIdeais(vars) {
-    const [pressao, volume, mols, temperatura] = vars;
-    const R = 8.314; // Constante dos Gases Ideais em J/(mol·K)
-    return (pressao * volume) / (mols * R * temperatura);
+function calcularVelocidadeReacao([concentracaoInicial, concentracaoFinal, tempo]) {
+    return (parseFloat(concentracaoFinal) - parseFloat(concentracaoInicial)) / parseFloat(tempo);
 }
 
-function calcularVelocidadeReacao(vars) {
-    const [concentracaoInicial, concentracaoFinal, tempo] = vars;
-    return (concentracaoFinal - concentracaoInicial) / tempo;
+function calcularEquacaoGasesIdeais([pressao, volume, mols, constante, temperatura]) {
+    return (parseFloat(pressao) * parseFloat(volume)) / (parseFloat(mols) * parseFloat(constante) * parseFloat(temperatura));
 }
 
-function calcularEquacaoGasesIdeais(vars) {
-    const [pressao, volume, mols, constanteGases] = vars;
-    return (pressao * volume) / (mols * constanteGases);
+function calcularLeiDalton(pressaoParcial) {
+    return pressaoParcial.reduce((acc, curr) => acc + parseFloat(curr), 0);
 }
 
-function calcularLeiDalton(vars) {
-    // Somar as pressões parciais fornecidas
-    return vars.reduce((total, pressao) => total + pressao, 0);
+function calcularLeiHenry([concentracao, constanteHenry, pressao]) {
+    return parseFloat(constanteHenry) * parseFloat(pressao);
 }
 
-function calcularLeiHenry(vars) {
-    const [constanteHenry, pressao] = vars;
-    return constanteHenry * pressao;
+function calcularClausiusClapeyron([P1, P2, deltaHvap, T1, T2, R]) {
+    return Math.log(parseFloat(P2) / parseFloat(P1)) === (parseFloat(deltaHvap) / parseFloat(R)) * (1 / parseFloat(T1) - 1 / parseFloat(T2));
 }
 
-function calcularClausiusClapeyron(vars) {
-    const [p1, p2, deltaHvap, t1, t2, R] = vars;
-    return Math.log(p2 / p1) / (deltaHvap / R * (1 / t1 - 1 / t2));
-}
-
-function calcularConcentracaoMassa(vars) {
-    const [massaSoluto, volumeSolucao] = vars;
-    return massaSoluto / volumeSolucao;
+function calcularConcentracaoMassa([massaSoluto, volumeSolucao]) {
+    return parseFloat(massaSoluto) / parseFloat(volumeSolucao);
 }
