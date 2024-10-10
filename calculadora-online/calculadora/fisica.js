@@ -149,6 +149,11 @@ function updateVariablesFisica() {
       variables = ["Tensão", "Densidade Linear"];
       unidades = [getUnidades("Tensão"), getUnidades("Densidade Linear")];
       break;
+    case "energia-einstein":
+      formulaHtml = "\\( E = m \\cdot c^2 \\)";
+      variables = ["Massa"];
+      unidades = [getUnidades("Massa")];
+      break;
     default:
       formulaHtml = "Selecione uma fórmula válida";
       variables = [];
@@ -195,86 +200,166 @@ function updateVariablesFisica() {
 function getUnidades(variable) {
   switch (variable) {
     case "Distância":
-      return `
-        <option value="m">m</option>
-        <option value="cm">cm</option>
-        <option value="dm">dm</option>
-        <option value="mm">mm</option>
-        <option value="km">km</option>
-      `;
+        return `
+          <option value="m">\\( m \\)</option>
+          <option value="cm">\\( cm \\)</option>
+          <option value="dm">\\( dm \\)</option>
+          <option value="mm">\\( mm \\)</option>
+          <option value="km">\\( km \\)</option>
+          <option value="in">\\( polegada \\)</option>
+          <option value="ft">\\( pé \\)</option>
+          <option value="mi">\\( milha \\)</option>
+          <option value="yd">\\( jarda \\)</option>
+        `;
     case "Tempo":
-      return `
-        <option value="s">s</option>
-        <option value="min">min</option>
-        <option value="h">h</option>
-      `;
+        return `
+          <option value="s">\\( s \\)</option>
+          <option value="min">\\( min \\)</option>
+          <option value="h">\\( h \\)</option>
+          <option value="ms">\\( ms \\)</option>
+          <option value="μs">\\( \\mu s \\)</option>
+          <option value="ns">\\( ns \\)</option>
+          <option value="ps">\\( ps \\)</option>
+          <option value="fs">\\( fs \\)</option>
+          <option value="dia">\\( dia \\)</option>
+          <option value="ano">\\( ano \\)</option>
+        `;
     case "Força":
-      return `
-        <option value="N">N</option>
-        <option value="kN">kN</option>
-      `;
+        return `
+          <option value="N">\\( N \\)</option>
+          <option value="kN">\\( kN \\)</option>
+          <option value="mN">\\( mN \\)</option>
+          <option value="μN">\\( \\mu N \\)</option>
+          <option value="lbf">\\( lbf \\)</option>
+        `;
     case "Massa":
-      return `
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-      `;
+        return `
+          <option value="kg">\\( kg \\)</option>
+          <option value="g">\\( g \\)</option>
+          <option value="mg">\\( mg \\)</option>
+          <option value="μg">\\( \\mu g \\)</option>
+          <option value="ng">\\( ng \\)</option>
+          <option value="lb">\\( lb \\)</option>
+          <option value="oz">\\( oz \\)</option>
+        `;
     case "Aceleração":
-      return `
-        <option value="m/s²">m/s²</option>
-        <option value="cm/s²">cm/s²</option>
-      `;
+        return `
+          <option value="m/s²">\\( m/s^2 \\)</option>
+          <option value="cm/s²">\\( cm/s^2 \\)</option>
+          <option value="mm/s²">\\( mm/s^2 \\)</option>
+          <option value="g">\\( g \\)</option>
+        `;
     case "Trabalho":
-      return `
-        <option value="J">J</option>
-        <option value="kJ">kJ</option>
-      `;
+    case "Energia":
+        return `
+          <option value="J">\\( J \\)</option>
+          <option value="kJ">\\( kJ \\)</option>
+          <option value="cal">\\( cal \\)</option>
+          <option value="kcal">\\( kcal \\)</option>
+          <option value="Wh">\\( Wh \\)</option>
+          <option value="kWh">\\( kWh \\)</option>
+          <option value="mJ">\\( mJ \\)</option>
+          <option value="μJ">\\( \\mu J \\)</option>
+        `;
     case "Potência":
-      return `
-        <option value="W">W</option>
-      `;
+        return `
+          <option value="W">\\( W \\)</option>
+          <option value="kW">\\( kW \\)</option>
+          <option value="mW">\\( mW \\)</option>
+          <option value="μW">\\( \\mu W \\)</option>
+          <option value="hp">\\( hp \\)</option>
+        `;
     case "Pressão":
-      return `
-        <option value="Pa">Pa</option>
-      `;
+        return `
+          <option value="Pa">\\( Pa \\)</option>
+          <option value="kPa">\\( kPa \\)</option>
+          <option value="mPa">\\( mPa \\)</option>
+          <option value="μPa">\\( \\mu Pa \\)</option>
+          <option value="bar">\\( bar \\)</option>
+          <option value="atm">\\( atm \\)</option>
+          <option value="mmHg">\\( mmHg \\)</option>
+          <option value="psi">\\( psi \\)</option>
+        `;
     case "Frequência":
-      return `
-        <option value="Hz">Hz</option>
-      `;
+        return `
+          <option value="Hz">\\( Hz \\)</option>
+          <option value="kHz">\\( kHz \\)</option>
+          <option value="MHz">\\( MHz \\)</option>
+          <option value="GHz">\\( GHz \\)</option>
+        `;
     case "Velocidade":
-      return `
-        <option value="m/s">m/s</option>
-      `;
+        return `
+          <option value="m/s">\\( m/s \\)</option>
+          <option value="km/h">\\( km/h \\)</option>
+          <option value="mph">\\( mph \\)</option>
+          <option value="ft/s">\\( ft/s \\)</option>
+          <option value="cm/s">\\( cm/s \\)</option>
+        `;
     case "Comprimento de onda":
-      return `
-        <option value="m">m</option>
-      `;
+        return `
+          <option value="m">\\( m \\)</option>
+          <option value="cm">\\( cm \\)</option>
+          <option value="nm">\\( nm \\)</option>
+          <option value="μm">\\( \\mu m \\)</option>
+          <option value="mm">\\( mm \\)</option>
+        `;
     case "Tensão":
-      return `
-        <option value="V">V</option>
-      `;
+        return `
+          <option value="V">\\( V \\)</option>
+          <option value="kV">\\( kV \\)</option>
+          <option value="mV">\\( mV \\)</option>
+          <option value="μV">\\( \\mu V \\)</option>
+        `;
     case "Corrente":
-      return `
-        <option value="A">A</option>
-      `;
+        return `
+          <option value="A">\\( A \\)</option>
+          <option value="mA">\\( mA \\)</option>
+          <option value="μA">\\( \\mu A \\)</option>
+          <option value="kA">\\( kA \\)</option>
+        `;
     case "Área":
-      return `
-        <option value="m²">m²</option>
-      `;
+        return `
+          <option value="mm²">\\( mm^2 \\)</option>
+          <option value="cm²">\\( cm^2 \\)</option>
+          <option value="dm²">\\( dm^2 \\)</option>
+          <option value="m²">\\( m^2 \\)</option>
+          <option value="km²">\\( km^2 \\)</option>
+          <option value="ft²">\\( ft^2 \\)</option>
+          <option value="in²">\\( in^2 \\)</option>
+          <option value="ha">\\( ha \\)</option>
+          <option value="acre">\\( acre \\)</option>
+        `;
     case "Deformação":
-      return `
-        <option value="m">m</option>
-      `;
+        return `
+          <option value="m">\\( m \\)</option>
+          <option value="cm">\\( cm \\)</option>
+          <option value="mm">\\( mm \\)</option>
+          <option value="nm">\\( nm \\)</option>
+        `;
     case "Carga":
-      return `
-        <option value="C">C</option>
-      `;
+        return `
+          <option value="C">\\( C \\)</option>
+          <option value="mC">\\( mC \\)</option>
+          <option value="μC">\\( \\mu C \\)</option>
+          <option value="nC">\\( nC \\)</option>
+        `;
     case "Constante Elástica":
-      return `
-        <option value="N/m">N/m</option>
-      `;
+        return `
+          <option value="N/m">\\( N/m \\)</option>
+          <option value="kN/m">\\( kN/m \\)</option>
+          <option value="mN/m">\\( mN/m \\)</option>
+        `;
+    case "Energia de Einstein":
+        return `
+          <option value="J">\\( J \\)</option>
+          <option value="kJ">\\( kJ \\)</option>
+          <option value="MeV">\\( MeV \\)</option>
+          <option value="GeV">\\( GeV \\)</option>
+        `;
     default:
-      return `<option value="">Selecione uma unidade</option>`;
-  }
+        return `<option value="">Selecione uma unidade</option>`;
+
+        }
 }
 
 // Função de cálculo para Física
@@ -359,6 +444,9 @@ function calcularFisica() {
     case "velocidade-onda":
       resultado = calcularVelocidadeOnda(variables);
       break;
+    case "energia-einstein":
+      resultado = calcularEinsteinEnergia(variables);
+      break;
     default:
       console.error("Fórmula não reconhecida.");
       return;
@@ -378,62 +466,245 @@ function calcularFisica() {
 // Função para converter unidades para Sistema Internacional (SI)
 function converterParaSI(valor, unidade) {
   switch (unidade) {
-    case "m":
+    // Distância
+    case "m": // metro
       return valor;
-    case "cm":
+    case "cm": // centímetro
       return valor / 100;
-    case "mm":
+    case "mm": // milímetro
       return valor / 1000;
-    case "km":
+    case "dm": // decímetro
+      return valor / 10;
+    case "km": // quilômetro
       return valor * 1000;
-    // ... outros casos de conversão de unidade
+    case "in": // polegada
+      return valor * 0.0254;
+    case "ft": // pé
+      return valor * 0.3048;
+    case "yd": // jarda
+      return valor * 0.9144;
+    case "mi": // milha
+      return valor * 1609.34;
+    
+    // Tempo
+    case "s": // segundo
+      return valor;
+    case "min": // minuto
+      return valor * 60;
+    case "h": // hora
+      return valor * 3600;
+    case "ms": // milissegundo
+      return valor / 1000;
+    case "μs": // microssegundo
+      return valor / 1e6;
+    case "ns": // nanossegundo
+      return valor / 1e9;
+
+    // Massa
+    case "kg": // quilograma
+      return valor;
+    case "g": // grama
+      return valor / 1000;
+    case "mg": // miligrama
+      return valor / 1e6;
+    case "μg": // micrograma
+      return valor / 1e9;
+    case "lb": // libra
+      return valor * 0.453592;
+    case "oz": // onça
+      return valor * 0.0283495;
+
+    // Força
+    case "N": // newton
+      return valor;
+    case "kN": // quilonewton
+      return valor * 1000;
+    case "mN": // milinewton
+      return valor / 1000;
+    case "lbf": // libra-força
+      return valor * 4.44822;
+
+    // Área
+    case "m²": // metro quadrado
+      return valor;
+    case "cm²": // centímetro quadrado
+      return valor / 1e4;
+    case "mm²": // milímetro quadrado
+      return valor / 1e6;
+    case "dm²": // decímetro quadrado
+      return valor / 100;
+    case "km²": // quilômetro quadrado
+      return valor * 1e6;
+    case "ft²": // pé quadrado
+      return valor * 0.092903;
+    case "in²": // polegada quadrada
+      return valor * 0.00064516;
+
+    // Volume
+    case "m³": // metro cúbico
+      return valor;
+    case "cm³": // centímetro cúbico
+      return valor / 1e6;
+    case "mm³": // milímetro cúbico
+      return valor / 1e9;
+    case "dm³": // decímetro cúbico (litro)
+      return valor / 1000;
+    case "l": // litro
+      return valor / 1000;
+    case "ml": // mililitro
+      return valor / 1e6;
+    case "ft³": // pé cúbico
+      return valor * 0.0283168;
+    case "in³": // polegada cúbica
+      return valor * 1.63871e-5;
+
+    // Pressão
+    case "Pa": // pascal
+      return valor;
+    case "kPa": // quilopascal
+      return valor * 1000;
+    case "bar": // bar
+      return valor * 1e5;
+    case "atm": // atmosfera
+      return valor * 101325;
+    case "mmHg": // milímetro de mercúrio
+      return valor * 133.322;
+    case "psi": // libra por polegada quadrada
+      return valor * 6894.76;
+
+    // Energia
+    case "J": // joule
+      return valor;
+    case "kJ": // quilojoule
+      return valor * 1000;
+    case "cal": // caloria
+      return valor * 4.184;
+    case "kcal": // quilocaloria
+      return valor * 4184;
+    case "Wh": // watt-hora
+      return valor * 3600;
+    case "kWh": // quilowatt-hora
+      return valor * 3.6e6;
+
+    // Potência
+    case "W": // watt
+      return valor;
+    case "kW": // quilowatt
+      return valor * 1000;
+    case "MW": // megawatt
+      return valor * 1e6;
+    case "hp": // cavalo-vapor (horsepower)
+      return valor * 745.7;
+
+    // Carga elétrica
+    case "C": // coulomb
+      return valor;
+    case "mC": // milicoulomb
+      return valor / 1000;
+    case "μC": // microcoulomb
+      return valor / 1e6;
+
+    // Tensão elétrica
+    case "V": // volt
+      return valor;
+    case "kV": // quilovolt
+      return valor * 1000;
+    case "mV": // milivolt
+      return valor / 1000;
+    case "μV": // microvolt
+      return valor / 1e6;
+
+    // Corrente elétrica
+    case "A": // ampère
+      return valor;
+    case "mA": // miliampère
+      return valor / 1000;
+    case "μA": // microampère
+      return valor / 1e6;
+
+    // Frequência
+    case "Hz": // hertz
+      return valor;
+    case "kHz": // quilohertz
+      return valor * 1000;
+    case "MHz": // megahertz
+      return valor * 1e6;
+    case "GHz": // gigahertz
+      return valor * 1e9;
+
+    // Densidade linear
+    case "kg/m": // quilograma por metro
+      return valor;
+    case "g/m": // grama por metro
+      return valor / 1000;
+
     default:
       console.error(`Unidade não reconhecida: ${unidade}`);
       return valor;
   }
 }
 
+
 // Função para obter a unidade de resultado correta
 function getUnidadeResultado(formula) {
   switch (formula) {
+    // Velocidade e velocidade de onda
     case "velocidade":
-      return "m/s";
-    case "trabalho":
-      return "J";
-    case "forca":
-      return "N";
-    case "energia-cinetica":
-      return "J";
-    case "impulso":
-      return "Ns";
-    case "potencia":
-      return "W";
-    case "aceleracao":
-      return "m/s²";
-    case "momento-linear":
-      return "kg·m/s";
-    case "pressao":
-      return "Pa";
-    case "frequencia-ondas":
-      return "Hz";
-    case "lei-hooke":
-      return "N/m";
-    case "resistencia-eletrica":
-      return "Ω";
-    case "energia-mecanica":
-      return "J";
-    case "lei-gravitacao":
-      return "N";
-    case "energia-pot-gravitacional":
-      return "J";
-    case "energia-pot-elastica":
-      return "J";
-    case "capacitancia":
-      return "F";
-    case "energia-einstein":
-      return "J";
     case "velocidade-onda":
-      return "m/s";
+      return "m/s"; // metros por segundo
+
+    // Trabalho, Energia e Calor
+    case "trabalho":
+    case "energia-cinetica":
+    case "energia-mecanica":
+    case "energia-pot-gravitacional":
+    case "energia-pot-elastica":
+    case "energia-einstein":
+      return "J"; // Joules
+
+    // Força
+    case "forca":
+    case "lei-hooke":
+    case "lei-gravitacao":
+      return "N"; // Newtons
+
+    // Impulso e Momento Linear
+    case "impulso":
+    case "momento-linear":
+      return "Ns"; // Newton-segundos ou quilograma-metro por segundo
+
+    // Potência
+    case "potencia":
+      return "W"; // Watts
+
+    // Aceleração
+    case "aceleracao":
+      return "m/s²"; // metros por segundo ao quadrado
+
+    // Pressão
+    case "pressao":
+      return "Pa"; // Pascais
+
+    // Frequência
+    case "frequencia-ondas":
+      return "Hz"; // Hertz
+
+    // Resistência Elétrica
+    case "resistencia-eletrica":
+      return "Ω"; // Ohms
+
+    // Capacitância
+    case "capacitancia":
+      return "F"; // Farads
+
+    // Densidade Linear (para fórmulas de onda)
+    case "densidade-linear":
+      return "kg/m"; // quilogramas por metro
+
+    // Comprimento de Onda
+    case "comprimento-onda":
+      return "m"; // metros
+
     default:
       console.error("Fórmula não reconhecida.");
       return "";
