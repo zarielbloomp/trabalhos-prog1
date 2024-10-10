@@ -7,7 +7,10 @@
   <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="certo.css">
   
+  <!-- Importação de Polyfill para compatibilidade com navegadores antigos -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <!-- MathJax para renderização de fórmulas LaTeX -->
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.MathJax = {
@@ -23,13 +26,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Calculadora de Fórmulas</h1>
+    <header>
+      <h1>Calculadora de Fórmulas</h1>
+    </header>
 
+    <!-- Navegação adicional -->
     <nav class="extra-navigation">
-      <a href="../extras/quem-somos.html" class="extra-link">Quem Somos</a>
-      <a href="../CapimCognition/templates/index.html" class="extra-link">CapimCognition</a>
+      <a href="../extras/quem-somos.html" class="extra-link" aria-label="Link para Quem Somos">Quem Somos</a>
+      <a href="../CapimCognition/templates/index.html" class="extra-link" aria-label="Link para CapimCognition">CapimCognition</a>
     </nav>
 
+    <!-- Botões de navegação para as diferentes áreas da calculadora -->
     <nav class="tab-buttons" aria-label="Navegação de Fórmulas">
       <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')" aria-selected="true">Fórmulas Químicas</button>
       <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')" aria-selected="false">Fórmulas Físicas</button>
@@ -37,6 +44,7 @@
       <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')" aria-selected="false">Operações de Matrizes</button>
     </nav>
 
+    <!-- Seção de fórmulas de Química -->
     <section id="quimica-formulas" class="tab-content active" aria-labelledby="tab-quimica">
       <h2>Química</h2>
       <div class="formula">
@@ -74,6 +82,7 @@
       <div id="resultado-quimica">Resultado: <span id="resultado-valor-quimica">--</span></div>
     </section>
 
+    <!-- Seção de fórmulas de Física -->
     <section id="fisica-formulas" class="tab-content" aria-labelledby="tab-fisica" style="display:none;">
       <h2>Física</h2>
       <div class="formula">
@@ -100,16 +109,21 @@
           <option value="velocidade-onda">Velocidade de Onda</option>
         </select>
       </div>
+
+      <!-- Div para exibir as variáveis -->
       <div class="variables">
         <div class="formula-display" id="fisica-formula-display"></div>
         <label for="variables_fisica">Preencha as variáveis:</label>
-        <div id="variables-container_fisica"></div>
+        <div id="variables-container_fisica"></div> <!-- Aqui as variáveis serão exibidas -->
         <div id="instructions-fisica"></div>
       </div>
+      
+      <!-- Botão para calcular e exibir resultado -->
       <button onclick="calcularFisica()">Calcular</button>
       <div id="resultado-fisica">Resultado: <span id="resultado-valor-fisica">--</span></div>
     </section>
 
+    <!-- Seção de fórmulas de Matemática -->
     <section id="matematica-formulas" class="tab-content" aria-labelledby="tab-matematica" style="display:none;">
       <h2>Matemática</h2>
       <div class="formula">
@@ -147,6 +161,7 @@
       <div id="resultado-matematica">Resultado: <span id="resultado-valor-matematica">--</span></div>
     </section>
 
+    <!-- Seção de Operações de Matrizes -->
     <section id="matrizes-formulas" class="tab-content" aria-labelledby="tab-matrizes" style="display:none;">
       <h2>Operações de Matrizes</h2>
       <div class="formula">
@@ -165,6 +180,7 @@
       <div id="resultado-matriz">Resultado: <span id="resultado-valor-matriz">--</span></div>
     </section>
 
+    <!-- Rodapé -->
     <footer>
       <div class="footer-content">
         <p>&copy; 2024 ScienceLab - Todos os direitos reservados</p>
@@ -172,6 +188,7 @@
     </footer>
   </div>
 
+  <!-- Scripts para manipulação de fórmulas -->
   <script src="showTab.js"></script>
   <script src="quimica.js"></script>
   <script src="fisica.js"></script>
@@ -179,8 +196,8 @@
   <script src="matrizes.js"></script>
   <script src="instrucoes.js"></script>
 
+  <!-- Função para reprocessar o MathJax após atualizações -->
   <script>
-    // Reprocessa MathJax após qualquer atualização de fórmula
     function reprocessMathJax() {
       if (window.MathJax) {
         MathJax.typesetPromise();
