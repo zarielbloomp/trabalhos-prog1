@@ -170,7 +170,6 @@ function updateVariablesFisica() {
         variables = ["Tensão (N)", "Densidade Linear (kg/m)"];
         unidades = [getUnidades("Tensão"), getUnidades("Densidade Linear")];
         break;
-      
     default:
       formulaHtml = "Selecione uma fórmula válida";
       variables = [];
