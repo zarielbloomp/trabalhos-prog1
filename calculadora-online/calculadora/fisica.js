@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
+
+
 // Função para atualizar as variáveis e fórmulas com base na fórmula selecionada
 function updateVariablesFisica() {
   const formula = document.getElementById("formula_fisica").value;
@@ -211,6 +213,9 @@ function updateVariablesFisica() {
     console.error("MathJax não foi carregado corretamente.");
   }
 }
+
+
+
 
 // Função para obter as unidades para cada variável
 function getUnidades(variable) {
@@ -384,6 +389,11 @@ function getUnidades(variable) {
   }
 }
 
+
+
+
+
+
 // Função de cálculo para Física
 function calcularFisica() {
   const formula = document.getElementById("formula_fisica").value;
@@ -481,6 +491,11 @@ function calcularFisica() {
 
   document.getElementById("resultado-fisica").innerHTML = resultadoExibicao;
 }
+
+
+
+
+
 
 // Função para converter unidades para Sistema Internacional (SI)
 function converterParaSI(valor, unidade) {
@@ -663,6 +678,10 @@ function converterParaSI(valor, unidade) {
   }
 }
 
+
+
+
+
 // Função para obter a unidade de resultado correta
 function getUnidadeResultado(formula) {
   switch (formula) {
@@ -729,168 +748,176 @@ function getUnidadeResultado(formula) {
   }
 }
 
+
+
 // Função para tratar números com vírgula e garantir que sejam números válidos
 function parseNumber(valor) {
   if (typeof valor === "string") {
     valor = valor.replace(",", "."); // Substituir vírgulas por pontos
   }
   const numero = parseFloat(valor);
-  return isNaN(numero) ? 1e-10 : numero; // Se não for válido, retorna um valor muito pequeno
+  return isNaN(numero) ? 1e-100 : numero; // Se não for válido, retorna um valor extremamente pequeno
 }
 
-// Função para tratar números muito pequenos ou muito grandes
+// Função para tratar números muito pequenos ou muito grandes e formatar o resultado
 function formatarResultado(valor) {
-  if (Math.abs(valor) > 10500 || Math.abs(valor) < 1e-10) {
-    return valor.toExponential(15); // Notação científica com 15 dígitos de precisão
+  if (Math.abs(valor) >= 1e6 || Math.abs(valor) < 1e-3 && valor !== 0) {
+    // Transformar em notação científica estilo "6,5 ✕ 10^8"
+    const [base, expoente] = valor.toExponential(10).split('e');
+    const baseFormatada = base.replace('.', ','); // Substitui ponto por vírgula
+    const expoenteFormatado = expoente.replace('+', ''); // Remove o "+" do expoente
+    return `${baseFormatada} ✕ 10^${expoenteFormatado}`;
   }
-  return valor; // Retorna o número normalmente se for entre -10.500 e 10.500
+
+  // Se for um número inteiro, não mostrar casas decimais
+  if (Number.isInteger(valor)) {
+    return valor.toString();
+  }
+
+  // Se for um número decimal normal, limitar para no máximo 5 casas decimais e remover zeros extras
+  return valor.toFixed(5).replace('.', ',').replace(/\.?0+$/, ''); // Remove zeros extras
+}
+
+// Função para atualizar o elemento HTML com o resultado
+function atualizarResultadoFisica(resultado) {
+  document.getElementById('resultado-valor-fisica').innerText = resultado;
 }
 
 // Funções de cálculo para Física
+
 function calcularVelocidadeMedia(vars) {
   const [distancia, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = tempo !== 0 ? distancia / tempo : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = tempo !== 0 ? distancia / tempo : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularTrabalho(vars) {
   const [forca, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = forca * distancia || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = forca * distancia || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularForca(vars) {
   const [massa, aceleracao] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = massa * aceleracao || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = massa * aceleracao || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularEnergiaCinetica(vars) {
   const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = 0.5 * massa * Math.pow(velocidade, 2) || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = 0.5 * massa * Math.pow(velocidade, 2) || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularImpulso(vars) {
   const [forca, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = forca * tempo || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = forca * tempo || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularPotencia(vars) {
   const [trabalho, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = tempo !== 0 ? trabalho / tempo : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = tempo !== 0 ? trabalho / tempo : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularAceleracao(vars) {
   const [vFinal, vInicial, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = tempo !== 0 ? (vFinal - vInicial) / tempo : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = tempo !== 0 ? (vFinal - vInicial) / tempo : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularMomentoLinear(vars) {
   const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = massa * velocidade || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = massa * velocidade || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularPressao(vars) {
   const [forca, area] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = area !== 0 ? forca / area : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = area !== 0 ? forca / area : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularFrequenciaOndas(vars) {
   const [velocidade, comprimento] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = comprimento !== 0 ? velocidade / comprimento : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = comprimento !== 0 ? velocidade / comprimento : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularLeiHooke(vars) {
   const [constanteElastica, deformacao] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = constanteElastica * deformacao || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = constanteElastica * deformacao || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularResistenciaEletrica(vars) {
   const [tensao, corrente] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = corrente !== 0 ? tensao / corrente : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = corrente !== 0 ? tensao / corrente : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularMovimentoUniforme(vars) {
   const [posInicial, velocidade, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = posInicial + velocidade * tempo || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = posInicial + velocidade * tempo || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularMovimentoUniformementeVariado(vars) {
   const [posInicial, velInicial, aceleracao, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = posInicial + velInicial * tempo + 0.5 * aceleracao * Math.pow(tempo, 2) || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = posInicial + velInicial * tempo + 0.5 * aceleracao * Math.pow(tempo, 2) || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularEnergiaMecanica(vars) {
   const [energiaPotencial, energiaCinetica] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = energiaPotencial + energiaCinetica || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = energiaPotencial + energiaCinetica || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularLeiGravitacao(vars) {
   const [massa1, massa2, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
   const G = 6.6743e-11; // Constante da gravitação universal em m³/kg/s²
-  const resultado = distancia !== 0 ? (G * (massa1 * massa2)) / Math.pow(distancia, 2) : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = distancia !== 0 ? (G * (massa1 * massa2)) / Math.pow(distancia, 2) : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularEnergiaPotencialGravitacional(vars) {
   const [massa, gravidade, altura] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = massa * gravidade * altura || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = massa * gravidade * altura || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularEnergiaPotencialElastica(vars) {
   const [constanteElastica, deformacao] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = 0.5 * constanteElastica * Math.pow(deformacao, 2) || 1e-10;
-  return formatarResultado(resultado);
+  const resultado = 0.5 * constanteElastica * Math.pow(deformacao, 2) || 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 function calcularCapacitancia(vars) {
   const [carga, tensao] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = tensao !== 0 ? carga / tensao : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = tensao !== 0 ? carga / tensao : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
-
-// Constante da velocidade da luz em m/s
-const velocidadeLuz = 299792458; // m/s (constante)
 
 // Função para calcular a energia de Einstein (E = mc²)
 function calcularEinsteinEnergia(vars) {
   const [massa] = vars.map((variavel) => parseNumber(variavel.valor));
 
-  // Verifica se a massa é válida
   if (massa <= 0) {
-    document.getElementById('resultado-valor-fisica').innerText = "Massa inválida ou muito pequena";
+    atualizarResultadoFisica("Massa inválida ou muito pequena");
     return;
   }
 
-  // Defina o valor da velocidade da luz em metros por segundo (c = 3 * 10^8 m/s)
-  const velocidadeLuz = 3 * Math.pow(10, 8);
-
-  // Calcular a energia E = mc²
+  const velocidadeLuz = 299792458; // m/s
   const energia = massa * Math.pow(velocidadeLuz, 2);
-
-  // Retornar o valor formatado e alterar a div
-  const resultadoFormatado = formatarResultado(energia);
-  document.getElementById('resultado-valor-fisica').innerText = resultadoFormatado;
+  atualizarResultadoFisica(formatarResultado(energia));
 }
 
-// Função para calcular Velocidade de Onda
 function calcularVelocidadeOnda(vars) {
   const [tensao, densidadeLinear] = vars.map((variavel) => parseNumber(variavel.valor));
-  const resultado = densidadeLinear !== 0 ? Math.sqrt(tensao / densidadeLinear) : 1e-10;
-  return formatarResultado(resultado);
+  const resultado = densidadeLinear !== 0 ? Math.sqrt(tensao / densidadeLinear) : 1e-100;
+  atualizarResultadoFisica(formatarResultado(resultado));
 }
 
 // Funções para renderizar LaTeX

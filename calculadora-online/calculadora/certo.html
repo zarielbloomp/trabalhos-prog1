@@ -130,13 +130,14 @@
       <div id="resultado-fisica">Resultado: <span id="resultado-valor-fisica">--</span></div>
     </section>
 
-    <!-- Seção de fórmulas de Matemática -->
+
     <section id="matematica-formulas" class="tab-content" aria-labelledby="tab-matematica" style="display:none;">
       <h2>Matemática</h2>
       <div class="formula">
         <label for="formula_matematica">Selecione a fórmula:</label>
         <select id="formula_matematica" onchange="updateVariablesMatematica()">
           <option value="baskara">Fórmula de Bhaskara</option>
+          <option value="formula-heron">Formula de Heron</option>
           <option value="espiral-arquimedes">Espiral de Arquimedes</option>
           <option value="area-circulo">Área do Círculo</option>
           <option value="area-retangulo">Área do Retângulo</option>
@@ -156,14 +157,18 @@
           <option value="area-trapezio">Área do Trapézio</option>
           <option value="area-paralelogramo">Área do Paralelogramo</option>
           <option value="formula-euler">Fórmula de Euler</option>
+          <option value="angulo-para-radiano">Conversão de Ângulo para radiano</option>
+          <option value="radiano-para-angulo">Conversão de radiano pra ângulo</option>
         </select>
       </div>
+    
       <div class="variables">
         <div class="formula-display" id="matematica-formula-display"></div>
         <label for="variables_matematica">Preencha as variáveis:</label>
         <div id="variables-container_matematica"></div>
         <div id="instructions-matematica"></div>
       </div>
+    
       <button onclick="calcularMatematica()">Calcular</button>
       <div id="resultado-matematica">Resultado: <span id="resultado-valor-matematica">--</span></div>
     </section>
