@@ -23,8 +23,6 @@
       }
     };
   </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  
 </head>
 <body>
   <div class="container">
@@ -32,15 +30,10 @@
       <h1>Calculadora de Fórmulas</h1>
     </header>
 
-    <section id="welcome-message" class="welcome-section">
-      <h2>Bem-vindo ao ScienceLab!</h2>
-      <p>Obrigado por utilizar nosso site. Escolha uma das opções acima para começar a calcular fórmulas de Química, Física, Matemática ou realizar operações com Matrizes.</p>
-    </section>
-
     <!-- Navegação adicional -->
     <nav class="extra-navigation">
       <a href="../extras/quem-somos.html" class="extra-link" aria-label="Link para Quem Somos">Quem Somos</a>
-      <a href="../CapimCognition/templates/index.html" class="extra-link" aria-label="Link para CapimCognition">CapimCognition</a>
+      <a href="../ia/index.html" class="extra-link" aria-label="Link para CapimCognition">CapimCognition</a>
     </nav>
 
     <!-- Botões de navegação para as diferentes áreas da calculadora -->
@@ -112,7 +105,7 @@
           <option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
           <option value="energia-potencial-elastica">Energia Potencial Elástica</option>
           <option value="capacitancia">Capacitância</option>
-          <option value="energia-einstein">Energia de Einstein</option>
+          <option value="einstein-energia">Energia de Einstein</option>
           <option value="velocidade-onda">Velocidade de Onda</option>
         </select>
       </div>
@@ -130,16 +123,18 @@
       <div id="resultado-fisica">Resultado: <span id="resultado-valor-fisica">--</span></div>
     </section>
 
-
+    <!-- Seção de fórmulas de Matemática -->
     <section id="matematica-formulas" class="tab-content" aria-labelledby="tab-matematica" style="display:none;">
       <h2>Matemática</h2>
       <div class="formula">
         <label for="formula_matematica">Selecione a fórmula:</label>
         <select id="formula_matematica" onchange="updateVariablesMatematica()">
+            <option value="formula-heron">Fórmula de Heron</option>
           <option value="baskara">Fórmula de Bhaskara</option>
-          <option value="formula-heron">Formula de Heron</option>
           <option value="espiral-arquimedes">Espiral de Arquimedes</option>
           <option value="area-circulo">Área do Círculo</option>
+          <option value="radiano-para-angulo">Conversão de radiano pra ângulo</option>
+          <option value="angulo-para-radiano">Conversão de ângulo pra</option>
           <option value="area-retangulo">Área do Retângulo</option>
           <option value="area-triangulo">Área do Triângulo</option>
           <option value="volume-prisma">Volume do Prisma</option>
@@ -157,18 +152,14 @@
           <option value="area-trapezio">Área do Trapézio</option>
           <option value="area-paralelogramo">Área do Paralelogramo</option>
           <option value="formula-euler">Fórmula de Euler</option>
-          <option value="angulo-para-radiano">Conversão de Ângulo para radiano</option>
-          <option value="radiano-para-angulo">Conversão de radiano pra ângulo</option>
         </select>
       </div>
-    
       <div class="variables">
         <div class="formula-display" id="matematica-formula-display"></div>
         <label for="variables_matematica">Preencha as variáveis:</label>
         <div id="variables-container_matematica"></div>
         <div id="instructions-matematica"></div>
       </div>
-    
       <button onclick="calcularMatematica()">Calcular</button>
       <div id="resultado-matematica">Resultado: <span id="resultado-valor-matematica">--</span></div>
     </section>
@@ -212,7 +203,7 @@
   <script>
     function reprocessMathJax() {
       if (window.MathJax) {
-        MathJax.typesetPromise();
+        MathJax_typeset();
       }
     }
   </script>
