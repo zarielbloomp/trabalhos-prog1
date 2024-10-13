@@ -276,27 +276,30 @@ nav.extra-navigation {
   }
 }
 
-.resultado {
-  background-color: #f0f0f0;
-  padding: 1.25rem;
-  border: 1px solid #ccc;
-  border-radius: 0.625rem;
-  box-shadow: 0 0.625rem 0.625rem rgba(0, 0, 0, 0.1);
-  margin-top: 1.25rem;
-  text-align: center;
+.aviso {
+  background-color: #d9edf7; /* Cor de fundo azul claro (menos chamativa) */
+  color: #333333;            /* Cor do texto (cinza escuro) */
+  font-size: 1.2rem;         /* Tamanho do texto */
+  text-align: center;        /* Centraliza o texto */
+  padding: 15px;             /* Espaçamento interno */
+  border-radius: 5px;        /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin: 15px auto;         /* Espaçamento externo e centralização */
+  max-width: 600px;          /* Limita a largura máxima */
 }
 
-.resultado h2 {
-  margin-top: 0;
-  font-weight: bold;
-  color: #333;
+.aviso p {
+  margin: 0;                /* Remove margens internas do parágrafo */
+  font-weight: normal;      /* Fonte normal para o texto */
 }
 
-.resultado p {
-  font-size: 1.125rem;
-  font-weight: bold;
-  color: #666;
+.aviso strong {
+  color: #e64a45;           /* Cor diferente para o texto "BETA" (vermelho suave) */
+  font-size: 1.4rem;        /* Tamanho do texto "BETA" um pouco maior que o normal */
 }
+
+
+
 
 .valor {
   font-size: 1.5rem;
