@@ -2,15 +2,17 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const formulaMatematica = document.getElementById("formula_matematica");
-  
+
   if (formulaMatematica) {
     // Adicionar listener para mudança de fórmula
     formulaMatematica.addEventListener("change", updateVariablesMatematica);
-    console.log("Elemento formula_matematica encontrado e listener adicionado.");
+    console.log(
+      "Elemento formula_matematica encontrado e listener adicionado."
+    );
   } else {
     console.error('Elemento com id "formula_matematica" não encontrado.');
   }
-})
+});
 
 // Função para atualizar as variáveis e fórmulas com base na fórmula selecionada
 function updateVariablesMatematica() {
@@ -31,64 +33,85 @@ function updateVariablesMatematica() {
     case "baskara":
       formulaHtml = "\\( x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\)";
       variables = ["Coeficiente a", "Coeficiente b", "Coeficiente c"];
-      unidades = [getUnidadesMat("Coeficiente"), getUnidadesMat("Coeficiente"), getUnidadesMat("Coeficiente")];
+      unidades = [
+        getUnidadesMat("Coeficiente"),
+        getUnidadesMat("Coeficiente"),
+        getUnidadesMat("Coeficiente"),
+      ];
       break;
     case "soma-cubos":
       formulaHtml = "\\( (a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 \\)";
       variables = ["a", "b"];
       unidades = [getUnidadesMat("Coeficiente"), getUnidadesMat("Coeficiente")];
       break;
-    
+
     case "soma-quadrados":
       formulaHtml = "\\( (a + b)^2 = a^2 + 2ab + b^2 \\)";
       variables = ["a", "b"];
       unidades = [getUnidadesMat("Coeficiente"), getUnidadesMat("Coeficiente")];
       break;
-    
+
     case "funcao-exponencial":
       formulaHtml = "\\( A = P(1 + r)^t \\)";
       variables = ["Principal (P)", "Taxa de Juros (r)", "Tempo (t)"];
-      unidades = [getUnidadesMat("Valor Inicial"), getUnidadesMat("Taxa de Juros"), getUnidadesMat("Tempo")];
+      unidades = [
+        getUnidadesMat("Valor Inicial"),
+        getUnidadesMat("Taxa de Juros"),
+        getUnidadesMat("Tempo"),
+      ];
       break;
-    
+
     case "area-circulo-setorial":
       formulaHtml = "\\( A = \\frac{\\theta}{360} \\times \\pi r^2 \\)";
       variables = ["Ângulo Central (θ)", "Raio (r)"];
       unidades = [getUnidadesMat("Ângulo"), getUnidadesMat("Distância")];
       break;
-    
+
     case "perimetro-circunferencia":
       formulaHtml = "\\( P = 2\\pi r \\)";
       variables = ["Raio (r)"];
       unidades = [getUnidadesMat("Distância")];
       break;
-    
+
     case "taxa-crescimento-exponencial":
       formulaHtml = "\\( P(t) = P_0 e^{rt} \\)";
-      variables = ["Valor Inicial (P0)", "Taxa de Crescimento (r)", "Tempo (t)"];
-      unidades = [getUnidadesMat("Valor Inicial"), getUnidadesMat("Taxa de Crescimento"), getUnidadesMat("Tempo")];
+      variables = [
+        "Valor Inicial (P0)",
+        "Taxa de Crescimento (r)",
+        "Tempo (t)",
+      ];
+      unidades = [
+        getUnidadesMat("Valor Inicial"),
+        getUnidadesMat("Taxa de Crescimento"),
+        getUnidadesMat("Tempo"),
+      ];
       break;
-    
+
     case "teorema-fundamental-algebra":
       formulaHtml = "\\( x^n - a = 0 \\)";
       variables = ["Coeficiente (a)", "Potência (n)"];
       unidades = [getUnidadesMat("Coeficiente"), getUnidadesMat("Potência")];
       break;
-    
+
     case "energia-cinetica":
       formulaHtml = "\\( E_k = \\frac{1}{2} m v^2 \\)";
       variables = ["Massa (m)", "Velocidade (v)"];
       unidades = [getUnidadesMat("Massa"), getUnidadesMat("Velocidade")];
       break;
-    
+
     case "forca-coulomb":
       formulaHtml = "\\( F = k_e \\frac{q_1 q_2}{r^2} \\)";
       variables = ["Carga 1 (q1)", "Carga 2 (q2)", "Distância (r)"];
-      unidades = [getUnidadesMat("Carga"), getUnidadesMat("Carga"), getUnidadesMat("Distância")];
+      unidades = [
+        getUnidadesMat("Carga"),
+        getUnidadesMat("Carga"),
+        getUnidadesMat("Distância"),
+      ];
       break;
-    
+
     case "teorema-bolzano":
-      formulaHtml = "\\( f(c) = 0 \\text{ para algum } c \\text{ entre } a \\text{ e } b \\)";
+      formulaHtml =
+        "\\( f(c) = 0 \\text{ para algum } c \\text{ entre } a \\text{ e } b \\)";
       variables = ["Função f", "Intervalo [a, b]"];
       unidades = [getUnidadesMat("Função"), getUnidadesMat("Intervalo")];
       break;
@@ -97,122 +120,173 @@ function updateVariablesMatematica() {
       variables = ["Raio (r)", "Ângulo Central (Δθ)"];
       unidades = [getUnidadesMat("Distância"), getUnidadesMat("Ângulo")];
       break;
-    
+
     case "valor-presente":
       formulaHtml = "\\( PV = \\frac{FV}{(1 + i)^n} \\)";
-      variables = ["Valor Futuro (FV)", "Taxa de Juros (i)", "Número de Períodos (n)"];
-      unidades = [getUnidadesMat("Valor Futuro"), getUnidadesMat("Taxa de Juros"), getUnidadesMat("Períodos")];
+      variables = [
+        "Valor Futuro (FV)",
+        "Taxa de Juros (i)",
+        "Número de Períodos (n)",
+      ];
+      unidades = [
+        getUnidadesMat("Valor Futuro"),
+        getUnidadesMat("Taxa de Juros"),
+        getUnidadesMat("Períodos"),
+      ];
       break;
-    
+
     case "trabalho-mecanico":
       formulaHtml = "\\( W = F \\cdot d \\cdot \\cos(\\theta) \\)";
       variables = ["Força (F)", "Distância (d)", "Ângulo (θ)"];
-      unidades = [getUnidadesMat("Força"), getUnidadesMat("Distância"), getUnidadesMat("Ângulo")];
+      unidades = [
+        getUnidadesMat("Força"),
+        getUnidadesMat("Distância"),
+        getUnidadesMat("Ângulo"),
+      ];
       break;
-    
+
     case "teorema-fermat":
-      formulaHtml = "\\( x^n + y^n = z^n \\text{ não tem soluções inteiras para n > 2} \\)";
+      formulaHtml =
+        "\\( x^n + y^n = z^n \\text{ não tem soluções inteiras para n > 2} \\)";
       variables = ["x", "y", "z", "n"];
-      unidades = [getUnidadesMat("Valor"), getUnidadesMat("Valor"), getUnidadesMat("Valor"), getUnidadesMat("Exponente")];
+      unidades = [
+        getUnidadesMat("Valor"),
+        getUnidadesMat("Valor"),
+        getUnidadesMat("Valor"),
+        getUnidadesMat("Exponente"),
+      ];
       break;
-    
+
     case "perimetro-elipse":
       formulaHtml = "\\( P = 2 \\pi \\sqrt{\\frac{a^2 + b^2}{2}} \\)";
       variables = ["Semi-eixo maior (a)", "Semi-eixo menor (b)"];
       unidades = [getUnidadesMat("Distância"), getUnidadesMat("Distância")];
       break;
-    
+
     case "probabilidade-condicional":
       formulaHtml = "\\( P(A|B) = \\frac{P(A \\cap B)}{P(B)} \\)";
-      variables = ["Probabilidade de A e B (P(A ∩ B))", "Probabilidade de B (P(B))"];
-      unidades = [getUnidadesMat("Probabilidade"), getUnidadesMat("Probabilidade")];
+      variables = [
+        "Probabilidade de A e B (P(A ∩ B))",
+        "Probabilidade de B (P(B))",
+      ];
+      unidades = [
+        getUnidadesMat("Probabilidade"),
+        getUnidadesMat("Probabilidade"),
+      ];
       break;
-    
+
     case "media-ponderada":
-      formulaHtml = "\\( \overline{x} = \\frac{\\sum{w_i x_i}}{\\sum{w_i}} \\)";
+      formulaHtml = "\\( overline{x} = \\frac{\\sum{w_i x_i}}{\\sum{w_i}} \\)";
       variables = ["Peso (w)", "Valor (x)"];
       unidades = [getUnidadesMat("Peso"), getUnidadesMat("Valor")];
       break;
-    
+
     case "probabilidade-uniao":
       formulaHtml = "\\( P(A \\cup B) = P(A) + P(B) - P(A \\cap B) \\)";
-      variables = ["Probabilidade de A (P(A))", "Probabilidade de B (P(B))", "Probabilidade de A e B (P(A ∩ B))"];
-      unidades = [getUnidadesMat("Probabilidade"), getUnidadesMat("Probabilidade"), getUnidadesMat("Probabilidade")];
+      variables = [
+        "Probabilidade de A (P(A))",
+        "Probabilidade de B (P(B))",
+        "Probabilidade de A e B (P(A ∩ B))",
+      ];
+      unidades = [
+        getUnidadesMat("Probabilidade"),
+        getUnidadesMat("Probabilidade"),
+        getUnidadesMat("Probabilidade"),
+      ];
       break;
-    
+
     case "razao-aurea":
       formulaHtml = "\\( \\varphi = \\frac{1 + \\sqrt{5}}{2} \\)";
       variables = ["Fórmula da Razão Áurea (\\varphi)"];
       unidades = [getUnidadesMat("Razão Áurea")];
       break;
-    
+
     case "newton-aproximacao":
       formulaHtml = "\\( x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)} \\)";
-      variables = ["Valor Atual (x_n)", "Função (f)", "Derivada da Função (f')"];
-      unidades = [getUnidadesMat("Valor Atual"), getUnidadesMat("Função"), getUnidadesMat("Função Derivada")];
+      variables = [
+        "Valor Atual (x_n)",
+        "Função (f)",
+        "Derivada da Função (f')",
+      ];
+      unidades = [
+        getUnidadesMat("Valor Atual"),
+        getUnidadesMat("Função"),
+        getUnidadesMat("Função Derivada"),
+      ];
       break;
 
-      case "variancia":
-        formulaHtml = "\\( \\sigma^2 = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\overline{x})^2 \\)";
-        variables = ["Valor Observado (x)", "Média (\\overline{x})", "Número de Observações (n)"];
-        unidades = [getUnidadesMat("Valor Observado"), getUnidadesMat("Média"), getUnidadesMat("Número de Observações")];
-        break;
-          
-        case "area-dodecadro-regular":
-          formulaHtml = "\\( A = 3 \\cdot \\sqrt{25 + 10 \\sqrt{5}} \\cdot a^2 \\)";
-          variables = ["Comprimento da Aresta (a)"];
-          unidades = [getUnidadesMat("Distância")];
-          break;
+    case "variancia":
+      formulaHtml =
+        "\\( \\sigma^2 = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\overline{x})^2 \\)";
+      variables = [
+        "Valor Observado (x)",
+        "Média (\\overline{x})",
+        "Número de Observações (n)",
+      ];
+      unidades = [
+        getUnidadesMat("Valor Observado"),
+        getUnidadesMat("Média"),
+        getUnidadesMat("Número de Observações"),
+      ];
+      break;
 
-      case "area-icosaedro-regular":
-        formulaHtml = "\\( A = 5 \\cdot \\sqrt{3} \\cdot a^2 \\)";
-        variables = ["Comprimento da Aresta (a)"];
-        unidades = [getUnidadesMat("Distância")];
-        break;
+    case "area-dodecadro-regular":
+      formulaHtml = "\\( A = 3 \\cdot \\sqrt{25 + 10 \\sqrt{5}} \\cdot a^2 \\)";
+      variables = ["Comprimento da Aresta (a)"];
+      unidades = [getUnidadesMat("Distância")];
+      break;
 
-    
+    case "area-icosaedro-regular":
+      formulaHtml = "\\( A = 5 \\cdot \\sqrt{3} \\cdot a^2 \\)";
+      variables = ["Comprimento da Aresta (a)"];
+      unidades = [getUnidadesMat("Distância")];
+      break;
+
     case "curvaturas-conicas":
       formulaHtml = "\\( k = \\frac{1}{r_1} + \\frac{1}{r_2} \\)";
       variables = ["Raio de Curvatura 1 (r1)", "Raio de Curvatura 2 (r2)"];
-      unidades = [getUnidadesMat("Raio de Curvatura"), getUnidadesMat("Raio de Curvatura")];
+      unidades = [
+        getUnidadesMat("Raio de Curvatura"),
+        getUnidadesMat("Raio de Curvatura"),
+      ];
       break;
-    
+
     case "potencia-media":
       formulaHtml = "\\( P_{média} = \\frac{1}{T} \\int_{0}^{T} P(t) dt \\)";
       variables = ["Potência (P)", "Tempo (T)"];
       unidades = [getUnidadesMat("Potência"), getUnidadesMat("Tempo")];
       break;
-    
+
     case "area-hexagono-regular":
       formulaHtml = "\\( A = \\frac{3\\sqrt{3}}{2} a^2 \\)";
       variables = ["Lado (a)"];
       unidades = [getUnidadesMat("Distância")];
       break;
-    
+
     case "area-octogono-regular":
       formulaHtml = "\\( A = 2(1 + \\sqrt{2}) a^2 \\)";
       variables = ["Lado (a)"];
       unidades = [getUnidadesMat("Distância")];
       break;
-    
+
     case "area-losango":
       formulaHtml = "\\( A = \\frac{d_1 \\cdot d_2}{2} \\)";
       variables = ["Diagonal Maior (d1)", "Diagonal Menor (d2)"];
       unidades = [getUnidadesMat("Distância"), getUnidadesMat("Distância")];
       break;
-    
+
     case "area-pentagono-regular":
       formulaHtml = "\\( A = \\frac{1}{4} \\sqrt{5(5 + 2\\sqrt{5})} a^2 \\)";
       variables = ["Lado (a)"];
       unidades = [getUnidadesMat("Distância")];
       break;
-    
+
     case "area-decagono-regular":
       formulaHtml = "\\( A = \frac{5}{2} a^2 \\sqrt{5 + 2\\sqrt{5}} \\)";
       variables = ["Lado (a)"];
       unidades = [getUnidadesMat("Distância")];
       break;
-  
+
     case "quadrado-soma":
       formulaHtml = "\\( (a + b)^2 = a^2 + 2ab + b^2 \\)";
       variables = ["a", "b"];
@@ -236,7 +310,11 @@ function updateVariablesMatematica() {
     case "volume-paralelepipedo":
       formulaHtml = "\\( V = a \\cdot b \\cdot c \\)";
       variables = ["Comprimento (a)", "Largura (b)", "Altura (c)"];
-      unidades = [getUnidadesMat("Comprimento"), getUnidadesMat("Largura"), getUnidadesMat("Comprimento")];
+      unidades = [
+        getUnidadesMat("Comprimento"),
+        getUnidadesMat("Largura"),
+        getUnidadesMat("Comprimento"),
+      ];
       break;
     case "equacao-1-grau":
       formulaHtml = "\\( ax + b = 0 \\)";
@@ -251,12 +329,20 @@ function updateVariablesMatematica() {
     case "formula-heron":
       formulaHtml = "\\( A = \\sqrt{s(s-a)(s-b)(s-c)} \\)";
       variables = ["Lado a", "Lado b", "Lado c"];
-      unidades = [getUnidadesMat("Lado"), getUnidadesMat("Lado"), getUnidadesMat("Lado")];
+      unidades = [
+        getUnidadesMat("Lado"),
+        getUnidadesMat("Lado"),
+        getUnidadesMat("Lado"),
+      ];
       break;
     case "espiral-arquimedes":
       formulaHtml = "\\( r(\\theta) = a + b\\theta \\)";
       variables = ["Constante a", "Constante b", "Ângulo θ (rad)"];
-      unidades = [getUnidadesMat("Constante"), getUnidadesMat("Constante"), getUnidadesMat("Ângulo")];
+      unidades = [
+        getUnidadesMat("Constante"),
+        getUnidadesMat("Constante"),
+        getUnidadesMat("Ângulo"),
+      ];
       break;
     case "area-circulo":
       formulaHtml = "\\( A = \\pi r^2 \\)";
@@ -287,32 +373,53 @@ function updateVariablesMatematica() {
       formulaHtml = "\\( c = \\sqrt{a^2 + b^2} \\)";
       variables = ["Cateto a", "Cateto b"];
       unidades = [getUnidadesMat("Cateto"), getUnidadesMat("Cateto")];
-      break; 
+      break;
     case "progressao-aritmetica":
       formulaHtml = "\\( A_n = A_1 + (n - 1) \\cdot r \\)";
       variables = ["Termo inicial (A1)", "Razão (r)", "Termo desejado (n)"];
-      unidades = [getUnidadesMat("Termo inicial"), getUnidadesMat("Razão"), getUnidadesMat("Termo desejado")];
+      unidades = [
+        getUnidadesMat("Termo inicial"),
+        getUnidadesMat("Razão"),
+        getUnidadesMat("Termo desejado"),
+      ];
       break;
     case "progressao-geometrica":
       formulaHtml = "\\( A_n = A_1 \\cdot q^{(n - 1)} \\)";
       variables = ["Termo inicial (A1)", "Razão (q)", "Termo desejado (n)"];
-      unidades = [getUnidadesMat("Termo inicial"), getUnidadesMat("Razão"), getUnidadesMat("Termo desejado")];
+      unidades = [
+        getUnidadesMat("Termo inicial"),
+        getUnidadesMat("Razão"),
+        getUnidadesMat("Termo desejado"),
+      ];
       break;
-      case "permutacao":
-        formulaHtml = "\\( P(n, k) = \\frac{n!}{(n - k)!} \\)"; // Fórmula de permutação
-        variables = ["Total de elementos (n)", "Elementos a serem organizados (k)"]; // Dois parâmetros
-        unidades = [getUnidadesMat("Total de elementos"), getUnidadesMat("Elementos a serem organizados")]; // Unidades para os dois parâmetros
-        break;
-      
+    case "permutacao":
+      formulaHtml = "\\( P(n, k) = \\frac{n!}{(n - k)!} \\)"; // Fórmula de permutação
+      variables = [
+        "Total de elementos (n)",
+        "Elementos a serem organizados (k)",
+      ]; // Dois parâmetros
+      unidades = [
+        getUnidadesMat("Total de elementos"),
+        getUnidadesMat("Elementos a serem organizados"),
+      ]; // Unidades para os dois parâmetros
+      break;
+
     case "combinacao":
       formulaHtml = "\\( C(n, r) = \\frac{n!}{r! (n - r)!} \\)";
       variables = ["Total de elementos (n)", "Elementos a escolher (r)"];
-      unidades = [getUnidadesMat("Total de elementos"), getUnidadesMat("Elementos a escolher")];
+      unidades = [
+        getUnidadesMat("Total de elementos"),
+        getUnidadesMat("Elementos a escolher"),
+      ];
       break;
     case "area-trapezio":
       formulaHtml = "\\( A = \\frac{(B + b) \\cdot h}{2} \\)";
       variables = ["Base maior (B)", "Base menor (b)", "Altura (h)"];
-      unidades = [getUnidadesMat("Base"), getUnidadesMat("Base"), getUnidadesMat("Altura")];
+      unidades = [
+        getUnidadesMat("Base"),
+        getUnidadesMat("Base"),
+        getUnidadesMat("Altura"),
+      ];
       break;
     case "area-paralelogramo":
       formulaHtml = "\\( A = b \\cdot h \\)";
@@ -322,36 +429,49 @@ function updateVariablesMatematica() {
     case "formula-euler":
       formulaHtml = "\\( V - E + F = 2 \\)";
       variables = ["Vértices (V)", "Arestas (E)", "Faces (F)"];
-      unidades = [getUnidadesMat("Vértices"), getUnidadesMat("Arestas"), getUnidadesMat("Faces")];
+      unidades = [
+        getUnidadesMat("Vértices"),
+        getUnidadesMat("Arestas"),
+        getUnidadesMat("Faces"),
+      ];
       break;
     case "angulo-para-radiano":
-      formulaHtml = "\\( \\theta_{rad} = \\theta_{deg} \\times \\frac{\\pi}{180 } \\)";
+      formulaHtml =
+        "\\( \\theta_{rad} = \\theta_{deg} \\times \\frac{\\pi}{180 } \\)";
       variables = ["Ângulo"];
       unidades = [getUnidadesMat("Ângulo")];
       break;
     case "radiano-para-angulo":
-      formulaHtml = "\\ ( \\theta_{deg} = \\theta_{rad} \\times \\frac{180}{\\pi} \\)";
+      formulaHtml =
+        "\\ ( \\theta_{deg} = \\theta_{rad} \\times \\frac{180}{\\pi} \\)";
       variables = [" Radiano (rad)"];
       unidades = [getUnidadesMat("Radiano")];
       break;
-      case "volume-tronco-piramide":
-        formulaHtml = "\\( V = \\frac{1}{3} \\times h \\times (A_1 + A_2 + \\sqrt{A_1 \\times A_2}) \\)";
-        variables = ["Altura (h)", "Área da Base Menor (A₁)", "Área da Base Maior (A₂)"];
-        unidades = [getUnidadesMat("Altura"), getUnidadesMat("Área"), getUnidadesMat("Área")];
-        break;
-        case "volume-cilindro":
-          formulaHtml = "\\( V = \\pi \\times r^2 \\times h \\)";
-          variables = ["Raio da Base (r)", "Altura (h)"];
-          unidades = [getUnidadesMat("Raio"), getUnidadesMat("Altura")];
-          break;
-          case "volume-esfera":
-            formulaHtml = "\\( V = \\frac{4}{3} \\pi r^3 \\)";
-            variables = ["Raio (r)"];
-            unidades = [getUnidadesMat("Raio")];
-            break;
-          
-        
-      
+    case "volume-tronco-piramide":
+      formulaHtml =
+        "\\( V = \\frac{1}{3} \\times h \\times (A_1 + A_2 + \\sqrt{A_1 \\times A_2}) \\)";
+      variables = [
+        "Altura (h)",
+        "Área da Base Menor (A₁)",
+        "Área da Base Maior (A₂)",
+      ];
+      unidades = [
+        getUnidadesMat("Altura"),
+        getUnidadesMat("Área"),
+        getUnidadesMat("Área"),
+      ];
+      break;
+    case "volume-cilindro":
+      formulaHtml = "\\( V = \\pi \\times r^2 \\times h \\)";
+      variables = ["Raio da Base (r)", "Altura (h)"];
+      unidades = [getUnidadesMat("Raio"), getUnidadesMat("Altura")];
+      break;
+    case "volume-esfera":
+      formulaHtml = "\\( V = \\frac{4}{3} \\pi r^3 \\)";
+      variables = ["Raio (r)"];
+      unidades = [getUnidadesMat("Raio")];
+      break;
+
     default:
       formulaHtml = "Selecione uma fórmula válida";
       variables = [];
@@ -363,13 +483,15 @@ function updateVariablesMatematica() {
 
   // Verifica se foi selecionada uma fórmula válida
   if (variables.length === 0) {
-    container.innerHTML = "<p>Por favor, selecione uma fórmula para continuar.</p>";
+    container.innerHTML =
+      "<p>Por favor, selecione uma fórmula para continuar.</p>";
     return;
   }
 
   // Gerar campos de entrada de variáveis e unidades
   container.innerHTML = variables
-    .map((variable, index) => `
+    .map(
+      (variable, index) => `
       <div style="padding: 10px; border-bottom: 1px solid #ccc;">
         <label for="var${index}">${variable}</label>
         <input type="number" id="var${index}" placeholder="${variable}" step="any">
@@ -377,16 +499,17 @@ function updateVariablesMatematica() {
           ${unidades[index]}
         </select>
       </div>
-    `)
+    `
+    )
     .join("");
 
-    MathJax.typesetPromise(); 
+  MathJax.typesetPromise();
 }
 
 function getUnidadesMat(variable) {
   switch (variable) {
-      case "Comprimento":
-          return `
+    case "Comprimento":
+      return `
             <option value="m">\\( m \\)</option>
             <option value="cm">\\( cm \\)</option>
             <option value="dm">\\( dm \\)</option>
@@ -397,8 +520,8 @@ function getUnidadesMat(variable) {
             <option value="mi">\\( milha \\)</option>
             <option value="yd">\\( jarda \\)</option>
           `;
-      case "Aresta":
-        return `
+    case "Aresta":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -409,8 +532,8 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Largura":
-        return `
+    case "Largura":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -421,8 +544,8 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Raio":
-        return `
+    case "Raio":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -433,8 +556,8 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Área":
-        return `
+    case "Área":
+      return `
           <option value="mm²">\\( mm^2 \\)</option>
           <option value="cm²">\\( cm^2 \\)</option>
           <option value="dm²">\\( dm^2 \\)</option>
@@ -445,8 +568,8 @@ function getUnidadesMat(variable) {
           <option value="ha">\\( ha \\)</option>
           <option value="acre">\\( acre \\)</option>
         `;
-      case "Volume":
-        return `
+    case "Volume":
+      return `
           <option value="mm³">\\( mm^3 \\)</option>
           <option value="cm³">\\( cm^3 \\)</option>
           <option value="dm³">\\( dm^3 \\)</option>
@@ -458,42 +581,42 @@ function getUnidadesMat(variable) {
           <option value="L">\\( litro \\)</option>
           <option value="mL">\\( mL \\)</option>
         `;
-      case "Ângulo":
-        return `
+    case "Ângulo":
+      return `
           <option value="grau">\\( grau \\)</option>
           <option value="rad">\\( rad \\)</option>
           <option value="grad">\\( grad \\)</option>
         `;
-      case "Taxa de Crescimento":
-        return `
+    case "Taxa de Crescimento":
+      return `
           <option value="percentual">\\( % \\)</option>
           <option value="taxa">\\( taxa \\)</option>
         `;
-      case "Probabilidade":
-        return `
+    case "Probabilidade":
+      return `
           <option value="probabilidade">\\( P \\)</option>
           <option value="percentual">\\( % \\)</option>
         `;
-      case "Permutação/Combinação":
-        return `
+    case "Permutação/Combinação":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Coeficiente":
-        return `
+    case "Coeficiente":
+      return `
           <option value="coeficiente">\\( coeficiente \\)</option>
         `;
-      case "Média":
-        return `
+    case "Média":
+      return `
           <option value="unidade">\\( unidades \\)</option>
           <option value="valor">\\( valor \\)</option>
         `;
-      case "Desvio Padrão":
-        return `
+    case "Desvio Padrão":
+      return `
           <option value="unidade">\\( unidades \\)</option>
           <option value="valor">\\( valor \\)</option>
         `;
-      case "Lado":
-        return `
+    case "Lado":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -504,12 +627,12 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Constante":
-        return `
+    case "Constante":
+      return `
           <option value="constante">\\( constante \\)</option>
         `;
-      case "Base":
-        return `
+    case "Base":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -520,8 +643,8 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Altura":
-        return `
+    case "Altura":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -532,8 +655,8 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Cateto":
-        return `
+    case "Cateto":
+      return `
           <option value="m">\\( m \\)</option>
           <option value="cm">\\( cm \\)</option>
           <option value="dm">\\( dm \\)</option>
@@ -544,50 +667,49 @@ function getUnidadesMat(variable) {
           <option value="mi">\\( milha \\)</option>
           <option value="yd">\\( jarda \\)</option>
         `;
-      case "Razão":
-        return `
+    case "Razão":
+      return `
           <option value="unidade">\\( unidades \\)</option>
           <option value="valor">\\( valor \\)</option>
         `;
-      case "Total de elementos":
-        return `
+    case "Total de elementos":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Elementos a escolher":
-        return `
+    case "Elementos a escolher":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Peso":
-        return `
-          <option value="unidade">\\( unidades \\)</option>
-          <option value="valor">\\( valor \\)</option>
-        `;
-      case "Valor":
-        return `
+    case "Peso":
+      return `
           <option value="unidade">\\( unidades \\)</option>
           <option value="valor">\\( valor \\)</option>
         `;
-      case "Vértices":
-        return `
+    case "Valor":
+      return `
+          <option value="unidade">\\( unidades \\)</option>
+          <option value="valor">\\( valor \\)</option>
+        `;
+    case "Vértices":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Arestas":
-        return `
+    case "Arestas":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Faces":
-        return `
+    case "Faces":
+      return `
           <option value="unidade">\\( unidades \\)</option>
         `;
-      case "Radiano":
-        return `
+    case "Radiano":
+      return `
           <option value="rad">\\( rad \\)</option>
         `;
-      default:
-        return `<option value="">Selecione uma unidade</option>`;
+    default:
+      return `<option value="">Selecione uma unidade</option>`;
   }
 }
-
 
 function calcularMatematica() {
   const formula = document.getElementById("formula_matematica").value;
@@ -605,7 +727,7 @@ function calcularMatematica() {
   });
 
   // Verificar se todos os valores foram fornecidos corretamente
-  if (variables.some(v => v.valor === 0)) {
+  if (variables.some((v) => v.valor === 0)) {
     alert("Por favor, insira valores válidos para todas as variáveis.");
     return;
   }
@@ -644,7 +766,7 @@ function calcularMatematica() {
     case "equacao-1-grau":
       resultado = calcularEquacao1Grau(variables);
       unidade = "unidades";
-      break;                                                             
+      break;
     case "volume-tronco-piramide":
       resultado = calcularVolumeTroncoPiramideMatematica(variables);
       unidade = "m³";
@@ -710,7 +832,7 @@ function calcularMatematica() {
       unidade = "unidades";
       break;
     case "desvio-padrao":
-      resultado = calcularDesvioPadraoMatematica(variables );
+      resultado = calcularDesvioPadraoMatematica(variables);
       unidade = "unidades";
       break;
     case "area-trapezio":
@@ -786,117 +908,117 @@ function calcularMatematica() {
       resultado = calcularComprimentoArco(variables);
       unidade = "m";
       break;
-      
-      case "valor-presente":
-          resultado = calcularValorPresente(variables);
-          unidade = "unidades";
-          break;
-      
-      case "trabalho-mecanico":
-          resultado = calcularTrabalhoMecanico(variables);
-          unidade = "J";
-          break;
-      
-      case "teorema-fermat":
-          resultado = calcularTeoremaFermat(variables);
-          unidade = "unidades";
-          break;
-      
-      case "perimetro-elipse":
-          resultado = calcularPerimetroElipse(variables);
-          unidade = "m";
-          break;
-      
-      case "probabilidade-condicional":
-          resultado = calcularProbabilidadeCondicional(variables);
-          unidade = "%";
-          break;
-      
-      case "probabilidade-uniao":
-          resultado = calcularProbabilidadeUniao(variables);
-          unidade = "%";
-          break;
-      
-      case "razao-aurea":
-          resultado = calcularRazaoAurea(variables);
-          unidade = "unidades";
-          break;
-      
-      case "newton-aproximacao":
-          resultado = calcularNewtonAproximacao(variables);
-          unidade = "unidades";
-          break;
-      
-      case "variancia":
-          resultado = calcularVariancia(variables);
-          unidade = "unidades";
-          break;
-      
-      case "area-icosaedro-regular":
-          resultado = calcularAreaIcosaedroRegular(variables);
-          unidade = "m²";
-          break;
-      
-      case "area-dodecadro-regular":
-          resultado = calcularAreaDodecadroRegular(variables);
-          unidade = "m²";
-          break;
-      case "curvaturas-conicas":
-        resultado = calcularCurvaturasConicas(variables);
-        unidade = "unidades";
-        break;
-    
+
+    case "valor-presente":
+      resultado = calcularValorPresente(variables);
+      unidade = "unidades";
+      break;
+
+    case "trabalho-mecanico":
+      resultado = calcularTrabalhoMecanico(variables);
+      unidade = "J";
+      break;
+
+    case "teorema-fermat":
+      resultado = calcularTeoremaFermat(variables);
+      unidade = "unidades";
+      break;
+
+    case "perimetro-elipse":
+      resultado = calcularPerimetroElipse(variables);
+      unidade = "m";
+      break;
+
+    case "probabilidade-condicional":
+      resultado = calcularProbabilidadeCondicional(variables);
+      unidade = "%";
+      break;
+
+    case "probabilidade-uniao":
+      resultado = calcularProbabilidadeUniao(variables);
+      unidade = "%";
+      break;
+
+    case "razao-aurea":
+      resultado = calcularRazaoAurea(variables);
+      unidade = "unidades";
+      break;
+
+    case "newton-aproximacao":
+      resultado = calcularNewtonAproximacao(variables);
+      unidade = "unidades";
+      break;
+
+    case "variancia":
+      resultado = calcularVariancia(variables);
+      unidade = "unidades";
+      break;
+
+    case "area-icosaedro-regular":
+      resultado = calcularAreaIcosaedroRegular(variables);
+      unidade = "m²";
+      break;
+
+    case "area-dodecadro-regular":
+      resultado = calcularAreaDodecadroRegular(variables);
+      unidade = "m²";
+      break;
+    case "curvaturas-conicas":
+      resultado = calcularCurvaturasConicas(variables);
+      unidade = "unidades";
+      break;
+
     case "potencia-media":
-        resultado = calcularPotenciaMedia(variables);
-        unidade = "unidades";
-        break;
-    
+      resultado = calcularPotenciaMedia(variables);
+      unidade = "unidades";
+      break;
+
     case "area-hexagono-regular":
-        resultado = calcularAreaHexagonoRegular(variables);
-        unidade = "m²";
-        break;
-    
+      resultado = calcularAreaHexagonoRegular(variables);
+      unidade = "m²";
+      break;
+
     case "area-oct ogono-regular":
-        resultado = calcularAreaOctogonoRegular(variables);
-        unidade = "m²";
-        break;
-    
+      resultado = calcularAreaOctogonoRegular(variables);
+      unidade = "m²";
+      break;
+
     case "area-losango":
-        resultado = calcularAreaLosango(variables);
-        unidade = "m²";
-        break;
-    
+      resultado = calcularAreaLosango(variables);
+      unidade = "m²";
+      break;
+
     case "area-pentagono-regular":
-        resultado = calcularAreaPentagonoRegular(variables);
-        unidade = "m²";
-        break;
-    
+      resultado = calcularAreaPentagonoRegular(variables);
+      unidade = "m²";
+      break;
+
     case "area-decagono-regular":
-        resultado = calcularAreaDecagonoRegular(variables);
-        unidade = "m²";
-        break;
-    
+      resultado = calcularAreaDecagonoRegular(variables);
+      unidade = "m²";
+      break;
+
     case "area-nonagono-regular":
-        resultado = calcularAreaNonagonoRegular(variables);
-        unidade = "m²";
-        break;
-        
+      resultado = calcularAreaNonagonoRegular(variables);
+      unidade = "m²";
+      break;
+
     case "area-dodecagono-regular":
       resultado = calcularAreaDodecagonoRegular(variables);
       unidade = "m²";
       break;
-  
-  case "area-triangulo-equilatero":
+
+    case "area-triangulo-equilatero":
       resultado = calcularAreaTrianguloEquilatero(variables);
       unidade = "m²";
       break;
-  
-  case "area-hexagono":
+
+    case "area-hexagono":
       resultado = calcularAreaHexagono(variables);
       unidade = "m²";
       break;
-  
-  case "area-pologono-regular":
+
+    case "area-pologono-regular":
       resultado = calcularAreaPoligonoRegular(variables);
       unidade = "m²";
       break;
@@ -907,7 +1029,9 @@ function calcularMatematica() {
 
   // Verificar se o resultado retornado é válido
   if (resultado === undefined || resultado === null || resultado === "") {
-    console.error("Erro ao calcular resultado ou fórmula retornou valor vazio.");
+    console.error(
+      "Erro ao calcular resultado ou fórmula retornou valor vazio."
+    );
     return;
   }
 
@@ -921,7 +1045,8 @@ function calcularMatematica() {
   }
 
   // Exibir o resultado
-  document.getElementById("resultado-valor-matematica").innerText = resultadoExibicao;
+  document.getElementById("resultado-valor-matematica").innerText =
+    resultadoExibicao;
 }
 
 function formatarResultadoMatematica(resultado, unidade) {
@@ -998,7 +1123,7 @@ function formatarResultadoMatematica(resultado, unidade) {
 
     // Lado
     case "unidade": // unidade
- return `${resultado.toFixed(2)} unidades`;
+      return `${resultado.toFixed(2)} unidades`;
 
     default:
       console.error(`Unidade não reconhecida: ${unidade}`);
@@ -1012,17 +1137,16 @@ function calcularTeoremaPitagorasMatematica(variables) {
 
   // Verifica se os catetos são maiores ou iguais a zero
   if (a < 0 || b < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Os lados devem ser maiores ou iguais a zero.</span>";
   } else {
     // Calcula a hipotenusa usando o Teorema de Pitágoras
     const hipotenusa = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     const unidade = "m"; // Unidade da hipotenusa
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(hipotenusa, unidade);
   }
 }
-
 
 function calcularAreaDodecagonoRegular(variaveis) {
   const L = variaveis[0].valor;
@@ -1050,7 +1174,6 @@ function calcularVolumeCilindroMatematica(variaveis) {
       formatarResultadoMatematica(volume, unidade);
   }
 }
-
 
 function calcularVolumeEsferaMatematica(variaveis) {
   const r = variaveis[0].valor;
@@ -1166,7 +1289,6 @@ function calcularPermutacaoMatematica(variaveis) {
   }
 }
 
-
 function calcularProgressaoGeometricaMatematica(variaveis) {
   const a1 = variaveis[0].valor; // Primeiro termo
   const r = variaveis[1].valor; // Razão
@@ -1214,16 +1336,13 @@ function calcularAreaPoligonoRegular(variaveis) {
   }
 }
 
-
-
-
 // Quadrado da Soma: (a + b)^2 = a^2 + 2ab + b^2
 function calcularQuadradoSoma(variables) {
   const a = variables[0].valor;
   const b = variables[1].valor;
   const resultado = Math.pow(a, 2) + 2 * a * b + Math.pow(b, 2);
   const unidade = "m²";
-  document.getElementById("resultado-valor-matematica").innerHTML = 
+  document.getElementById("resultado-valor-matematica").innerHTML =
     formatarResultadoMatematica(resultado, unidade);
 }
 
@@ -1233,7 +1352,7 @@ function calcularQuadradoDiferenca(variables) {
   const b = variables[1].valor;
   const resultado = Math.pow(a, 2) - 2 * a * b + Math.pow(b, 2);
   const unidade = "m²";
-  document.getElementById("resultado-valor-matematica").innerHTML = 
+  document.getElementById("resultado-valor-matematica").innerHTML =
     formatarResultadoMatematica(resultado, unidade);
 }
 
@@ -1242,12 +1361,12 @@ function calcularVolumeCone(variables) {
   const raio = variables[0].valor;
   const altura = variables[1].valor;
   if (raio <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Raio e altura devem ser maiores que zero.</span>";
   } else {
     const volume = (1 / 3) * Math.PI * Math.pow(raio, 2) * altura;
     const unidade = "m³";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(volume, unidade);
   }
 }
@@ -1257,7 +1376,7 @@ function calcularVolumeCubo(variables) {
   const aresta = variables[0].valor;
   const volume = Math.pow(aresta, 3);
   const unidade = "m³";
-  document.getElementById("resultado-valor-matematica").innerHTML = 
+  document.getElementById("resultado-valor-matematica").innerHTML =
     formatarResultadoMatematica(volume, unidade);
 }
 
@@ -1267,12 +1386,12 @@ function calcularVolumeParalelepipedo(variables) {
   const largura = variables[1].valor;
   const altura = variables[2].valor;
   if (comprimento <= 0 || largura <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As dimensões devem ser maiores que zero.</span>";
   } else {
     const volume = comprimento * largura * altura;
     const unidade = "m³";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(volume, unidade);
   }
 }
@@ -1281,12 +1400,12 @@ function calcularVolumeParalelepipedo(variables) {
 function calcularVolumeTetraedro(variables) {
   const aresta = variables[0].valor;
   if (aresta <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A aresta deve ser maior que zero.</span>";
   } else {
-    const volume = (Math.pow(aresta, 3) / (6 * Math.sqrt(2)));
+    const volume = Math.pow(aresta, 3) / (6 * Math.sqrt(2));
     const unidade = "m³";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(volume, unidade);
   }
 }
@@ -1296,12 +1415,12 @@ function calcularEquacao1Grau(variables) {
   const a = variables[0].valor;
   const b = variables[1].valor;
   if (a === 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O coeficiente 'a' não pode ser zero.</span>";
   } else {
     const x = -b / a;
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematic a").innerHTML = 
+    document.getElementById("resultado-valor-matematic a").innerHTML =
       formatarResultadoMatematica(x, unidade);
   }
 }
@@ -1314,19 +1433,18 @@ function calcularFormulaHeronMatematica(variables) {
   const s = (a + b + c) / 2;
 
   // Verifica se os lados são válidos para formar um triângulo
-  if (a <= 0 || b <= 0 || c <= 0 || (a + b <= c) || (a + c <= b) || (b + c <= a)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+  if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Os lados devem ser maiores que zero e devem formar um triângulo.</span>";
   } else {
     const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
     const unidade = "m²";
     // Garante que a área não retorne NaN, mesmo em casos especiais
     const resultadoArea = isNaN(area) ? 0 : area;
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(resultadoArea, unidade);
   }
 }
-
 
 // Fórmula do Volume do Tronco de Pirâmide
 function calcularVolumeTroncoPiramideMatematica(variables) {
@@ -1334,12 +1452,12 @@ function calcularVolumeTroncoPiramideMatematica(variables) {
   const base2 = variables[1].valor;
   const altura = variables[2].valor;
   if (base1 <= 0 || base2 <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As bases e altura devem ser maiores que zero.</span>";
   } else {
-    const volume = (base1 + base2) * altura / 2;
+    const volume = ((base1 + base2) * altura) / 2;
     const unidade = "m³";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(volume, unidade);
   }
 }
@@ -1350,13 +1468,13 @@ function calcularVolumePrismaMatematica(variables) {
 
   // Verifica se a área da base e a altura são maiores que zero
   if (areaBase <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A área da base e a altura devem ser maiores que zero.</span>";
   } else {
     // Calcula o volume do prisma
     const volume = areaBase * altura;
     const unidade = "m³"; // Unidade do volume
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(volume, unidade);
   }
 }
@@ -1368,19 +1486,23 @@ function calcularBhaskaraMatematica(variables) {
   const c = variables[2].valor;
   const delta = b * b - 4 * a * c;
   if (delta < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Não há soluções reais.</span>";
   } else if (delta === 0) {
     const x = -b / (2 * a);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(x, unidade);
   } else {
     const x1 = (-b + Math.sqrt(delta)) / (2 * a);
     const x2 = (-b - Math.sqrt(delta)) / (2 * a);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
-      `<span style="font-size: 24px; font-weight: bold;">Soluções: x1 = ${formatarResultadoMatematica(x1, unidade)}, x2 = ${formatarResultadoMatematica(x2, unidade)}</span>`;
+    document.getElementById(
+      "resultado-valor-matematica"
+    ).innerHTML = `<span style="font-size: 24px; font-weight: bold;">Soluções: x1 = ${formatarResultadoMatematica(
+      x1,
+      unidade
+    )}, x2 = ${formatarResultadoMatematica(x2, unidade)}</span>`;
   }
 }
 
@@ -1391,7 +1513,7 @@ function calcularEspiralArquimedesMatematica(variables) {
   const n = variables[2].valor;
   const r = a + b * n;
   const unidade = "unidades";
-  document.getElementById("resultado-valor-matematica").innerHTML = 
+  document.getElementById("resultado-valor-matematica").innerHTML =
     formatarResultadoMatematica(r, unidade);
 }
 
@@ -1399,45 +1521,56 @@ function calcularEspiralArquimedesMatematica(variables) {
 function calcularAreaCirculoMatematica(variables) {
   const raio = variables[0].valor;
   if (raio <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O raio deve ser maior que zero.</span>";
   } else {
     const area = Math.PI * Math.pow(raio, 2);
     const unidade = "m²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
 
 // Média Ponderada: M = Σ(w_i * x_i) / Σ(w_i)
 function calcularMediaPonderadaMatematica(variables) {
-  const valores = variables.slice(0, variables.length / 2).map(v => v.valor);
-  const pesos = variables.slice(variables.length / 2).map(v => v.valor);
-  if (valores.length !== pesos.length || valores.length === 0 || pesos.length === 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+  const valores = variables.slice(0, variables.length / 2).map((v) => v.valor);
+  const pesos = variables.slice(variables.length / 2).map((v) => v.valor);
+  if (
+    valores.length !== pesos.length ||
+    valores.length === 0 ||
+    pesos.length === 0
+  ) {
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido.</span>";
   } else {
     const somaPesos = pesos.reduce((soma, peso) => soma + peso, 0);
-    const somaProdutos = valores.reduce((soma, valor, index) => soma + valor * pesos[index], 0);
+    const somaProdutos = valores.reduce(
+      (soma, valor, index) => soma + valor * pesos[index],
+      0
+    );
     const mediaPonderada = somaProdutos / somaPesos;
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(mediaPonderada, unidade);
   }
 }
 
 // Desvio Padrão: σ = √(Σ(x_i - x̄)² / n)
 function calcularDesvioPadraoMatematica(variables) {
-  const valores = variables.map(v => v.valor);
-  const media = valores.reduce((soma, valor) => soma + valor, 0) / valores.length;
+  const valores = variables.map((v) => v.valor);
+  const media =
+    valores.reduce((soma, valor) => soma + valor, 0) / valores.length;
   if (valores.length === 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido.</span>";
   } else {
-    const somaQuadrados = valores.reduce((soma, valor) => soma + Math.pow(valor - media, 2), 0);
+    const somaQuadrados = valores.reduce(
+      (soma, valor) => soma + Math.pow(valor - media, 2),
+      0
+    );
     const desvioPadrao = Math.sqrt(somaQuadrados / valores.length);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(desvioPadrao, unidade);
   }
 }
@@ -1448,12 +1581,12 @@ function calcularAreaTrapezioMatematica(variables) {
   const base2 = variables[1].valor;
   const altura = variables[2].valor;
   if (base1 <= 0 || base2 <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As dimensões devem ser maiores que zero.</span>";
   } else {
     const area = ((base1 + base2) * altura) / 2;
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1463,12 +1596,12 @@ function calcularAreaParalelogramoMatematica(variables) {
   const base = variables[0].valor;
   const altura = variables[1].valor;
   if (base <= 0 || altura <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As dimensões devem ser maiores que zero.</span>";
   } else {
     const area = base * altura;
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1480,10 +1613,10 @@ function calcularFormulaEulerMatematica(variables) {
   const faces = variables[2].valor;
   const resultado = vertices - arestas + faces;
   if (resultado === 2) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Fórmula de Euler confirmada</span>";
   } else {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Fórmula de Euler não confirmada</span>";
   }
 }
@@ -1492,12 +1625,12 @@ function calcularFormulaEulerMatematica(variables) {
 function calcularAnguloParaRadianoMatematica(variables) {
   const angulo = variables[0].valor;
   if (isNaN(angulo)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O ângulo deve ser um número válido.</span>";
   } else {
     const radiano = (Math.PI / 180) * angulo;
     const unidade = "rad";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(radiano, unidade);
   }
 }
@@ -1506,28 +1639,32 @@ function calcularAnguloParaRadianoMatematica(variables) {
 function calcularRadianoParaAnguloMatematica(variables) {
   const radiano = variables[0].valor;
   if (isNaN(radiano)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O radiano deve ser um número válido.</span>";
   } else {
     const angulo = (180 / Math.PI) * radiano;
     const unidade = "°";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(angulo, unidade);
   }
 }
 
 // Calcular Variância: σ² = Σ(xi - x̄)² / n
 function calcularVariancia(variables) {
-  const valores = variables.map(v => v.valor);
+  const valores = variables.map((v) => v.valor);
   if (valores.length < 2) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Deve haver pelo menos dois valores.</span>";
   } else {
-    const media = valores.reduce((soma, valor) => soma + valor, 0) / valores.length;
-    const somaQuadrados = valores.reduce((soma, valor) => soma + Math.pow(valor - media, 2), 0);
+    const media =
+      valores.reduce((soma, valor) => soma + valor, 0) / valores.length;
+    const somaQuadrados = valores.reduce(
+      (soma, valor) => soma + Math.pow(valor - media, 2),
+      0
+    );
     const variancia = somaQuadrados / valores.length;
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(variancia, unidade);
   }
 }
@@ -1536,12 +1673,12 @@ function calcularVariancia(variables) {
 function calcularAreaIcosaedroRegular(variables) {
   const aresta = variables[0].valor;
   if (aresta <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A aresta deve ser maior que zero.</span>";
   } else {
     const area = 5 * Math.sqrt(3) * Math.pow(aresta, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1550,12 +1687,12 @@ function calcularAreaIcosaedroRegular(variables) {
 function calcularAreaDodecadroRegular(variables) {
   const aresta = variables[0].valor;
   if (aresta <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A aresta deve ser maior que zero.</span>";
   } else {
     const area = 3 * Math.sqrt(25 + 10 * Math.sqrt(5)) * Math.pow(aresta, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1565,12 +1702,12 @@ function calcularCurvaturasConicas(variables) {
   const r1 = variables[0].valor;
   const r2 = variables[1].valor;
   if (r1 <= 0 || r2 <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Os raios devem ser maiores que zero.</span>";
   } else {
-    const k = (1 / r1) + (1 / r2);
+    const k = 1 / r1 + 1 / r2;
     const unidade = "1/unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(k, unidade);
   }
 }
@@ -1579,14 +1716,14 @@ function calcularCurvaturasConicas(variables) {
 function calcularPotenciaMedia(variables) {
   const potencia = variables[0].valor;
   const tempo = variables[1].valor;
-  
+
   if (potencia <= 0 || tempo <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A potência e o tempo devem ser maiores que zero.</span>";
   } else {
     const potenciaMedia = potencia * tempo;
     const unidade = "W·s";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(potenciaMedia, unidade);
   }
 }
@@ -1594,14 +1731,14 @@ function calcularPotenciaMedia(variables) {
 // Área do Hexágono Regular
 function calcularAreaHexagonoRegular(variables) {
   const lado = variables[0].valor;
-  
+
   if (lado <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O lado deve ser maior que zero.</span>";
   } else {
     const area = (3 * Math.sqrt(3) * Math.pow(lado, 2)) / 2;
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1609,14 +1746,14 @@ function calcularAreaHexagonoRegular(variables) {
 // Área do Octógono Regular
 function calcularAreaOctogonoRegular(variables) {
   const lado = variables[0].valor;
-  
+
   if (lado <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O lado deve ser maior que zero.</span>";
   } else {
     const area = 2 * (1 + Math.sqrt(2)) * Math.pow(lado, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1625,14 +1762,14 @@ function calcularAreaOctogonoRegular(variables) {
 function calcularAreaLosango(variables) {
   const diagonal1 = variables[0].valor;
   const diagonal2 = variables[1].valor;
-  
+
   if (diagonal1 <= 0 || diagonal2 <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As diagonais devem ser maiores que zero.</span>";
   } else {
     const area = (diagonal1 * diagonal2) / 2;
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1640,14 +1777,15 @@ function calcularAreaLosango(variables) {
 // Área do Pentágono Regular
 function calcularAreaPentagonoRegular(variables) {
   const lado = variables[0].valor;
-  
+
   if (lado <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O lado deve ser maior que zero.</span>";
   } else {
-    const area = (1 / 4) * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * Math.pow(lado, 2);
+    const area =
+      (1 / 4) * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * Math.pow(lado, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1655,14 +1793,14 @@ function calcularAreaPentagonoRegular(variables) {
 // Área do Decágono Regular
 function calcularAreaDecagonoRegular(variables) {
   const lado = variables[0].valor;
-  
+
   if (lado <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O lado deve ser maior que zero.</span>";
   } else {
     const area = (5 / 2) * Math.pow(lado, 2) * Math.sqrt(5 + 2 * Math.sqrt(5));
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1670,14 +1808,14 @@ function calcularAreaDecagonoRegular(variables) {
 // Área do Nonágono Regular
 function calcularAreaNonagonoRegular(variables) {
   const lado = variables[0].valor;
-  
+
   if (lado <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O lado deve ser maior que zero.</span>";
   } else {
     const area = (9 / 4) * Math.sqrt(5 - 2 * Math.sqrt(5)) * Math.pow(lado, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1686,13 +1824,14 @@ function calcularAreaNonagonoRegular(variables) {
 function calcularTeoremaFundamentalAlgebra(variables) {
   const a = variables[0].valor;
   const n = variables[1].valor;
-  
+
   if (n <= 0 || isNaN(a) || isNaN(n)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A e n devem ser números válidos.</span>";
   } else {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
-      `<span style="font-size: 24px; font-weight: bold;">Teorema Fundamental da Álgebra: x^${n} - ${a} = 0</span>`;
+    document.getElementById(
+      "resultado-valor-matematica"
+    ).innerHTML = `<span style="font-size: 24px; font-weight: bold;">Teorema Fundamental da Álgebra: x^${n} - ${a} = 0</span>`;
   }
 }
 
@@ -1700,14 +1839,14 @@ function calcularTeoremaFundamentalAlgebra(variables) {
 function calcularEnergiaCinetica(variables) {
   const massa = variables[0].valor;
   const velocidade = variables[1].valor;
-  
+
   if (massa <= 0 || velocidade <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Massa e velocidade devem ser maiores que zero.</span>";
   } else {
     const energia = 0.5 * massa * Math.pow(velocidade, 2);
     const unidade = "J";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(energia, unidade);
   }
 }
@@ -1717,15 +1856,15 @@ function calcularForcaCoulomb(variables) {
   const q1 = variables[0].valor;
   const q2 = variables[1].valor;
   const r = variables[2].valor;
-  
+
   if (q1 <= 0 || q2 <= 0 || r <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. As cargas e a distância devem ser maiores que zero.</span>";
   } else {
     const k_e = 8.99e9; // Constante de Coulomb (N·m²/C²)
-    const forca = k_e * (q1 * q2) / Math.pow(r, 2);
+    const forca = (k_e * (q1 * q2)) / Math.pow(r, 2);
     const unidade = "N";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(forca, unidade);
   }
 }
@@ -1734,14 +1873,14 @@ function calcularForcaCoulomb(variables) {
 function calcularComprimentoArco(variables) {
   const raio = variables[0].valor;
   const angulo = variables[1].valor;
-  
+
   if (raio <= 0 || angulo <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O raio e o ângulo devem ser maiores que zero.</span>";
   } else {
     const comprimento = raio * angulo;
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(comprimento, unidade);
   }
 }
@@ -1751,14 +1890,14 @@ function calcularValorPresente(variables) {
   const fv = variables[0].valor;
   const taxa = variables[1].valor;
   const n = variables[2].valor;
-  
+
   if (fv <= 0 || taxa <= 0 || n <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O valor presente deve ser maior que zero.</span>";
   } else {
     const valorPresente = fv / Math.pow(1 + taxa, n);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(valorPresente, unidade);
   }
 }
@@ -1768,14 +1907,14 @@ function calcularTrabalhoMecanico(variables) {
   const forca = variables[0].valor;
   const distancia = variables[1].valor;
   const angulo = variables[2].valor;
-  
+
   if (forca <= 0 || distancia <= 0 || angulo < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A força, distância e o ângulo devem ser válidos.</span>";
   } else {
-    const trabalho = forca * distancia * Math.cos(angulo * Math.PI / 180);
+    const trabalho = forca * distancia * Math.cos((angulo * Math.PI) / 180);
     const unidade = "J";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(trabalho, unidade);
   }
 }
@@ -1783,12 +1922,12 @@ function calcularTrabalhoMecanico(variables) {
 // Teorema de Fermat (Último Teorema de Fermat) - x^n + y^n = z^n não tem soluções inteiras para n > 2
 function calcularTeoremaFermat(variables) {
   const n = variables[0].valor;
-  
+
   if (n <= 2) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>O teorema de Fermat só é aplicável para n > 2.</span>";
   } else {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Não há soluções inteiras para n > 2.</span>";
   }
 }
@@ -1797,14 +1936,15 @@ function calcularTeoremaFermat(variables) {
 function calcularPerimetroElipse(variables) {
   const a = variables[0].valor;
   const b = variables[1].valor;
-  
+
   if (a <= 0 || b <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A e B devem ser maiores que zero.</span>";
   } else {
-    const perimetro = 2 * Math.PI * Math.sqrt((Math.pow(a, 2) + Math.pow(b, 2)) / 2);
+    const perimetro =
+      2 * Math.PI * Math.sqrt((Math.pow(a, 2) + Math.pow(b, 2)) / 2);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(perimetro, unidade);
   }
 }
@@ -1813,14 +1953,14 @@ function calcularPerimetroElipse(variables) {
 function calcularProbabilidadeCondicional(variables) {
   const pAB = variables[0].valor;
   const pB = variables[1].valor;
-  
+
   if (pAB < 0 || pB <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Probabilidade não pode ser negativa.</span>";
   } else {
     const probabilidadeCondicional = pAB / pB;
     const unidade = "probabilidade";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(probabilidadeCondicional, unidade);
   }
 }
@@ -1830,14 +1970,14 @@ function calcularProbabilidadeUniao(variables) {
   const pA = variables[0].valor;
   const pB = variables[1].valor;
   const pAB = variables[2].valor;
-  
+
   if (pA < 0 || pB < 0 || pAB < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Probabilidade não pode ser negativa.</span>";
   } else {
     const probabilidadeUniao = pA + pB - pAB;
     const unidade = "probabilidade";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(probabilidadeUniao, unidade);
   }
 }
@@ -1846,7 +1986,7 @@ function calcularProbabilidadeUniao(variables) {
 function calcularRazaoAurea(variables) {
   const razaoAurea = (1 + Math.sqrt(5)) / 2;
   const unidade = "sem unidade";
-  document.getElementById("resultado-valor-matematica").innerHTML = 
+  document.getElementById("resultado-valor-matematica").innerHTML =
     formatarResultadoMatematica(razaoAurea, unidade);
 }
 
@@ -1855,14 +1995,14 @@ function calcularNewtonAproximacao(variables) {
   const xN = variables[0].valor;
   const fXn = variables[1].valor;
   const fXnPrime = variables[2].valor;
-  
+
   if (fXnPrime === 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. A derivada não pode ser zero.</span>";
   } else {
     const xnPlus1 = xN - fXn / fXnPrime;
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(xnPlus1, unidade);
   }
 }
@@ -1871,14 +2011,18 @@ function calcularNewtonAproximacao(variables) {
 function calcularSomaCubos(variables) {
   const a = variables[0].valor;
   const b = variables[1].valor;
-  
+
   if (isNaN(a) || isNaN(b)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Os valores de a e b são inválidos.</span>";
   } else {
-    const resultado = Math.pow(a, 3) + 3 * Math.pow(a, 2) * b + 3 * a * Math.pow(b, 2) + Math.pow(b, 3);
+    const resultado =
+      Math.pow(a, 3) +
+      3 * Math.pow(a, 2) * b +
+      3 * a * Math.pow(b, 2) +
+      Math.pow(b, 3);
     const unidade = "unidades³";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(resultado, unidade);
   }
 }
@@ -1887,14 +2031,14 @@ function calcularSomaCubos(variables) {
 function calcularSomaQuadrados(variables) {
   const a = variables[0].valor;
   const b = variables[1].valor;
-  
+
   if (isNaN(a) || isNaN(b)) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. Os valores de a e b são inválidos.</span>";
   } else {
     const resultado = Math.pow(a, 2) + 2 * a * b + Math.pow(b, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(resultado, unidade);
   }
 }
@@ -1904,14 +2048,14 @@ function calcularFuncaoExponencial(variables) {
   const P = variables[0].valor;
   const r = variables[1].valor;
   const t = variables[2].valor;
-  
+
   if (P <= 0 || r < 0 || t < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O valor presente, taxa e tempo devem ser válidos.</span>";
   } else {
     const A = P * Math.pow(1 + r, t);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(A, unidade);
   }
 }
@@ -1920,14 +2064,14 @@ function calcularFuncaoExponencial(variables) {
 function calcularAreaCirculoSetorial(variables) {
   const angulo = variables[0].valor;
   const raio = variables[1].valor;
-  
+
   if (raio <= 0 || angulo < 0 || angulo > 360) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size:  24px; font-weight: bold;'>Resultado inválido. O raio e o ângulo devem ser válidos.</span>";
   } else {
     const area = (angulo / 360) * Math.PI * Math.pow(raio, 2);
     const unidade = "unidades²";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(area, unidade);
   }
 }
@@ -1935,14 +2079,14 @@ function calcularAreaCirculoSetorial(variables) {
 // Perímetro da Circunferência: P = 2πr
 function calcularPerimetroCircunferencia(variables) {
   const raio = variables[0].valor;
-  
+
   if (raio <= 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O raio deve ser maior que zero.</span>";
   } else {
     const perimetro = 2 * Math.PI * raio;
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(perimetro, unidade);
   }
 }
@@ -1952,14 +2096,14 @@ function calcularTaxaCrescimentoExponencial(variables) {
   const P0 = variables[0].valor;
   const r = variables[1].valor;
   const t = variables[2].valor;
-  
+
   if (P0 <= 0 || r < 0 || t < 0) {
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       "<span style='font-size: 24px; font-weight: bold;'>Resultado inválido. O valor inicial, taxa e tempo devem ser válidos.</span>";
   } else {
     const P = P0 * Math.exp(r * t);
     const unidade = "unidades";
-    document.getElementById("resultado-valor-matematica").innerHTML = 
+    document.getElementById("resultado-valor-matematica").innerHTML =
       formatarResultadoMatematica(P, unidade);
   }
 }

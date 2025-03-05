@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("formula_matriz").addEventListener("change", updateVariablesMatriz);
+  document
+    .getElementById("formula_matriz")
+    .addEventListener("change", updateVariablesMatriz);
 });
 
 // Contador para o número de matrizes por operação
@@ -9,7 +11,7 @@ const matrizCounters = {
   multiplicacao: 0,
   determinante: 0,
   inversa: 0,
-  transposta: 0
+  transposta: 0,
 };
 
 const MAX_MATRICES = 5; // Limite máximo para o número de matrizes por operação
@@ -19,7 +21,7 @@ const matrices = {
   multiplicacao: [],
   determinante: [],
   inversa: [],
-  transposta: []
+  transposta: [],
 }; // Armazena as matrizes separadamente por operação
 
 // Função para atualizar a interface com base na operação de matriz selecionada
@@ -28,7 +30,7 @@ function updateVariablesMatriz() {
   const container = document.getElementById("variables-container_matriz");
 
   // Limpa o conteúdo anterior
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   // Exibe campos de entrada para matrizes
   container.innerHTML = `
@@ -50,13 +52,22 @@ function gerarCamposMatriz(formula) {
 
   warning.innerHTML = ""; // Limpa avisos anteriores
 
-  if (isNaN(rows) || rows < 1 || rows > 10 || isNaN(cols) || cols < 1 || cols > 10) {
-    warning.innerHTML = "Insira um valor válido para o tamanho da matriz (1 a 10).";
+  if (
+    isNaN(rows) ||
+    rows < 1 ||
+    rows > 10 ||
+    isNaN(cols) ||
+    cols < 1 ||
+    cols > 10
+  ) {
+    warning.innerHTML =
+      "Insira um valor válido para o tamanho da matriz (1 a 10).";
     return;
   }
 
   if (matrizCounters[formula] >= MAX_MATRICES) {
-    warning.innerHTML = "Você pode criar no máximo " + MAX_MATRICES + " matrizes.";
+    warning.innerHTML =
+      "Você pode criar no máximo " + MAX_MATRICES + " matrizes.";
     return;
   }
 
@@ -110,7 +121,9 @@ function criarMatriz(m, formula) {
   for (let i = 0; i < rows; i++) {
     const linha = [];
     for (let j = 0; j < cols; j++) {
-      const valor = parseFloat(document.getElementById(`cell-${formula}-${m}-${i}-${j}`).value);
+      const valor = parseFloat(
+        document.getElementById(`cell-${formula}-${m}-${i}-${j}`).value
+      );
       if (isNaN(valor)) {
         alert("Por favor, insira valores numéricos válidos.");
         return;
@@ -124,14 +137,17 @@ function criarMatriz(m, formula) {
 
 // Função para calcular a operação selecionada
 function calcularMatriz(formula) {
-  const todasMatrizes = matrices[formula].map((_, index) => criarMatriz(index + 1, formula));
+  const todasMatrizes = matrices[formula].map((_, index) =>
+    criarMatriz(index + 1, formula)
+  );
   let resultado;
   const warning = document.getElementById("warning");
 
   switch (formula) {
     case "determinante":
       if (todasMatrizes[0].length !== todasMatrizes[0][0].length) {
-        warning.innerHTML = "Determinante só suportado para matrizes quadradas.";
+        warning.innerHTML =
+          "Determinante só suportado para matrizes quadradas.";
         return;
       }
       resultado = calcularDeterminante(todasMatrizes[0]);
@@ -148,42 +164,55 @@ function calcularMatriz(formula) {
       break;
     case "adicao":
       if (todasMatrizes.length < 2) {
-        warning.innerHTML = "São necessárias pelo menos 2 matrizes para a adição.";
+        warning.innerHTML =
+          "São necessárias pelo menos 2 matrizes para a adição.";
         return;
       }
       if (!verificarCompatibilidade(todasMatrizes)) {
-        warning.innerHTML = "As matrizes devem ter o mesmo tamanho para a operação.";
+        warning.innerHTML =
+          "As matrizes devem ter o mesmo tamanho para a operação.";
         return;
       }
-      resultado = todasMatrizes.reduce((acc, matriz) => calcularAdicao(acc, matriz));
+      resultado = todasMatrizes.reduce((acc, matriz) =>
+        calcularAdicao(acc, matriz)
+      );
       break;
     case "subtracao":
       if (todasMatrizes.length < 2) {
-        warning.innerHTML = "São necessárias pelo menos 2 matrizes para a subtração.";
+        warning.innerHTML =
+          "São necessárias pelo menos 2 matrizes para a subtração.";
         return;
       }
       if (!verificarCompatibilidade(todasMatrizes)) {
-        warning.innerHTML = "As matrizes devem ter o mesmo tamanho para a operação.";
+        warning.innerHTML =
+          "As matrizes devem ter o mesmo tamanho para a operação.";
         return;
       }
-      resultado = todasMatrizes.reduce((acc, matriz) => calcularSubtracao(acc, matriz));
+      resultado = todasMatrizes.reduce((acc, matriz) =>
+        calcularSubtracao(acc, matriz)
+      );
       break;
     case "multiplicacao":
       if (todasMatrizes.length < 2) {
-        warning.innerHTML = "São necessárias pelo menos 2 matrizes para a multiplicação.";
+        warning.innerHTML =
+          "São necessárias pelo menos 2 matrizes para a multiplicação.";
         return;
       }
       if (!verificarCompatibilidadeMultiplicacao(todasMatrizes)) {
-        warning.innerHTML = "As matrizes não têm dimensões compatíveis para multiplicação.";
+        warning.innerHTML =
+          "As matrizes não têm dimensões compatíveis para multiplicação.";
         return;
       }
-      resultado = todasMatrizes.reduce((acc, matriz) => calcularMultiplicacao(acc, matriz));
+      resultado = todasMatrizes.reduce((acc, matriz) =>
+        calcularMultiplicacao(acc, matriz)
+      );
       break;
   }
 
   // Exibir o resultado formatado com LaTeX
   const resultadoContainer = document.getElementById("resultado-matriz");
-  resultadoContainer.innerHTML = "Resultado: $$" + formatResultado(resultado) + "$$";
+  resultadoContainer.innerHTML =
+    "Resultado: $$" + formatResultado(resultado) + "$$";
   MathJax.typeset(); // Reprocessa o MathJax para renderizar o resultado em LaTeX
 }
 
@@ -232,8 +261,10 @@ function calcularDeterminante(matriz) {
     return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
   } else if (matriz.length === 3 && matriz[0].length === 3) {
     return (
-      matriz[0][0] * (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1]) -
-      matriz[0][1] * (matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0]) +
+      matriz[0][0] *
+        (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1]) -
+      matriz[0][1] *
+        (matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0]) +
       matriz[0][2] * (matriz[1][0] * matriz[2][1] - matriz[1][1] * matriz[2][0])
     );
   } else {
@@ -301,7 +332,7 @@ function calcularInversa(matriz) {
 
 // Função para calcular a transposta de uma matriz
 function calcularTransposta(matriz) {
-  return matriz[0].map((_, colIndex) => matriz.map(row => row[colIndex]));
+  return matriz[0].map((_, colIndex) => matriz.map((row) => row[colIndex]));
 }
 
 // Função para formatar o resultado para exibição em LaTeX
@@ -310,13 +341,25 @@ function formatResultado(resultado) {
     return resultado;
   }
 
-  return "\\begin{bmatrix}" + resultado.map(row => row.map(value => Number.isInteger(value) ? value : value.toFixed(0)).join(" & ")).join("\\\\") + "\\end{bmatrix}";
+  return (
+    "\\begin{bmatrix}" +
+    resultado
+      .map((row) =>
+        row
+          .map((value) => (Number.isInteger(value) ? value : value.toFixed(0)))
+          .join(" & ")
+      )
+      .join("\\\\") +
+    "\\end{bmatrix}"
+  );
 }
 
 // Função para verificar compatibilidade de adição/subtração (mesmo tamanho)
 function verificarCompatibilidade(matrizes) {
   const [linhas, colunas] = [matrizes[0].length, matrizes[0][0].length];
-  return matrizes.every(matriz => matriz.length === linhas && matriz[0].length === colunas);
+  return matrizes.every(
+    (matriz) => matriz.length === linhas && matriz[0].length === colunas
+  );
 }
 
 // Função para verificar compatibilidade de multiplicação (colunas de uma == linhas de outra)

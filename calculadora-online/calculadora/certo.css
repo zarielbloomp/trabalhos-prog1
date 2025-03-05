@@ -29,6 +29,29 @@ body {
   animation: fadeIn 0.5s ease;
 }
 
+.aviso {
+background-color: #d9edf7; 
+color: #333333;          
+font-size: 1.2rem;      
+text-align: center;    
+padding: 15px;          
+border-radius: 5px;        
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+margin: 15px auto;         
+max-width: 600px;          
+}
+
+.aviso p {
+margin: 0;                
+font-weight: normal;     
+}
+
+.aviso strong {
+color: #c9302c;           
+font-size: 1.4rem;
+}
+
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -276,30 +299,6 @@ nav.extra-navigation {
   }
 }
 
-.aviso {
-  background-color: #d9edf7; /* Cor de fundo azul claro (menos chamativa) */
-  color: #333333;            /* Cor do texto (cinza escuro) */
-  font-size: 1.2rem;         /* Tamanho do texto */
-  text-align: center;        /* Centraliza o texto */
-  padding: 15px;             /* Espaçamento interno */
-  border-radius: 5px;        /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  margin: 15px auto;         /* Espaçamento externo e centralização */
-  max-width: 600px;          /* Limita a largura máxima */
-}
-
-.aviso p {
-  margin: 0;                /* Remove margens internas do parágrafo */
-  font-weight: normal;      /* Fonte normal para o texto */
-}
-
-.aviso strong {
-  color: #e64a45;           /* Cor diferente para o texto "BETA" (vermelho suave) */
-  font-size: 1.4rem;        /* Tamanho do texto "BETA" um pouco maior que o normal */
-}
-
-
-
 
 .valor {
   font-size: 1.5rem;
@@ -367,4 +366,74 @@ nav.extra-navigation {
 .welcome-section p {
   font-size: 16px;
   color: #666;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #512da8;
+  color: white;
+  padding: 10px;
+  z-index: 1000; /* Certifique-se de que a navbar fique acima do conteúdo */
+  display: flex; /* Alinha os itens da navbar em linha */
+  justify-content: space-between; /* Espaça os itens */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+.navbar-menu {
+  list-style: none; /* Remove qualquer estilo de lista (se aplicável) */
+  margin: 0; /* Remove margem */
+  padding: 0; /* Remove preenchimento */
+  display: flex; /* Exibe os itens como flex */
+  flex-grow: 1; /* Permite que a lista ocupe o espaço disponível */
+  justify-content: center; /* Centraliza os itens da lista */
+}
+
+.navbar-item {
+  margin: 0 15px; /* Adiciona espaço entre os itens */
+}
+
+.extra-link {
+  color: white; /* Cor do texto */
+  text-decoration: none; /* Remove sublinhado */
+  padding: 5px 10px; /* Espaçamento interno */
+}
+
+.extra-link:hover {
+  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.content {
+  margin-top: 60px; /* Adiciona uma margem no topo para evitar que o conteúdo fique escondido atrás da navbar */
+}
+
+.user-image {
+  width: 50px; /* Ajuste o tamanho da imagem do usuário */
+  height: 50px; /* Ajuste o tamanho da imagem do usuário */
+  border-radius: 50%; /* Faz a imagem ser redonda */
+  cursor: pointer; /* Indica que é clicável */
+  margin: 0; /* Remove a margem ao redor da imagem */
+}
+
+.dropdown-content {
+  display: none; /* Esconde o conteúdo do dropdown por padrão */
+  position: absolute; /* Para que o dropdown apareça abaixo da imagem */
+  background-color: rgba(249, 249, 249, 0.9); /* Cor de fundo do dropdown com transparência */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra */
+  z-index: 1; /* Garante que o dropdown fique acima de outros elementos */
+  right: 0; /* Alinha o dropdown à direita */
+  margin-top: 10px; /* Espaçamento entre a imagem e o dropdown */
+  border-radius: 20px; /* Arredondar o fundo do dropdown */
+  padding: 10px; /* Adiciona espaçamento interno */
+}
+
+.dropdown-content button {
+  background-color: #512da8; /* Cor do botão */
+  color: white; /* Cor do texto */
+  padding: 10px; /* Espaçamento interno */
+  border: none; /* Sem borda */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  width: 100%; /* Botão ocupa toda a largura do dropdown */
+  border-radius: 5px; /* Arredondar os botões */
+  margin: 5px 0; /* Adiciona espaço entre os botões */
 }

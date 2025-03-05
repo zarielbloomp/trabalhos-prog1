@@ -25,37 +25,37 @@ function updateVariablesFisica() {
   switch (formula) {
     case "velocidade":
       formulaHtml = "$v = \\frac{d}{t}$";
-      variables = ["Distância (d)", "Tempo (t)"];
+      variables = ["Distância", "Tempo"];
       unidades = [getUnidades("Distância"), getUnidades("Tempo")];
       break;
     case "trabalho":
-      formulaHtml = "$T = F \\cdot d \\cdot \\cos(\\theta)$";
-      variables = ["Força (F)", "Distância (d)", "Ângulo (Cos(θ)) "];
-      unidades = [getUnidades("Força"), getUnidades("Distância"), getUnidades("Ângulo")];
+      formulaHtml = "$T = F \\cdot d$";
+      variables = ["Força", "Distância"];
+      unidades = [getUnidades("Força"), getUnidades("Distância")];
       break;
     case "forca":
       formulaHtml = "$F = m \\cdot a$";
-      variables = ["Massa (m)", "Aceleração (a)"];
+      variables = ["Massa", "Aceleração"];
       unidades = [getUnidades("Massa"), getUnidades("Aceleração")];
       break;
     case "energia-cinetica":
       formulaHtml = "$E_c = \\frac{1}{2} m v^2$";
-      variables = ["Massa (m)", "Velocidade (v)"];
+      variables = ["Massa", "Velocidade"];
       unidades = [getUnidades("Massa"), getUnidades("Velocidade")];
       break;
     case "impulso":
       formulaHtml = "$I = F \\cdot t$";
-      variables = ["Força (F)", "Tempo (t)"];
+      variables = ["Força", "Tempo"];
       unidades = [getUnidades("Força"), getUnidades("Tempo")];
       break;
     case "potencia":
       formulaHtml = "$P = \\frac{T}{t}$";
-      variables = ["Trabalho (T)", "Tempo (t)"];
+      variables = ["Trabalho", "Tempo"];
       unidades = [getUnidades("Trabalho"), getUnidades("Tempo")];
       break;
     case "aceleracao":
       formulaHtml = "$a = \\frac{v_f - v_i}{t}$";
-      variables = ["Velocidade final (v_f)", "Velocidade inicial (v_i)", "Tempo (t)"];
+      variables = ["Velocidade final", "Velocidade inicial", "Tempo"];
       unidades = [
         getUnidades("Velocidade"),
         getUnidades("Velocidade"),
@@ -64,41 +64,40 @@ function updateVariablesFisica() {
       break;
     case "momento-linear":
       formulaHtml = "$p = m \\cdot v$";
-      variables = ["Massa (m)", "Velocidade (v)"];
+      variables = ["Massa", "Velocidade"];
       unidades = [getUnidades("Massa"), getUnidades("Velocidade")];
       break;
     case "pressao":
       formulaHtml = "$P = \\frac{F}{A}$";
-      variables = ["Força (F)", "Área (A)"];
+      variables = ["Força", "Área"];
       unidades = [getUnidades("Força"), getUnidades("Área")];
       break;
     case "frequencia-ondas":
       formulaHtml = "$f = \\frac{v}{\\lambda}$";
-      variables = ["Velocidade (v)", "Comprimento de onda (λ)"];
+      variables = ["Velocidade", "Comprimento de onda"];
       unidades = [
         getUnidades("Velocidade"),
         getUnidades("Comprimento de onda"),
       ];
       break;
-
     case "lei-hooke":
       formulaHtml = "$F = k \\cdot x$";
       variables = ["Constante Elástica", "Deformação"];
-      unidades = [getUnidades("Constante Elástica (k) "), getUnidades("Deformação")];
+      unidades = [getUnidades("Constante Elástica"), getUnidades("Deformação")];
       break;
     case "resistencia-eletrica":
       formulaHtml = "$R = \\frac{V}{I}$";
-      variables = ["Tensão(T)", "Corrente (I)"];
+      variables = ["Tensão", "Corrente"];
       unidades = [getUnidades("Tensão"), getUnidades("Corrente")];
       break;
     case "energia-mecanica":
       formulaHtml = "$E_m = E_c + E_p$";
-      variables = ["Energia Cinética (Ec)", "Energia Potencial (Ep)"];
+      variables = ["Energia Cinética", "Energia Potencial"];
       unidades = [getUnidades("Energia"), getUnidades("Energia")];
       break;
     case "lei-gravitacao":
       formulaHtml = "$F = G \\cdot \\frac{m_1 \\cdot m_2}{r^2}$";
-      variables = ["Massa 1 (M1) ", "Massa 2 (M2)", "Distância (d)"];
+      variables = ["Massa 1", "Massa 2", "Distância"];
       unidades = [
         getUnidades("Massa"),
         getUnidades("Massa"),
@@ -107,7 +106,7 @@ function updateVariablesFisica() {
       break;
     case "energia-potencial-gravitacional":
       formulaHtml = "$E_p = m \\cdot g \\cdot h$";
-      variables = ["Massa (M)", "Altura (H)"];
+      variables = ["Massa", "Altura"];
       unidades = [
         getUnidades("Massa"),
         getUnidades("Aceleração"),
@@ -116,22 +115,22 @@ function updateVariablesFisica() {
       break;
     case "energia-potencial-elastica":
       formulaHtml = "$E_p = \\frac{1}{2} k x^2$";
-      variables = ["Constante Elástica (K) ", "Deformação (d)"];
+      variables = ["Constante Elástica", "Deformação"];
       unidades = [getUnidades("Constante Elástica"), getUnidades("Deformação")];
       break;
     case "capacitancia":
-      formulaHtml =  "$C = \\frac{Q}{V}$";
-      variables = ["Carga (Q)", "Tensão (V)"];
+      formulaHtml = "$C = \\frac{Q}{V}$";
+      variables = ["Carga", "Tensão"];
       unidades = [getUnidades("Carga"), getUnidades("Tensão")];
       break;
     case "energia-einstein":
-        formulaHtml = "$E = m \\cdot c^2$";
-        variables = ["Massa (M)"];
-        unidades = [getUnidades("Massa")];
-        break;
+      formulaHtml = "$E = m \\cdot c^2$";
+      variables = ["Massa"];
+      unidades = [getUnidades("Massa")];
+      break;
     case "velocidade-onda":
       formulaHtml = "$v = \\sqrt{\\frac{T}{\\mu}}$";
-      variables = ["Tensão (T)", "Densidade Linear de massa (μ)"];
+      variables = ["Tensão", "Densidade Linear"];
       unidades = [getUnidades("Tensão"), getUnidades("Densidade Linear")];
       break;
     case "lei-newton-corpos-rigidos":
@@ -139,179 +138,215 @@ function updateVariablesFisica() {
       variables = ["Momento de Inércia (I)", "Aceleração Angular (α)"];
       unidades = [
         getUnidades("Momento de Inércia"),
-        getUnidades("Aceleração Ângular")
+        getUnidades("Aceleração Ângular"),
       ];
       break;
-    
-  case "comprimento-onda":
+
+    case "comprimento-onda":
       formulaHtml = "$\\lambda = \\frac{v}{f}$";
       variables = ["Velocidade da Onda (v)", "Frequência da Onda (f)"];
       unidades = [getUnidades("Velocidade"), getUnidades("Frequência")];
       break;
-  case "lei-faraday":
-    formulaHtml = "$\\mathcal{E} = -N \\frac{d\\Phi_B}{dt}$";
-    variables = ["Número de espiras (N)", "Campo Magnético (B)", "Área (A)", "Variação do Campo Magnético (dB/dt)"];
-    unidades = [
+    case "lei-faraday":
+      formulaHtml = "$\\mathcal{E} = -N \\frac{d\\Phi_B}{dt}$";
+      variables = [
+        "Número de Voltas (N)",
+        "Campo Magnético (B)",
+        "Área (A)",
+        "Variação do Campo Magnético (dB/dt)",
+      ];
+      unidades = [
         getUnidades("Campo Magnético"),
         getUnidades("Área"),
-        getUnidades("Variação do Campo Magnético")
-    ];
-    break;
-  case "quociente-potencia":
+        getUnidades("Variação do Campo Magnético"),
+      ];
+      break;
+    case "quociente-potencia":
       formulaHtml = "$P = \\frac{P_1}{P_2}$";
       variables = ["Potência 1 (P1)", "Potência 2 (P2)"];
       unidades = [getUnidades("Potência"), getUnidades("Potência")];
       break;
-  
-  case "quantidade-movimento":
+
+    case "quantidade-movimento":
       formulaHtml = "$p = m \\cdot v$";
       variables = ["Massa (m)", "Velocidade (v)"];
       unidades = [getUnidades("Massa"), getUnidades("Velocidade")];
       break;
-  
-  case "campo-eletrico":
+
+    case "campo-eletrico":
       formulaHtml = "$E = \\frac{F}{q}$";
       variables = ["Força (F)", "Carga (q)"];
       unidades = [getUnidades("Forca"), getUnidades("Carga")];
       break;
-  
-  case "campo-magnetico":
+
+    case "campo-magnetico":
       formulaHtml = "$B = \\frac{\\mu_0 \\cdot I}{2 \\pi r}$";
       variables = ["Corrente (I)", "Raio (r)"];
       unidades = [getUnidades("Corrente"), getUnidades("Distância")];
       break;
-  
-  case "leitura-velocidade":
+
+    case "leitura-velocidade":
       formulaHtml = "$v = \\frac{d}{t}$";
       variables = ["Distância (d)", "Tempo (t)"];
       unidades = [getUnidades("Distância"), getUnidades("Tempo")];
       break;
-  
-  case "lei-coulomb":
+
+    case "lei-coulomb":
       formulaHtml = "$F = k_e \\cdot \\frac{q_1 \\cdot q_2}{r^2}$";
       variables = ["Carga 1 (q1)", "Carga 2 (q2)", "Raio (r)"];
-      unidades = [getUnidades("Carga"), getUnidades("Carga"), getUnidades("Distância")];
+      unidades = [
+        getUnidades("Carga"),
+        getUnidades("Carga"),
+        getUnidades("Distância"),
+      ];
       break;
-  
-  case "potencial-eletrico":
+
+    case "potencial-eletrico":
       formulaHtml = "$V = \\frac{k_e \\cdot q}{r}$";
       variables = ["Carga (q)", "Raio (r)"];
       unidades = [getUnidades("Carga"), getUnidades("Distância")];
       break;
 
-  case "torque":
+    case "torque":
       formulaHtml = "$\\tau = F r \\sin(\\theta)$";
       variables = ["Força (F)", "Raio (r)", "Ângulo (θ)"];
-      unidades = [getUnidades("Forca"), getUnidades("Distância"), getUnidades("Ângulo")];
+      unidades = [
+        getUnidades("Forca"),
+        getUnidades("Distância"),
+        getUnidades("Ângulo"),
+      ];
       break;
 
-  case "frequencia-resonancia":
+    case "frequencia-resonancia":
       formulaHtml = "$f_r = \\frac{1}{2\\pi\\sqrt{LC}}$";
       variables = ["Indutância (L)", "Capacitância (C)"];
       unidades = [getUnidades("Indutância"), getUnidades("Capacitância")];
       break;
 
-  case "lei-ohm":
+    case "lei-ohm":
       formulaHtml = "$V = I \\cdot R$";
       variables = ["Corrente (I)", "Resistência (R)"];
       unidades = [getUnidades("Corrente"), getUnidades("Resistência")];
       break;
 
-  case "corrente-eletrica":
+    case "corrente-eletrica":
       formulaHtml = "$I = \\frac{V}{R}$";
       variables = ["Tensão (V)", "Resistência (R)"];
       unidades = [getUnidades("Tensão"), getUnidades("Resistência")];
       break;
 
-  case "potencia-eletrica":
+    case "potencia-eletrica":
       formulaHtml = "$P = I \\cdot V$";
       variables = ["Corrente (I)", "Tensão (V)"];
       unidades = [getUnidades("Corrente"), getUnidades("Tensão")];
       break;
 
-  case "tensao-eletrica":
+    case "tensao-eletrica":
       formulaHtml = "$V = I \\cdot R$";
       variables = ["Corrente (I)", "Resistência (R)"];
       unidades = [getUnidades("Corrente"), getUnidades("Resistência")];
       break;
 
-  case "eletricidade":
+    case "eletricidade":
       formulaHtml = "$P = V \\cdot I$";
       variables = ["Tensão (V)", "Corrente (I)"];
       unidades = [getUnidades("Tensão"), getUnidades("Corrente")];
       break;
 
-  case "pressao-atm":
+    case "pressao-atm":
       formulaHtml = "$P = \\frac{F}{A}$";
       variables = ["Força (F)", "Área (A)"];
       unidades = [getUnidades("Força"), getUnidades("Área")];
       break;
 
-  case "gravidade-celestial":
+    case "gravidade-celestial":
       formulaHtml = "$F = G \\cdot \\frac{m_1 \\cdot m_2}{r^2}$";
       variables = ["Massa 1 (m1)", "Massa 2 (m2)", "Raio (r)"];
-      unidades = [getUnidades("Massa"), getUnidades("Massa"), getUnidades("Distância")];
-      break; 
-  case "quantum":
-    formulaHtml = "$E = h \\cdot f$";
-    variables = ["Frequência (f)"];
-    unidades = [getUnidades("Frequência")];
-    break;
-
-  case "velocidade-relativistica":
-    formulaHtml = "$v = \\frac{v_0}{\\sqrt{1 - \\frac{v^2}{c^2}}}$";
-    variables = ["Velocidade Inicial (v0)", "Velocidade Final (v)"];
-    unidades = [getUnidades("Velocidade"), getUnidades("Velocidade")];
-    break;
-  
-  case "dilatacao-volumetrica":
-    formulaHtml = "$\\Delta V = V_0 \\cdot \\beta \\cdot \\Delta T$";
-    variables = ["Volume Inicial (V₀)", "Coeficiente de Dilatação Volumétrica (β)", "Variação de Temperatura (ΔT)"];
-    unidades = [getUnidades("Volume"), getUnidades("Coeficiente de Dilatação Volumétrica"), getUnidades("Temperatura")];
-    break;
-    case "dilatacao-termica-superficial":
-      formulaHtml = "$\\Delta A = A_0 \\cdot \\beta \\cdot \\Delta T$";
-      variables = ["Área inicial (A₀)", "Coeficiente de dilatação térmica superficial (β)", "Variação de temperatura (ΔT)"];
       unidades = [
-        getUnidades("Área"),
-        getUnidades("Coeficiente de dilatação térmica"),
-        getUnidades("Temperatura")
+        getUnidades("Massa"),
+        getUnidades("Massa"),
+        getUnidades("Distância"),
       ];
       break;
-    
-  case "dilacao-termica":
-      formulaHtml = "$\\Delta L = L_0 \\cdot \\alpha \\cdot \\Delta T$";
-      variables = ["Comprimento Inicial (L0)", "Coeficiente de Dilatação (α)", "Variação de Temperatura (ΔT)"];
-      unidades = [getUnidades("Comprimento"), getUnidades("Aceleração"), getUnidades("Temperatura")];
+    case "quantum":
+      formulaHtml = "$E = h cdot f$";
+      variables = ["Frequência (f)"];
+      unidades = [getUnidades("Frequência")];
       break;
-  case "cinetica-transformada":
+
+    case "velocidade-relativistica":
+      formulaHtml = "$v = \\frac{v_0}{\\sqrt{1 - \\frac{v^2}{c^2}}}$";
+      variables = ["Velocidade Inicial (v0)", "Velocidade Final (v)"];
+      unidades = [getUnidades("Velocidade"), getUnidades("Velocidade")];
+      break;
+
+    case "dilatacao-volumetrica":
+      formulaHtml = "$\\Delta V = V_0 \\cdot \\beta \\cdot \\Delta T$";
+      variables = [
+        "Volume Inicial (V₀)",
+        "Coeficiente de Dilatação Volumétrica (β)",
+        "Variação de Temperatura (ΔT)",
+      ];
+      unidades = [
+        getUnidades("Volume"),
+        getUnidades("Coeficiente de Dilatação Volumétrica"),
+        getUnidades("Temperatura"),
+      ];
+      break;
+    case "dilacao-termica":
+      formulaHtml = "$\\Delta L = L_0 \\cdot \\alpha \\cdot \\Delta T$";
+      variables = [
+        "Comprimento Inicial (L0)",
+        "Coeficiente de Dilatação (α)",
+        "Variação de Temperatura (ΔT)",
+      ];
+      unidades = [
+        getUnidades("Comprimento"),
+        getUnidades("Aceleração"),
+        getUnidades("Temperatura"),
+      ];
+      break;
+    case "cinetica-transformada":
       formulaHtml = "$E_k = \\frac{1}{2} m v^2$";
       variables = ["Massa (m)", "Velocidade (v)"];
       unidades = [getUnidades("Massa"), getUnidades("Velocidade")];
       break;
-  case "momento-forca":
+    case "momento-forca":
       formulaHtml = "$\\tau = F \\cdot r$";
       variables = ["Força (F)", "Raio (r)"];
       unidades = [getUnidades("Forca"), getUnidades("Distância")];
       break;
-  case "intensidade-luminosa":
+    case "intensidade-luminosa":
       formulaHtml = "$I = \\frac{P}{A}$";
       variables = ["Potência (P)", "Área (A)"];
       unidades = [getUnidades("Potência"), getUnidades("Área")];
       break;
-  case "velocidade-orbital-media":
+    case "lei-kepler-segunda":
+      formulaHtml = "$A = \\frac{1}{2} r^2 \\cdot \\Delta \\theta$";
+      variables = ["Raio (r)", "Ângulo (Δθ)"];
+      unidades = [getUnidades("Distância"), getUnidades("Ângulo")];
+      break;
+    case "lei-kepler-terceira":
+      formulaHtml = "$T^2 = k cdot r^3$";
+      variables = ["Período (T)", "Raio (r)"];
+      unidades = [getUnidades("Tempo"), getUnidades("Distância")];
+      break;
+    case "velocidade-orbital-media":
       formulaHtml = "$v_o = \\sqrt{\\frac{G M}{r}}$";
       variables = ["Constante Gravitacional (G)", "Massa (M)", "Raio (r)"];
-      unidades = [getUnidades("Constante Elástica"), getUnidades("Massa"), getUnidades("Distância")];
+      unidades = [
+        getUnidades("Constante Elástica"),
+        getUnidades("Massa"),
+        getUnidades("Distância"),
+      ];
       break;
-  case "queda-livre-galileu":
-    formulaHtml = "$v = \\frac{g \\cdot t^2}{2}$";
-    variables = ["Aceleração Gravitacional (g)", "Tempo (t)"];
-    unidades = [getUnidades("Aceleração"), getUnidades("Tempo")];
-    break;
-      
-  case "fator-lorentz":
-      formulaHtml = "$\\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}$";
+    case "queda-livre-galileu":
+      formulaHtml = "$v = g cdot t$";
+      variables = ["Aceleração Gravitacional (g)", "Tempo (t)"];
+      unidades = [getUnidades("Aceleração"), getUnidades("Tempo")];
+      break;
+    case "fator-lorentz":
+      formulaHtml = "$gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}$";
       variables = ["Velocidade (v)", "Velocidade da Luz (c)"];
       unidades = [getUnidades("Velocidade"), getUnidades("Velocidade")];
       break;
@@ -344,8 +379,8 @@ function updateVariablesFisica() {
     .join("");
 
   // Adicionar botão para calcular
-  MathJax.typesetPromise(); 
-};
+  MathJax.typesetPromise();
+}
 
 // Função para obter as unidades para cada variável
 function getUnidades(variable) {
@@ -363,8 +398,8 @@ function getUnidades(variable) {
         <option value="mi">Milha</option>
         <option value="yd">Jarda</option>
       `;
-  case "Número de Voltas":
-    return `
+    case "Número de Voltas":
+      return `
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -376,15 +411,15 @@ function getUnidades(variable) {
       <option value="100">100</option>
       <option value="1000">1000</option>
     `;
-  
-  case "Fluxo Magnético":
-    return `
+
+    case "Fluxo Magnético":
+      return `
       <option value="Wb">Wb (Weber)</option>
       <option value="mWb">mWb (mili-Weber)</option>
       <option value="μWb">μWb (micro-Weber)</option>
       <option value="T·m²">T·m² (Tesla metro quadrado)</option>
     `;
-  
+
     case "Tempo":
       return `
         <option value="s">s</option>
@@ -398,7 +433,7 @@ function getUnidades(variable) {
         <option value="dia">dia</option>
         <option value="ano">ano</option>
       `;
-    
+
     case "Força":
     case "Forca":
       return `
@@ -408,7 +443,7 @@ function getUnidades(variable) {
         <option value="μN">μN</option>
         <option value="lbf">lbf</option>
       `;
-    
+
     case "Massa":
       return `
         <option value="kg">kg</option>
@@ -419,7 +454,7 @@ function getUnidades(variable) {
         <option value="lb">lb</option>
         <option value="oz">oz</option>
       `;
-    
+
     case "Aceleração":
       return `
         <option value="m/s²">m/s²</option>
@@ -427,7 +462,7 @@ function getUnidades(variable) {
         <option value="mm/s²">mm/s²</option>
         <option value="g">g</option>
       `;
-    
+
     case "Trabalho":
     case "Energia":
       return `
@@ -440,7 +475,7 @@ function getUnidades(variable) {
         <option value="mJ">mJ</option>
         <option value="μJ">μJ</option>
       `;
-    
+
     case "Potência":
       return `
         <option value="W">W</option>
@@ -449,7 +484,7 @@ function getUnidades(variable) {
         <option value="μW">μW</option>
         <option value="hp">hp</option>
       `;
-    
+
     case "Pressão":
       return `
         <option value="Pa">Pa</option>
@@ -461,7 +496,7 @@ function getUnidades(variable) {
         <option value="mmHg">mmHg</option>
         <option value="psi">psi</option>
       `;
-    
+
     case "Frequência":
       return `
         <option value="Hz">Hz</option>
@@ -469,7 +504,7 @@ function getUnidades(variable) {
         <option value="MHz">MHz</option>
         <option value="GHz">GHz</option>
       `;
-    
+
     case "Velocidade":
       return `
         <option value="m/s">m/s</option>
@@ -478,7 +513,7 @@ function getUnidades(variable) {
         <option value="ft/s">ft/s</option>
         <option value="cm/s">cm/s</option>
       `;
-    
+
     case "Comprimento de onda":
       return `
         <option value="m">m</option>
@@ -487,7 +522,7 @@ function getUnidades(variable) {
         <option value="μm">μm</option>
         <option value="mm">mm</option>
       `;
-    
+
     case "Tensão":
       return `
         <option value="V">V</option>
@@ -495,7 +530,7 @@ function getUnidades(variable) {
         <option value="mV">mV</option>
         <option value="μV">μV</option>
       `;
-    
+
     case "Corrente":
       return `
         <option value="A">A</option>
@@ -503,7 +538,7 @@ function getUnidades(variable) {
         <option value="μA">μA</option>
         <option value="kA">kA</option>
       `;
-    
+
     case "Área":
       return `
         <option value="mm²">mm²</option>
@@ -516,7 +551,7 @@ function getUnidades(variable) {
         <option value="ha">ha</option>
         <option value="acre">acre</option>
       `;
-    
+
     case "Deformação":
       return `
         <option value="m">m</option>
@@ -524,7 +559,7 @@ function getUnidades(variable) {
         <option value="mm">mm</option>
         <option value="nm">nm</option>
       `;
-    
+
     case "Carga":
       return `
         <option value="C">C</option>
@@ -532,14 +567,14 @@ function getUnidades(variable) {
         <option value="μC">μC</option>
         <option value="nC">nC</option>
       `;
-    
+
     case "Constante Elástica":
       return `
         <option value="N/m">N/m</option>
         <option value="kN/m">kN/m</option>
         <option value="mN/m">mN/m</option>
       `;
-    
+
     case "Energia de Einstein":
       return `
         <option value="J">J</option>
@@ -547,7 +582,7 @@ function getUnidades(variable) {
         <option value="MeV">MeV</option>
         <option value="GeV">GeV</option>
       `;
-    
+
     case "Densidade Linear":
       return `
         <option value="kg/m">kg/m</option>
@@ -555,71 +590,71 @@ function getUnidades(variable) {
         <option value="g/m">g/m</option>
         <option value="mg/mm">mg/mm</option>
       `;
-    
+
     case "Frequência de Ressonância":
       return `
         <option value="Hz">Hz</option>
         <option value="kHz">kHz</option>
       `;
-  case "Momento de Inércia":
-    return `
+    case "Momento de Inércia":
+      return `
       <option value="kg·m²">kg·m²</option>
       <option value="g·cm²">g·cm²</option>
       <option value="lb·ft²">lb·ft²</option>
     `;
-  
-  case "Aceleração Ângular":
-    return `
+
+    case "Aceleração Ângular":
+      return `
       <option value="rad/s²">rad/s²</option>
       <option value="deg/s²">°/s²</option>
     `;
-  
-  case "Ângulo":
-    return `
+
+    case "Ângulo":
+      return `
       <option value="rad">rad</option>
       <option value="deg">°</option>
     `;
-  
-  case "Capacitância":
-    return `
+
+    case "Capacitância":
+      return `
       <option value="F">F</option>
       <option value="mF">mF</option>
       <option value="μF">μF</option>
       <option value="nF">nF</option>
     `;
-  
-  case "Indutância":
-    return `
+
+    case "Indutância":
+      return `
       <option value="H">H</option>
       <option value="mH">mH</option>
       <option value="μH">μH</option>
     `;
-  
-  case "Resistência":
-    return `
+
+    case "Resistência":
+      return `
       <option value="Ω">Ω</option>
       <option value="kΩ">kΩ</option>
       <option value="mΩ">mΩ</option>
     `;
-  
-  case "Corrente":
-    return `
+
+    case "Corrente":
+      return `
       <option value="A">A</option>
       <option value="mA">mA</option>
       <option value="μA">μA</option>
     `;
-  
-  case "Área":
-    return `
+
+    case "Área":
+      return `
       <option value="m²">m²</option>
       <option value="cm²">cm²</option>
       <option value="mm²">mm²</option>
       <option value="ft²">ft²</option>
       <option value="in²">in²</option>
     `;
-  
-  case "Comprimento":
-    return `
+
+    case "Comprimento":
+      return `
       <option value="m">m</option>
       <option value="cm">cm</option>
       <option value="mm">mm</option>
@@ -627,22 +662,22 @@ function getUnidades(variable) {
       <option value="ft">ft</option>
       <option value="in">in</option>
     `;
-  case "variacao-campo-magnetico":
-    return `
+    case "variacao-campo-magnetico":
+      return `
         <option value="T/s">Tesla por segundo (T/s)</option>
         <option value="μT/s">Microtesla por segundo (μT/s)</option>
         <option value="mT/s">Militesla por segundo (mT/s)</option>
         <option value="kT/s">Kilotesla por segundo (kT/s)</option>
     `;
 
-  case "Temperatura":
-    return `
+    case "Temperatura":
+      return `
       <option value="K">K</option>
       <option value="°C">°C</option>
       <option value="°F">°F</option>
     `;
-  case "Volume":
-    return `
+    case "Volume":
+      return `
       <option value="m³">m³</option>
       <option value="cm³">cm³</option>
       <option value="mm³">mm³</option>
@@ -651,18 +686,17 @@ function getUnidades(variable) {
       <option value="ft³">ft³</option>
       <option value="in³">in³</option>
     `;
-  
-  case "Coeficiente de Dilatação Volumétrica":
-    return `
+
+    case "Coeficiente de Dilatação Volumétrica":
+      return `
       <option value="1/°C">1/°C</option>
       <option value="1/K">1/K</option>
     `;
-  
-  default:
+
+    default:
       return `<option value="">Selecione uma unidade</option>`;
   }
 }
-
 
 function calcularFisica() {
   const formula = document.getElementById("formula_fisica").value;
@@ -768,179 +802,178 @@ function calcularFisica() {
       resultado = calcularLeiNewtonCorposRigidos(variables);
       unidadeResultado = "N·m·s²";
       break;
-  
+
     case "comprimento-onda":
-        resultado = calcularComprimentoOnda(variables);
-        unidadeResultado = "m";
-        break;
-    
+      resultado = calcularComprimentoOnda(variables);
+      unidadeResultado = "m";
+      break;
+
     case "lei-faraday":
       resultado = calcularFluxoMagnetico(variables);
-      unidadeResultado = "Wb";  // Weber (unidade de fluxo magnético)
+      unidadeResultado = "Wb"; // Weber (unidade de fluxo magnético)
       break;
-      
+
     case "quociente-potencia":
-        resultado = calcularQuocientePotencia(variables);
-        unidadeResultado = "";
-        break;
-    
+      resultado = calcularQuocientePotencia(variables);
+      unidadeResultado = "W";
+      break;
+
     case "quantidade-movimento":
-        resultado = calcularQuantidadeMovimento(variables);
-        unidadeResultado = "kg·m/s";
-        break;
-    
+      resultado = calcularQuantidadeMovimento(variables);
+      unidadeResultado = "kg·m/s";
+      break;
+
     case "campo-eletrico":
-        resultado = calcularCampoEletrico(variables);
-        unidadeResultado = "N/C";
-        break;
-    
+      resultado = calcularCampoEletrico(variables);
+      unidadeResultado = "N/C";
+      break;
+
     case "campo-magnetico":
-        resultado = calcularCampoMagnetico(variables);
-        unidadeResultado = "T";
-        break;
-    
+      resultado = calcularCampoMagnetico(variables);
+      unidadeResultado = "T";
+      break;
+
     case "leitura-velocidade":
-        resultado = calcularLeituraVelocidade(variables);
-        unidadeResultado = "m/s";
-        break;
-    
+      resultado = calcularLeituraVelocidade(variables);
+      unidadeResultado = "m/s";
+      break;
+
     case "lei-coulomb":
-        resultado = calcularLeiCoulomb(variables);
-        unidadeResultado = "N·m²/C²";
-        break;
-    
+      resultado = calcularLeiCoulomb(variables);
+      unidadeResultado = "N·m²/C²";
+      break;
+
     case "potencial-eletrico":
-        resultado = calcularPotencialEletrico(variables);
-        unidadeResultado = "V";
-        break;
-    
+      resultado = calcularPotencialEletrico(variables);
+      unidadeResultado = "V";
+      break;
+
     case "torque":
       resultado = calcularTorque(variables);
       unidadeResultado = "N·m";
       break;
-  
-  case "frequencia-resonancia":
+
+    case "frequencia-resonancia":
       resultado = calcularFrequenciaRessonancia(variables);
       unidadeResultado = "Hz";
       break;
-  
-  case "lei-ohm":
+
+    case "lei-ohm":
       resultado = calcularLeiOhm(variables);
       unidadeResultado = "V";
       break;
-  
-  case "corrente-eletrica":
+
+    case "corrente-eletrica":
       resultado = calcularCorrenteEletrica(variables);
       unidadeResultado = "A";
       break;
-  
-  case "potencia-eletrica":
+
+    case "potencia-eletrica":
       resultado = calcularPotenciaEletrica(variables);
       unidadeResultado = "W";
       break;
-  
-  case "tensao-eletrica":
+
+    case "tensao-eletrica":
       resultado = calcularTensaoEletrica(variables);
       unidadeResultado = "V";
       break;
-  
-  case "eletricidade":
+
+    case "eletricidade":
       resultado = calcularEletricidade(variables);
       unidadeResultado = "W";
       break;
-  
-  case "pressao-atm":
+
+    case "pressao-atm":
       resultado = calcularPressaoAtm(variables);
       unidadeResultado = "atm";
       break;
-  
-  case "gravidade-celestial":
+
+    case "gravidade-celestial":
       resultado = calcularGravidadeCelestial(variables);
       unidadeResultado = "N";
       break;
-  
-  case "quantum":
+
+    case "quantum":
       resultado = calcularQuantumEnergia(variables);
       unidadeResultado = "J";
       break;
-  
-  case "velocidade-relativistica":
+
+    case "velocidade-relativistica":
       resultado = calcularVelocidadeRelativistica(variables);
       unidadeResultado = "m/s";
       break;
 
-  case "dilatacao-termica-superficia":
-    resultado = calcularDilatacaoTermicaSuperficial(variables);
-    unidadeResultado = "m²";
-  
-  case "dilatacao-volumetrica":
+    case "dilatacao-volumetrica":
       resultado = calcularDilatacaoVolumetrica(variables);
       unidadeResultado = "m³";
       break;
-  case "dilacao-termica":
-    resultado = calcularDilacaoTermica(variables);
-    unidadeResultado = "m";
-    break;
+    case "dilacao-termica":
+      resultado = calcularDilacaoTermica(variables);
+      unidadeResultado = "m";
+      break;
 
-  case "cinetica-transformada":
+    case "cinetica-transformada":
       resultado = calcularCineticaTransformada(variables);
       unidadeResultado = "J";
       break;
 
-  case "momento-forca":
+    case "momento-forca":
       resultado = calcularMomentoForca(variables);
       unidadeResultado = "N·m";
       break;
 
-  case "intensidade-luminosa":
+    case "intensidade-luminosa":
       resultado = calcularIntensidadeLuminosa(variables);
       unidadeResultado = "cd";
       break;
 
-  case "lei-kepler-segunda":
+    case "lei-kepler-segunda":
       resultado = calcularLeiKeplerSegunda(variables);
       unidadeResultado = "m²/s";
       break;
 
-  case "lei-kepler-terceira":
+    case "lei-kepler-terceira":
       resultado = calcularLeiKeplerTerceira(variables);
       unidadeResultado = "s²/m³";
       break;
 
-  case "velocidade-orbital-media":
+    case "velocidade-orbital-media":
       resultado = calcularVelocidadeOrbitalMedia(variables);
       unidadeResultado = "m/s";
       break;
 
-  case "queda-livre-galileu":
+    case "queda-livre-galileu":
       resultado = calcularQuedaLivreGalileu(variables);
       unidadeResultado = "m/s²";
       break;
 
-  case "fator-lorentz":
+    case "fator-lorentz":
       resultado = calcularFatorLorentz(variables);
       unidadeResultado = "γ";
       break;
 
-  default:
-    console.error("Fórmula não reconhecida.");
-    return;
-    }
+    default:
+      console.error("Fórmula não reconhecida.");
+      return;
+  }
 
   if (isNaN(resultado)) {
     console.error("Erro ao calcular resultado.");
     return;
   }
 
-  const resultadoExibicao = `$${formatarResultado(resultado)} \\ ${unidadeResultado}$`;
+  const resultadoExibicao = `$${formatarResultado(
+    resultado
+  )} \\ ${unidadeResultado}$`;
   document.getElementById("resultado-fisica").innerHTML = resultadoExibicao;
 
   // Renderiza o LaTeX com MathJax
-  MathJax.typesetPromise().then(() => {
-    console.log("Resultado renderizado com sucesso.");
-  }).catch((err) => console.error("Erro ao renderizar MathJax:", err));
+  MathJax.typesetPromise()
+    .then(() => {
+      console.log("Resultado renderizado com sucesso.");
+    })
+    .catch((err) => console.error("Erro ao renderizar MathJax:", err));
 }
-
 
 // Função para converter unidades para Sistema Internacional (SI)
 function converterParaSI(valor, unidade) {
@@ -1147,10 +1180,11 @@ function converterParaSI(valor, unidade) {
   }
 }
 
-
 // Funções de cálculo para Física
 function calcularVelocidadeMedia(vars) {
-  const [distancia, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [distancia, tempo] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tempo <= 0) {
@@ -1162,27 +1196,27 @@ function calcularVelocidadeMedia(vars) {
   return resultado;
 }
 
+// Função para calcular Trabalho
 function calcularTrabalho(vars) {
-  const [forca, distancia, angulo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [forca, distancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
-  if (forca < 0 || distancia < 0 || isNaN(angulo)) {
+  if (forca < 0 || distancia < 0) {
     const resultado = 0; // Caso inválido
     return resultado;
   }
 
-  // Converter o ângulo de graus para radianos, se necessário
-  const anguloRad = angulo * (Math.PI / 180);
-
-  // Fórmula do trabalho: T = F * d * cos(θ)
-  const resultado = forca * distancia * Math.cos(anguloRad);
-
+  const resultado = forca * distancia;
   return resultado;
 }
 
 // Função para calcular Força
 function calcularForca(vars) {
-  const [massa, aceleracao] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa, aceleracao] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa <= 0 || aceleracao < 0) {
@@ -1196,7 +1230,9 @@ function calcularForca(vars) {
 
 // Função para calcular Energia Cinética
 function calcularEnergiaCinetica(vars) {
-  const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa, velocidade] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa <= 0 || velocidade < 0) {
@@ -1238,7 +1274,9 @@ function calcularPotencia(vars) {
 
 // Função para calcular Aceleração
 function calcularAceleracao(vars) {
-  const [velocidadeFinal, velocidadeInicial, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [velocidadeFinal, velocidadeInicial, tempo] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tempo <= 0) {
@@ -1252,7 +1290,9 @@ function calcularAceleracao(vars) {
 
 // Função para calcular Momento Linear
 function calcularMomentoLinear(vars) {
-  const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa, velocidade] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa <= 0 || velocidade < 0) {
@@ -1280,7 +1320,9 @@ function calcularPressao(vars) {
 
 // Função para calcular Frequência de Ondas
 function calcularFrequenciaOndas(vars) {
-  const [velocidade, comprimentoOnda] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [velocidade, comprimentoOnda] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (velocidade <= 0 || comprimentoOnda <= 0) {
@@ -1294,7 +1336,9 @@ function calcularFrequenciaOndas(vars) {
 
 // Função para calcular Lei de Hooke
 function calcularLeiHooke(vars) {
-  const [constanteElastica, deformacao] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [constanteElastica, deformacao] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (constanteElastica <= 0 || deformacao < 0) {
@@ -1308,10 +1352,12 @@ function calcularLeiHooke(vars) {
 
 // Função para calcular Resistência Elétrica
 function calcularResistenciaEletrica(vars) {
-  const [tensao, corrente] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tensao, corrente] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
-  if (tensao <= 0 || corrente <=  0) {
+  if (tensao <= 0 || corrente <= 0) {
     const resultado = 0; // Caso inválido
     return resultado;
   }
@@ -1322,7 +1368,9 @@ function calcularResistenciaEletrica(vars) {
 
 // Função para calcular Movimento Uniforme
 function calcularMovimentoUniforme(vars) {
-  const [posicaoInicial, velocidade, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [posicaoInicial, velocidade, tempo] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tempo < 0) {
@@ -1336,7 +1384,9 @@ function calcularMovimentoUniforme(vars) {
 
 // Função para calcular Movimento Uniformemente Variado
 function calcularMovimentoUniformementeVariado(vars) {
-  const [posicaoInicial, velocidadeInicial, aceleracao, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [posicaoInicial, velocidadeInicial, aceleracao, tempo] = vars.map(
+    (variavel) => parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tempo < 0) {
@@ -1344,13 +1394,18 @@ function calcularMovimentoUniformementeVariado(vars) {
     return resultado;
   }
 
-  const resultado = posicaoInicial + velocidadeInicial * tempo + 0.5 * aceleracao * Math.pow(tempo, 2);
+  const resultado =
+    posicaoInicial +
+    velocidadeInicial * tempo +
+    0.5 * aceleracao * Math.pow(tempo, 2);
   return resultado;
 }
 
 // Função para calcular Energia Mecânica
 function calcularEnergiaMecanica(vars) {
-  const [energiaCinetica, energiaPotencial] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [energiaCinetica, energiaPotencial] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (energiaCinetica < 0 || energiaPotencial < 0) {
@@ -1364,7 +1419,9 @@ function calcularEnergiaMecanica(vars) {
 
 // Função para calcular Lei da Gravitação Universal
 function calcularLeiGravitacao(vars) {
-  const [massa1, massa2, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa1, massa2, distancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
   const G = 6.6743e-11; // Constante gravitacional
 
   // Verificar valores inválidos
@@ -1393,10 +1450,11 @@ function calcularEnergiaPotencialGravitacional(vars) {
   return resultado;
 }
 
-
 // Função para calcular Energia Potencial Elástica
 function calcularEnergiaPotencialElastica(vars) {
-  const [constanteElastica, deformacao] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [constanteElastica, deformacao] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (constanteElastica <= 0 || deformacao < 0) {
@@ -1439,7 +1497,9 @@ function calcularEinsteinEnergia(vars) {
 
 // Função para calcular Veloc idade de uma Onda em uma corda
 function calcularVelocidadeOnda(vars) {
-  const [tensao, densidadeLinear] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tensao, densidadeLinear] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tensao <= 0 || densidadeLinear <= 0) {
@@ -1463,14 +1523,20 @@ function parseNumber(valor) {
 // Função para calcular o Torque com base no Momento de Inércia e Aceleração Angular
 function calcularLeiNewtonCorposRigidos(vars) {
   // Tenta extrair e converter os valores para número
-  const [momentoInercia, aceleracaoAngular] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [momentoInercia, aceleracaoAngular] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Log para depuração
-  console.log(`Momento de Inércia (I): ${momentoInercia}, Aceleração Angular (α): ${aceleracaoAngular}`);
+  console.log(
+    `Momento de Inércia (I): ${momentoInercia}, Aceleração Angular (α): ${aceleracaoAngular}`
+  );
 
   // Verificar valores inválidos
   if (momentoInercia <= 0 || aceleracaoAngular <= 0) {
-    console.error("Valores inválidos: Momento de inércia e aceleração angular devem ser positivos.");
+    console.error(
+      "Valores inválidos: Momento de inércia e aceleração angular devem ser positivos."
+    );
     return 0;
   }
 
@@ -1483,10 +1549,10 @@ function calcularLeiNewtonCorposRigidos(vars) {
   return resultado;
 }
 
-
-
 function calcularComprimentoOnda(vars) {
-  const [velocidade, frequencia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [velocidade, frequencia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (velocidade < 0 || frequencia < 0) {
@@ -1500,10 +1566,16 @@ function calcularComprimentoOnda(vars) {
 }
 
 function calcularFluxoMagnetico(vars) {
-  const [numeroDeVoltas, campoMagnetico, area, variacaoCampoMagnetico] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [numeroDeVoltas, campoMagnetico, area, variacaoCampoMagnetico] =
+    vars.map((variavel) => parseNumber(variavel.valor));
 
   // Verificar valores inválidos
-  if (numeroDeVoltas <= 0 || campoMagnetico <= 0 || area <= 0 || variacaoCampoMagnetico <= 0) {
+  if (
+    numeroDeVoltas <= 0 ||
+    campoMagnetico <= 0 ||
+    area <= 0 ||
+    variacaoCampoMagnetico <= 0
+  ) {
     console.error("Valores inválidos para o cálculo da Indução de Faraday.");
     return 0; // Caso inválido
   }
@@ -1517,10 +1589,10 @@ function calcularFluxoMagnetico(vars) {
   return resultado;
 }
 
-
-
 function calcularQuocientePotencia(vars) {
-  const [potencia1, potencia2] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [potencia1, potencia2] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (potencia2 === 0) {
@@ -1533,9 +1605,10 @@ function calcularQuocientePotencia(vars) {
   return resultado;
 }
 
-
 function calcularQuantidadeMovimento(vars) {
-  const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa, velocidade] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa < 0 || velocidade < 0) {
@@ -1577,7 +1650,9 @@ function calcularCampoMagnetico(vars) {
 }
 
 function calcularLeituraVelocidade(vars) {
-  const [distancia, tempo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [distancia, tempo] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (distancia < 0 || tempo <= 0) {
@@ -1591,7 +1666,9 @@ function calcularLeituraVelocidade(vars) {
 }
 
 function calcularLeiCoulomb(vars) {
-  const [carga1, carga2, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [carga1, carga2, distancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (carga1 <= 0 || carga2 <= 0 || distancia <= 0) {
@@ -1603,12 +1680,14 @@ function calcularLeiCoulomb(vars) {
   const k_e = 8.99e9;
 
   // Fórmula da Lei de Coulomb: F = k_e * (q1 * q2) / r²
-  const resultado = k_e * (carga1 * carga2) / Math.pow(distancia, 2);
+  const resultado = (k_e * (carga1 * carga2)) / Math.pow(distancia, 2);
   return resultado;
 }
 
 function calcularPotencialEletrico(vars) {
-  const [carga, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [carga, distancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (carga <= 0 || distancia <= 0) {
@@ -1620,12 +1699,14 @@ function calcularPotencialEletrico(vars) {
   const k_e = 8.99e9;
 
   // Fórmula do Potencial Elétrico: V = k_e * q / r
-  const resultado = k_e * carga / distancia;
+  const resultado = (k_e * carga) / distancia;
   return resultado;
 }
 
 function calcularTorque(vars) {
-  const [forca, raio, angulo] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [forca, raio, angulo] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (forca < 0 || raio <= 0 || angulo < 0) {
@@ -1639,7 +1720,9 @@ function calcularTorque(vars) {
 }
 
 function calcularFrequenciaRessonancia(vars) {
-  const [indutancia, capacitancia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [indutancia, capacitancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (indutancia <= 0 || capacitancia <= 0) {
@@ -1653,7 +1736,9 @@ function calcularFrequenciaRessonancia(vars) {
 }
 
 function calcularLeiOhm(vars) {
-  const [tensao, resistencia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tensao, resistencia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tensao <= 0 || resistencia <= 0) {
@@ -1667,7 +1752,9 @@ function calcularLeiOhm(vars) {
 }
 
 function calcularCorrenteEletrica(vars) {
-  const [tensao, resistencia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tensao, resistencia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tensao <= 0 || resistencia <= 0) {
@@ -1681,7 +1768,9 @@ function calcularCorrenteEletrica(vars) {
 }
 
 function calcularPotenciaEletrica(vars) {
-  const [corrente, tensao] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [corrente, tensao] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (corrente <= 0 || tensao <= 0) {
@@ -1695,7 +1784,9 @@ function calcularPotenciaEletrica(vars) {
 }
 
 function calcularTensaoEletrica(vars) {
-  const [corrente, resistencia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [corrente, resistencia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (corrente <= 0 || resistencia <= 0) {
@@ -1709,7 +1800,9 @@ function calcularTensaoEletrica(vars) {
 }
 
 function calcularEletricidade(vars) {
-  const [tensao, corrente] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tensao, corrente] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tensao <= 0 || corrente <= 0) {
@@ -1737,7 +1830,9 @@ function calcularPressaoAtm(vars) {
 }
 
 function calcularGravidadeCelestial(vars) {
-  const [massa1, massa2, distancia] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa1, massa2, distancia] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa1 <= 0 || massa2 <= 0 || distancia <= 0) {
@@ -1746,7 +1841,7 @@ function calcularGravidadeCelestial(vars) {
   }
 
   // Fórmula da Lei da Gravitação Universal: F = G * (m1 * m2) / r^2
-  const G = 6.67430e-11; // Constante gravitacional
+  const G = 6.6743e-11; // Constante gravitacional
   const resultado = (G * massa1 * massa2) / Math.pow(distancia, 2);
   return resultado;
 }
@@ -1774,7 +1869,6 @@ function calcularQuantumEnergia(vars) {
   return resultado;
 }
 
-
 function calcularVelocidadeRelativistica(vars) {
   const [velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
 
@@ -1786,29 +1880,42 @@ function calcularVelocidadeRelativistica(vars) {
   const velocidadeLuz = 3e8; // Constante: Velocidade da Luz (3 × 10^8 m/s)
 
   // Fórmula da Velocidade Relativística: v = v0 / √(1 - v^2 / c^2)
-  const resultado = velocidade / Math.sqrt(1 - Math.pow(velocidade / velocidadeLuz, 2));
+  const resultado =
+    velocidade / Math.sqrt(1 - Math.pow(velocidade / velocidadeLuz, 2));
   return resultado;
 }
 
 function calcularDilacaoTermica(vars) {
-  const [comprimentoInicial, coeficienteDilatacao, variacaoTemperatura] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [comprimentoInicial, coeficienteDilatacao, variacaoTemperatura] =
+    vars.map((variavel) => parseNumber(variavel.valor));
 
   // Verificar valores inválidos
-  if (comprimentoInicial <= 0 || coeficienteDilatacao <= 0 || variacaoTemperatura <= 0) {
+  if (
+    comprimentoInicial <= 0 ||
+    coeficienteDilatacao <= 0 ||
+    variacaoTemperatura <= 0
+  ) {
     const resultado = 0; // Caso inválido
     return resultado;
   }
 
   // Fórmula da Dilatação Térmica: ΔL = L0 * α * ΔT
-  const resultado = comprimentoInicial * coeficienteDilatacao * variacaoTemperatura;
+  const resultado =
+    comprimentoInicial * coeficienteDilatacao * variacaoTemperatura;
   return resultado;
 }
 
 function calcularDilatacaoVolumetrica(vars) {
-  const [volumeInicial, coeficienteDilatacao, variacaoTemperatura] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [volumeInicial, coeficienteDilatacao, variacaoTemperatura] = vars.map(
+    (variavel) => parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
-  if (volumeInicial <= 0 || coeficienteDilatacao <= 0 || variacaoTemperatura <= 0) {
+  if (
+    volumeInicial <= 0 ||
+    coeficienteDilatacao <= 0 ||
+    variacaoTemperatura <= 0
+  ) {
     return 0; // Caso inválido
   }
 
@@ -1817,10 +1924,10 @@ function calcularDilatacaoVolumetrica(vars) {
   return resultado;
 }
 
-
-
 function calcularCineticaTransformada(vars) {
-  const [massa, velocidade] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [massa, velocidade] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (massa <= 0 || velocidade <= 0) {
@@ -1871,10 +1978,9 @@ function calcularLeiKeplerSegunda(vars) {
   }
 
   // Fórmula da Segunda Lei de Kepler: A = (1/2) * r² * Δθ
-  const resultado = 0.5 * Math.pow(raio, 2) * angulo;  // O ângulo deve estar em radianos
+  const resultado = 0.5 * Math.pow(raio, 2) * angulo; // O ângulo deve estar em radianos
   return resultado;
 }
-
 
 function calcularLeiKeplerTerceira(vars) {
   const [periodo, raio] = vars.map((variavel) => parseNumber(variavel.valor));
@@ -1886,14 +1992,15 @@ function calcularLeiKeplerTerceira(vars) {
   }
 
   // Fórmula da Terceira Lei de Kepler: T² = k * r³
-  const k = 2.97e-19;  // Constante que depende do sistema de unidades
+  const k = 2.97e-19; // Constante que depende do sistema de unidades
   const resultado = Math.pow(periodo, 2) / Math.pow(raio, 3);
   return resultado;
 }
 
-
 function calcularVelocidadeOrbitalMedia(vars) {
-  const [gravidade, massaPlaneta, raioOrbitado] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [gravidade, massaPlaneta, raioOrbitado] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (gravidade <= 0 || massaPlaneta <= 0 || raioOrbitado <= 0) {
@@ -1902,13 +2009,15 @@ function calcularVelocidadeOrbitalMedia(vars) {
   }
 
   // Fórmula da Velocidade Orbital Média: v = √(G * M / r)
-  const G = 6.67430e-11; // Constante gravitacional
+  const G = 6.6743e-11; // Constante gravitacional
   const resultado = Math.sqrt((G * massaPlaneta) / raioOrbitado);
   return resultado;
 }
 
 function calcularQuedaLivreGalileu(vars) {
-  const [tempo, gravidade] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [tempo, gravidade] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (tempo <= 0 || gravidade <= 0) {
@@ -1929,17 +2038,23 @@ function calcularFatorLorentz(vars) {
   }
 
   // Tenta extrair e converter os valores para número
-  const [velocidade, velocidadeLuz] = vars.map((variavel) => parseNumber(variavel.valor));
+  const [velocidade, velocidadeLuz] = vars.map((variavel) =>
+    parseNumber(variavel.valor)
+  );
 
   // Verificar valores inválidos
   if (velocidade <= 0 || velocidadeLuz <= 0) {
-    console.error("Valores inválidos: a velocidade e a velocidade da luz devem ser positivas.");
+    console.error(
+      "Valores inválidos: a velocidade e a velocidade da luz devem ser positivas."
+    );
     return 0;
   }
 
   // Verificar se a velocidade não é maior ou igual à velocidade da luz (o que causaria um valor inválido)
   if (velocidade >= velocidadeLuz) {
-    console.error("A velocidade não pode ser maior ou igual à velocidade da luz.");
+    console.error(
+      "A velocidade não pode ser maior ou igual à velocidade da luz."
+    );
     return 0;
   }
 
@@ -1955,25 +2070,24 @@ function calcularFatorLorentz(vars) {
   return resultado;
 }
 
-
-
 // Função para garantir que os valores sejam convertidos corretamente para números
 function parseNumber(valor) {
   const numero = parseFloat(valor);
   if (isNaN(numero)) {
-    console.error(`Valor inválido: ${valor} não pode ser convertido para número.`);
+    console.error(
+      `Valor inválido: ${valor} não pode ser convertido para número.`
+    );
     return 0; // Retorna 0 se não puder converter
   }
   return numero;
 }
 
-
 function formatarResultado(valor) {
   // Notação científica para valores muito pequenos ou grandes
   if (Math.abs(valor) >= 1e6 || (Math.abs(valor) < 1e-3 && valor !== 0)) {
-    const [base, expoente] = valor.toExponential().split('e');
-    const baseFormatada = base.replace('.', ','); // Troca ponto por vírgula
-    const expoenteFormatado = expoente.replace('+', ''); // Remove o sinal de adição
+    const [base, expoente] = valor.toExponential().split("e");
+    const baseFormatada = base.replace(".", ","); // Troca ponto por vírgula
+    const expoenteFormatado = expoente.replace("+", ""); // Remove o sinal de adição
     return `${baseFormatada} \\times 10^{${expoenteFormatado}}`; // Formato: x,xxxx * 10^y
   }
 
@@ -1983,5 +2097,8 @@ function formatarResultado(valor) {
   }
 
   // Retorna valores normais com 5 casas decimais
-  return valor.toFixed(5).replace('.', ',').replace(/\.?0+$/, ''); // Troca ponto por vírgula e remove zeros desnecessários
+  return valor
+    .toFixed(5)
+    .replace(".", ",")
+    .replace(/\.?0+$/, ""); // Troca ponto por vírgula e remove zeros desnecessários
 }

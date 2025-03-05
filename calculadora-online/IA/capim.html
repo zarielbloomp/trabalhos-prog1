@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScienceLab-IA</title>
+    <link rel="stylesheet" href="capim.css">
+</head>
+<body>
+    <!-- Navbar -->
+        <nav class="extra-navigation">
+          <a href="../extras/quem-somos.html" class="extra-link" aria-label="Link para Quem Somos">Quem Somos</a>
+          <a href="../calculadora.php" class="extra-link" aria-label="Link para CapimCognition">Calculadora</a>
+        </nav>
+        
+    <h1>ScienceLab - Gemini</h1>
+    
+    <div id="output" class="output"></div>
+    
+    <div class="input-container">
+        <input type="text" id="userPrompt" placeholder="Digite seu prompt aqui...">
+        <button id="generateButton">Enviar</button>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+
+      // Acessar sua chave de API (apenas para teste local)
+      const API_KEY = "AIzaSyCmIkLhyrTi0GMwo3t8fVuo5k2jcPDVxH4";
+      const genAI = new GoogleGenerativeAI(API_KEY);
+
+      async function run(prompt) {
+          const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+          const result = await model.generateContent(prompt, { language: 'pt-BR' });
+          const response = await result.response;
+          const text = await response.text();
+          return text;
+      }
+
+      document.getElementById('generateButton').addEventListener('click', async () => {
+          const prompt = document.getElementById('userPrompt').value;
+          if (prompt) {
+              // Adiciona a pergunta do usuário
+              const userDiv = document.createElement('div');
+              userDiv.textContent = `EU: ${prompt}`;
+              userDiv.classList.add('story', 'user');
+              const outputDiv = document.getElementById('output');
+              outputDiv.appendChild(userDiv);
+
+              // Gera a resposta da IA
+              const generatedText = await run(prompt);
+              const aiDiv = document.createElement('div');
+              aiDiv.classList.add('story', 'ai');
+
+              // Formata o texto com negrito, itálico, e quebras de linha
+              const formattedText = formatResponse(`ScienceLab: ${generatedText}`);
+              outputDiv.appendChild(aiDiv);
+
+              // Exibe a resposta palavra por palavra mantendo a formatação
+              typeEffect(formattedText, aiDiv);
+
+              // Rola automaticamente para o final das mensagens
+              outputDiv.scrollTop = outputDiv.scrollHeight;
+
+              // Limpa o campo de entrada de texto
+              document.getElementById('userPrompt').value = '';
+          } else {
+              alert("Por favor, insira um comando!");
+          }
+      });
+
+      function typeEffect(formattedText, element) {
+          const words = formattedText.split(' ');
+          let i = 0;
+          function displayNextWord() {
+              if (i < words.length) {
+                  element.innerHTML += words[i] + ' ';
+                  i++;
+                  setTimeout(displayNextWord, 40); // Define a velocidade da "digitação"
+              }
+          }
+          displayNextWord();
+      }
+
+      function formatResponse(response) {
+          // Formata negrito, itálico, e quebras de linha
+          let formatted = response.replace(/(\*\*([^*]+)\*\*)/g, '<strong>$2</strong>') // Negrito
+                                  .replace(/(\*([^*]+)\*)/g, '<em>$2</em>') // Itálico
+                                  .replace(/\n/g, '<br>');
+
+          // Substitui frações no formato 1/2 por formatação correta
+          formatted = formatted.replace(/(\d+)\/(\d+)/g, '<sup>$1</sup>&frasl;<sub>$2</sub>');
+
+          return formatted;
+      }
+    </script>
+</body>
+</html>

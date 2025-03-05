@@ -31,12 +31,55 @@
     </header>
 
     <!-- Navegação adicional -->
-    <nav class="extra-navigation">
-      <a href="../extras/quem-somos.html" class="extra-link" aria-label="Link para Quem Somos">Quem Somos</a>
-      <a href="../ia/index.html" class="extra-link" aria-label="Link para CapimCognition">CapimCognition</a>
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li class="navbar-item">
+                <a href="../extras/quem-somos.html" class="extra-link" aria-label="Link para Quem Somos">Quem Somos</a>
+            </li>
+            <li class="navbar-item" id='navbar-AI'>
+                <a href="../IA/capim.html" class="extra-link" aria-label="Link para TheScienceLab-IA">TheScienceLab - Inteligência Artificial</a>
+            </li>
+        </ul>
+        <div class="user-menu">
+            <?php if ($_SESSION['googleImg']): ?>
+                <img src="<?php echo $_SESSION['userImg'] ?>" alt="User Image" class="user-image" onclick="toggleDropdown()">
+            <?php elseif ($_SESSION['userImg']): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userImg']); ?>" alt="User Image" class="user-image" onclick="toggleDropdown()">
+            <?php else: ?>
+                <img src="defaultUser.svg" alt="User Image" class="user-image" onclick="toggleDropdown()">
+            <?php endif; ?>
+            <div id="dropdown" class="dropdown-content">
+                <p style="color: black;">Olá, <?php echo htmlspecialchars($_SESSION['userName']); ?>!</p>
+                <form action="register.php" method="post">
+                    <button type="submit" name="changeImg">Alterar Imagem</button>
+                </form>
+                <form action="logout.php" method="post">
+                    <button type="submit" name="logout">Deslogar</button>
+                </form>
+            </div>
+        </div>
     </nav>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+        }
 
-    <!-- Botões de navegação para as diferentes áreas da calculadora -->
+        // Fechar o dropdown se o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-image')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+    
+ <!-- Botões de navegação para as diferentes áreas da calculadora -->
     <nav class="tab-buttons" aria-label="Navegação de Fórmulas">
       <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')" aria-selected="true">Fórmulas Químicas</button>
       <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')" aria-selected="false">Fórmulas Físicas</button>
@@ -44,13 +87,14 @@
       <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')" aria-selected="false">Operações de Matrizes</button>
     </nav>
 
+
  <!-- Seção de fórmulas de Química -->
 <section id="quimica-formulas" class="tab-content active" aria-labelledby="tab-quimica">
   <h2>Química</h2>
   <div class="formula">
     <label for="formula">Selecione a fórmula:</label>
     <select id="formula" onchange="updateVariablesQuimica()">
-          <option value="numero-mols">Número de mols</option>
+      <option value="numero-mols">Número de mols</option>
           <option value="massa-molar">Massa Molar</option>
           <option value="densidade">Densidade</option>
           <option value="concentracao-molar">Concentração Molar</option>
@@ -100,7 +144,7 @@
           <option value="capacidade-calorifica">Capacidade Calorífica</option>
           <option value="oxido-reducao">Oxidação-Redução (potencial padrão de redução)</option>
           <option value="entropia">Entropia (ΔS)</option>
-    </select>
+          </select>
   </div>
 
   <div class="variables">
@@ -193,7 +237,7 @@
   <div class="formula">
     <label for="formula_matematica">Selecione a fórmula:</label>
     <select id="formula_matematica" onchange="updateVariablesMatematica()">
-        <option value="formula-heron">Fórmula de Heron</option>
+         <option value="formula-heron">Fórmula de Heron</option>
         <option value="baskara">Fórmula de Bhaskara</option>
         <option value="espiral-arquimedes">Espiral de Arquimedes</option>
         <option value="area-circulo">Área do Círculo</option>
@@ -221,8 +265,6 @@
         <option value="area-trapezio">Área do Trapézio</option>
         <option value="area-paralelogramo">Área do Paralelogramo</option>
         <option value="formula-euler">Fórmula de Euler</option>
-
-        
         <option value="soma-cubos">Fórmula da Soma dos Cubos</option>
         <option value="soma-quadrados">Fórmula da Soma dos Quadrados</option>
         <option value="funcao-exponencial">Fórmula da Função Exponencial (Valor Futuro de um Capital)</option>
@@ -255,7 +297,6 @@
         <option value="area-triangulo-equilatero">Área do Triângulo Equilátero</option>
         <option value="area-hexagono">Área do Hexágono (sem ser regular)</option>
         <option value="area-pologono-regular">Área do Polígono Regular (fórmula geral)</option>
-
 
     </select>
   </div>
@@ -312,9 +353,11 @@
       </div>
     </footer>
   </div>
+  
+  <!---elohim, yeshua achrai -->
 
 <div class="aviso">
-  <p>SITE EM DESENVOLVIMENTO, VERSÃO ATUAL: <strong>BETA</strong></p>
+  <p>SITE EM DESENVOLVIMENTO</p>
 
 </div>
   <!-- Scripts para manipulação de fórmulas -->
