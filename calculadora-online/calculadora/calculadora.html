@@ -35,7 +35,7 @@
         </ul>
     </nav>
 
-    <!-- Botões de navegação para áreas da calculadora -->
+    <!-- Botões de navegação -->
     <nav class="tab-buttons">
       <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
       <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
@@ -43,86 +43,11 @@
       <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')">Operações de Matrizes</button>
     </nav>
 
-    <!-- Seção de Fórmulas de Química -->
-    <section id="quimica-formulas" class="tab-content active">
-      <h2>Química</h2>
-      <input type="text" id="search-quimica" placeholder="Pesquisar fórmula..." onkeyup="filtrarFormulas('quimica')">
-      <div class="formula">
-        <label for="formula_quimica">Selecione a fórmula:</label>
-        <select id="formula_quimica" onchange="updateVariablesQuimica()">
-          <optgroup label="ESTEQUIOMETRIA">
-            <option value="concentracao-molar">Concentração Molar</option>
-            <option value="massa-molar">Massa Molar</option>
-            <option value="densidade">Densidade</option>
-          </optgroup>
-          <optgroup label="TERMODINÂMICA">
-            <option value="calor-sensivel">Calor Sensível</option>
-            <option value="calor-latente">Calor Latente</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div class="variables">
-        <div class="formula-display" id="quimica-formula-display"></div>
-        <label>Preencha as variáveis:</label>
-        <div id="variables-container_quimica"></div>
-      </div>
-
-      <button onclick="calcularQuimica()">Calcular</button>
-
-      <div class="resultado" id="resultado-quimica">
-        <h3>Resultado:</h3>
-        <span id="resultado-valor-quimica">--</span>
-      </div>
-    </section>
-
-    <!-- Seção de Fórmulas de Física -->
-    <section id="fisica-formulas" class="tab-content" style="display:none;">
-      <h2>Física</h2>
-      <input type="text" id="search-fisica" placeholder="Pesquisar fórmula..." onkeyup="filtrarFormulas('fisica')">
-      <div class="formula">
-        <label for="formula_fisica">Selecione a fórmula:</label>
-        <select id="formula_fisica" onchange="updateVariablesFisica()">
-          <optgroup label="CINEMÁTICA">
-            <option value="velocidade">Velocidade Média</option>
-            <option value="aceleracao">Aceleração Média</option>
-          </optgroup>
-          <optgroup label="DINÂMICA">
-            <option value="forca">Força (2ª Lei de Newton)</option>
-            <option value="trabalho">Trabalho</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div class="variables">
-        <div class="formula-display" id="fisica-formula-display"></div>
-        <label>Preencha as variáveis:</label>
-        <div id="variables-container_fisica"></div>
-      </div>
-
-      <button onclick="calcularFisica()">Calcular</button>
-
-      <div class="resultado" id="resultado-fisica">
-        <h3>Resultado:</h3>
-        <span id="resultado-valor-fisica">--</span>
-      </div>
-    </section>
-
-    <!-- Seção de Operações com Matrizes -->
-    <section id="matrizes-formulas" class="tab-content" style="display:none;">
-      <h2>Operações com Matrizes</h2>
-      <input type="text" id="search-matrizes" placeholder="Pesquisar operação..." onkeyup="filtrarFormulas('matrizes')">
-      <div class="formula">
-        <label for="formula_matriz">Selecione a operação:</label>
-        <select id="formula_matriz" onchange="updateVariablesMatriz()">
-          <optgroup label="ÁLGEBRA LINEAR">
-            <option value="determinante">Determinante</option>
-            <option value="inversa">Inversa</option>
-            <option value="transposta">Transposta</option>
-          </optgroup>
-        </select>
-      </div>
-    </section>
+    <!-- Área de Resultado Destacada -->
+    <div class="resultado-destacado">
+        <h2>RESULTADO:</h2>
+        <div id="resultado-geral">Selecione uma fórmula e preencha as variáveis.</div>
+    </div>
 
     <!-- Rodapé -->
     <footer>
@@ -136,14 +61,6 @@
   <script src="fisica.js"></script>
   <script src="matematica.js"></script>
   <script src="matrizes.js"></script>
-  <script>
-    function filtrarFormulas(area) {
-      let input = document.getElementById(`search-${area}`).value.toLowerCase();
-      let select = document.getElementById(`formula_${area}`);
-      for (let option of select.options) {
-        option.style.display = option.innerText.toLowerCase().includes(input) ? "block" : "none";
-      }
-    }
-  </script>
+
 </body>
 </html>
