@@ -169,48 +169,54 @@
       <div class="formula">
         <label for="formula_fisica">Selecione a fórmula:</label>
         <select id="formula_fisica" onchange="updateVariablesFisica()">
-          <option value="velocidade">Velocidade Média</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="forca">Força (segunda lei de Newton)</option>
-          <option value="energia-cinetica">Energia Cinética</option>
-          <option value="impulso">Impulso</option>
-          <option value="potencia">Potência</option>
-          <option value="aceleracao">Aceleração média</option>
-          <option value="momento-linear">Momento Linear</option>
-          <option value="pressao">Pressão</option>
-          <option value="frequencia-ondas">Frequência de Ondas</option>
-          <option value="lei-hooke">Lei de Hooke</option>
-          <option value="resistencia-eletrica">Resistência Elétrica</option>
-          <option value="energia-mecanica">Energia Mecânica</option>
-          <option value="lei-gravitacao">Lei da Gravitação Universal</option>
-          <option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
-          <option value="energia-potencial-elastica">Energia Potencial Elástica</option>
-          <option value="capacitancia">Capacitância</option>
-          <option value="energia-einstein">Relação entre Massa e Energia de Einsten</option>
-          <option value="velocidade-onda">Velocidade de Ondas em uma corda tensionada</option>
-          <option value="lei-newton-corpos-rigidos">Segunda lei de Newton</option>
-          <option value="comprimento-onda">Comprimento de Onda</option>
-          <option value="lei-faraday">Lei de Faraday da Indução Eletromagnética</option>
-          <option value="quociente-potencia">Quociente de Potências</option>
-          <option value="quantidade-movimento">Quantidade de Movimento (momento linear)</option>
-          <option value="campo-eletrico">Campo Elétrico</option>
-          <option value="campo-magnetico">Campo Magnético produzido por um fio de corrente</option>
-          <option value="lei-coulomb">Lei de Coulomb</option>
-          <option value="potencial-eletrico">Potencial Elétrico gerado por uma carga puntiforme</option>
-          <option value="torque">Torque (momento de força)</option>
-          <option value="frequencia-resonancia">Frequência de Ressonância</option>
-          <option value="lei-ohm">Primeira lei de Ohm</option>
-          <option value="corrente-eletrica">Intensidade da corrente elétrica</option>
-          <option value="potencia-eletrica">Potência Elétrica</option>
-          <option value="quantum">Quantum de Energia</option>
-          <option value="velocidade-relativistica">Velocidade Relativística</option>
-          <!---<option value="dilatacao-termica-superficial">Dilatação Térmica Superficial de sólidos</option>-->
-          <option value="dilatacao-volumetrica">Dilatação Térmica Volumetrica de sólidos</option>
-          <option value="dilacao-termica">Dilatação Térmica Linear de sólidos</option>
-          <option value="intensidade-luminosa">Intensidade Luminosa</option>
-          <option value="velocidade-orbital-media">Velocidade Orbital Média</option>
-          <option value="queda-livre-galileu">Lei da Queda Livre de Galileu Galilei (calculo da velocidade de queda) </option>
-          <option value="fator-lorentz">Fator de Lorentz</option>
+          <!-- 📌 CINEMÁTICA -->
+<option value="velocidade">Velocidade Média</option>
+<option value="aceleracao">Aceleração Média</option>
+<option value="queda-livre-galileu">Queda Livre</option>
+
+<!-- 📌 DINÂMICA -->
+<option value="forca">Força Resultante (2ª Lei de Newton)</option>
+<option value="trabalho">Trabalho</option>
+<option value="impulso">Impulso</option>
+<option value="momento-linear">Momento Linear</option>
+<option value="energia-cinetica">Energia Cinética</option>
+<option value="energia-mecanica">Energia Mecânica</option>
+<option value="potencia">Potência</option>
+<option value="pressao">Pressão</option>
+<option value="torque">Torque (Momento de Força)</option>
+
+<!-- 📌 GRAVITAÇÃO -->
+<option value="lei-gravitacao">Lei da Gravitação Universal</option>
+<option value="energia-potencial-gravitacional">Energia Potencial Gravitacional</option>
+<option value="velocidade-orbital-media">Velocidade Orbital Média</option>
+
+<!-- 📌 ONDULATÓRIA -->
+<option value="frequencia-ondas">Frequência de Ondas</option>
+<option value="comprimento-onda">Comprimento de Onda</option>
+<option value="velocidade-onda">Velocidade de Onda</option>
+<option value="intensidade-luminosa">Intensidade Luminosa</option>
+
+<!-- 📌 ELETRICIDADE E MAGNETISMO -->
+<option value="lei-ohm">Lei de Ohm</option>
+<option value="corrente-eletrica">Corrente Elétrica</option>
+<option value="potencia-eletrica">Potência Elétrica</option>
+<option value="resistencia-eletrica">Resistência Elétrica</option>
+<option value="lei-coulomb">Lei de Coulomb</option>
+<option value="campo-eletrico">Campo Elétrico</option>
+<option value="campo-magnetico">Campo Magnético</option>
+<option value="capacitancia">Capacitância</option>
+<option value="lei-faraday">Lei de Faraday</option>
+<option value="frequencia-resonancia">Frequência de Ressonância</option>
+
+<!-- 📌 TERMODINÂMICA -->
+<option value="dilacao-termica">Dilatação Térmica Linear</option>
+<option value="dilatacao-volumetrica">Dilatação Térmica Volumétrica</option>
+<option value="quantidade-movimento">Quantidade de Movimento</option>
+
+<!-- 📌 RELATIVIDADE -->
+<option value="energia-einstein">Relação entre Massa e Energia (Einstein)</option>
+<option value="velocidade-relativistica">Velocidade Relativística</option>
+<option value="fator-lorentz">Fator de Lorentz</option>
 
           
         </select>
