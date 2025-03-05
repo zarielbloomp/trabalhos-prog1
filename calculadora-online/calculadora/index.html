@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScienceLab</title>
+  <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="certo.css">
+
+  <!-- MathJax para renderização de fórmulas LaTeX -->
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Calculadora de Fórmulas</h1>
+    </header>
+
+    <!-- Navegação -->
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="../extras/quem-somos.html">Quem Somos</a></li>
+            <li><a href="../IA/capim.html">TheScienceLab - Inteligência Artificial</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botões de navegação para áreas da calculadora -->
+    <nav class="tab-buttons">
+      <button class="tab-button active" id="tab-quimica" onclick="showTab('quimica')">Fórmulas Químicas</button>
+      <button class="tab-button" id="tab-fisica" onclick="showTab('fisica')">Fórmulas Físicas</button>
+      <button class="tab-button" id="tab-matematica" onclick="showTab('matematica')">Fórmulas Matemáticas</button>
+      <button class="tab-button" id="tab-matrizes" onclick="showTab('matrizes')">Operações de Matrizes</button>
+    </nav>
+
+    <!-- Área de Resultado Destacada -->
+    <div class="resultado-destacado">
+        <h2>Resultado:</h2>
+        <div id="resultado-geral">Selecione uma fórmula e preencha as variáveis.</div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2024 ScienceLab - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="showTab.js"></script>
+  <script src="quimica.js"></script>
+  <script src="fisica.js"></script>
+  <script src="matematica.js"></script>
+  <script src="matrizes.js"></script>
+
+</body>
+</html>
